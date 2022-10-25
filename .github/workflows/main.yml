@@ -42,20 +42,6 @@ jobs:
         with:
           projectPath: ./
 
-      # Build
-      - name: Build project
-        uses: game-ci/unity-builder@v2
-        with:
-          allowDirtyBuild: true
-          projectPath: ./
-          targetPlatform: WebGL
-
-      # Output
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build
-          path: build
-
   #
   # End of readme workflow.
   #
@@ -195,8 +181,6 @@ jobs:
           - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
-          - iOS # Build an iOS player.
-          - WebGL # WebGL.
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -234,10 +218,10 @@ jobs:
           path: ${{ steps.testRunner.outputs.artifactsPath }}
       - uses: game-ci/unity-builder@v2
         with:
-	    allowDirtyBuild: true
           projectPath: ${{ matrix.projectPath }}
           targetPlatform: ${{ matrix.targetPlatform }}
           customParameters: "-myParameter myValue -myBoolean -ThirdParameter andItsValue"
+          allowDirtyBuild: true
       - uses: actions/upload-artifact@v2
         with:
           name: Build (${{ matrix.targetPlatform }})
