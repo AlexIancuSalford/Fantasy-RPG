@@ -40,13 +40,13 @@ jobs:
       - name: Run tests
         uses: game-ci/unity-test-runner@v2
         with:
-          projectPath: /
+          projectPath: ./
 
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v2
         with:
-          projectPath: /
+          projectPath: ./
           targetPlatform: WebGL
 
       # Output
@@ -126,7 +126,7 @@ jobs:
       - uses: game-ci/unity-test-runner@v2
         id: testRunner
         with:
-          projectPath: /
+          projectPath: ./
           testMode: editmode
 
       # Upload artifact
@@ -169,7 +169,7 @@ jobs:
       - uses: game-ci/unity-test-runner@v2
         id: testRunner
         with:
-          projectPath: /
+          projectPath: ./
           testMode: playmode
 
       # Upload artifact
@@ -219,7 +219,7 @@ jobs:
       - uses: game-ci/unity-test-runner@v2.0-alpha-5
         id: testRunner
         with:
-          projectPath: /
+          projectPath: ./
           testMode: ${{ matrix.testMode }}
           checkName: ${{ matrix.testMode }} test results
           githubToken: ${{ secrets.GITHUB_TOKEN }}
@@ -241,7 +241,7 @@ jobs:
       fail-fast: false
       matrix:
         projectPath:
-          - /
+          - ./
         targetPlatform:
           - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
