@@ -46,6 +46,7 @@ jobs:
       - name: Build project
         uses: game-ci/unity-builder@v2
         with:
+          allowDirtyBuild: true
           projectPath: ./
           targetPlatform: WebGL
 
@@ -233,6 +234,7 @@ jobs:
           path: ${{ steps.testRunner.outputs.artifactsPath }}
       - uses: game-ci/unity-builder@v2
         with:
+	    allowDirtyBuild: true
           projectPath: ${{ matrix.projectPath }}
           targetPlatform: ${{ matrix.targetPlatform }}
           customParameters: "-myParameter myValue -myBoolean -ThirdParameter andItsValue"
