@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,21 +16,11 @@ public class MoveToTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            MoveToCursor();
-        }
-
         Animator.SetFloat("forwardSpeed", transform.InverseTransformDirection(Agent.velocity).z);
     }
 
-    private void MoveToCursor()
+    public void MoveTo(Vector3 destination)
     {
-        bool hasHit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit);
-
-        if (hasHit)
-        {
-            Agent.destination = hit.point;
-        }
+        Agent.destination = destination;
     }
 }
