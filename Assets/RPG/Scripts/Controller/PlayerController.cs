@@ -1,7 +1,6 @@
 using RPG.Combat;
 using RPG.Movement;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace RPG.Controller
 {
@@ -15,27 +14,39 @@ namespace RPG.Controller
         {
             MoveToTarget = GetComponent<Mover>();
             Fighter = GetComponent<Fighter>();
-
-            Assert.IsNotNull(Fighter);
-            Assert.IsNotNull(MoveToTarget);
         }
 
         // Update is called once per frame
         void Update()
         {
-            HandleMovement();
-            HandleCombat();
-        }
-
-        private void HandleMovement()
-        {
-            if (Input.GetMouseButton(0))
+            switch (true)
             {
-                MoveToCursor();
+                case bool x when IsInCombat():
+                    break;
+                case bool y when CanMoveToCursor():
+                    break;
+                default:
+                    Debug.Log("Idle: Nothing to do");
+                    break;
             }
         }
 
-        private void HandleCombat()
+        private bool CanMoveToCursor()
+        {
+            bool hasHit = Physics.Raycast(GetRayFromScreenPoint(), out RaycastHit hit);
+
+            if (!hasHit) { return false; }
+
+            if (Input.GetMouseButton(0))
+            {
+                MoveToTarget.MoveTo(hit.point);
+            }
+
+            Debug.Log($"Can move to location {hit.point}");
+            return true;
+        }
+
+        private bool IsInCombat()
         {
             RaycastHit[] raycastHits = Physics.RaycastAll(GetRayFromScreenPoint());
 
@@ -43,21 +54,21 @@ namespace RPG.Controller
             {
                 Target target = raycastHit.transform.GetComponent<Target>();
 
-                if (target != null && Input.GetMouseButtonDown(0))
+                if (target == null) { continue; }
+
+                if (Input.GetMouseButtonDown(0))
                 {
                     Fighter.Attack(target);
                 }
-            }
-        }
 
-        private void MoveToCursor()
-        {
-            bool hasHit = Physics.Raycast(GetRayFromScreenPoint(), out RaycastHit hit);
-
-            if (hasHit)
-            {
-                MoveToTarget.MoveTo(hit.point);
+                if (target.name != null)
+                {
+                    Debug.Log(target.name);
+                }
+                return true;
             }
+
+            return false;
         }
 
         private Ray GetRayFromScreenPoint()
