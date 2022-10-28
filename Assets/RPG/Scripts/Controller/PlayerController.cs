@@ -26,7 +26,6 @@ namespace RPG.Controller
                 case bool y when CanMoveToCursor():
                     break;
                 default:
-                    Debug.Log("Idle: Nothing to do");
                     break;
             }
         }
@@ -41,8 +40,7 @@ namespace RPG.Controller
             {
                 MoveToTarget.MoveTo(hit.point);
             }
-
-            Debug.Log($"Can move to location {hit.point}");
+            
             return true;
         }
 
@@ -61,10 +59,6 @@ namespace RPG.Controller
                     Fighter.Attack(target);
                 }
 
-                if (target.name != null)
-                {
-                    Debug.Log(target.name);
-                }
                 return true;
             }
 
