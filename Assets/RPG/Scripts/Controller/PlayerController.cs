@@ -38,7 +38,7 @@ namespace RPG.Controller
 
             if (Input.GetMouseButton(0))
             {
-                MoveToTarget.MoveTo(hit.point);
+                MoveToTarget.StartMoveAction(hit.point);
             }
             
             return true;

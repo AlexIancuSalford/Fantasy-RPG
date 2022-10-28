@@ -22,9 +22,7 @@ namespace RPG.Combat
         {
             if (TargetTransform != null)
             {
-                float distance = Vector3.Distance(TargetTransform.position, gameObject.transform.position);
-
-                if (distance >= WeaponRange)
+                if (IsTargetInRange())
                 {
                     MoverRef.MoveTo(TargetTransform.position);
                 }
@@ -38,6 +36,16 @@ namespace RPG.Combat
         public void Attack(Target target)
         {
             TargetTransform = target.transform;
+        }
+
+        public void Cancel()
+        {
+            TargetTransform = null;
+        }
+
+        private bool IsTargetInRange()
+        {
+            return Vector3.Distance(TargetTransform.position, gameObject.transform.position) >= WeaponRange;
         }
     }
 }
