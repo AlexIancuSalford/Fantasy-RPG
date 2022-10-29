@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour, IAction
     {
         private Transform TargetTransform { get; set; }
         private Mover MoverRef { get; set; }
@@ -31,7 +31,7 @@ namespace RPG.Combat
                 }
                 else
                 {
-                    MoverRef.Stop();
+                    MoverRef.Cancel();
                 }
             }
         }
@@ -44,6 +44,7 @@ namespace RPG.Combat
 
         public void Cancel()
         {
+            Debug.Log("Hello");
             TargetTransform = null;
         }
 

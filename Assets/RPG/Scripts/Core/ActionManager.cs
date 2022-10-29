@@ -4,7 +4,7 @@ namespace RPG.Core
 {
     public class ActionManager : MonoBehaviour
     {
-        private MonoBehaviour CurrentAction { get; set; }
+        private IAction CurrentAction { get; set; }
 
         // Start is called before the first frame update
         void Start()
@@ -18,14 +18,11 @@ namespace RPG.Core
 
         }
 
-        public void StartAction(MonoBehaviour action)
+        public void StartAction(IAction action)
         {
             if (CurrentAction == action) { return; }
 
-            if (CurrentAction != null)
-            {
-                Debug.Log($"Canceling {CurrentAction}");
-            }
+            CurrentAction?.Cancel();
 
             CurrentAction = action;
         }
