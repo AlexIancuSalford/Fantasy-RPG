@@ -1,3 +1,4 @@
+using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace RPG.Combat
     {
         private Transform TargetTransform { get; set; }
         private Mover MoverRef { get; set; }
+        private ActionManager ActionManager { get; set; }
 
         [field : SerializeField]
         public float WeaponRange { get; set; }
@@ -15,6 +17,7 @@ namespace RPG.Combat
         void Start()
         {
             MoverRef = GetComponent<Mover>();
+            ActionManager = GetComponent<ActionManager>();
         }
 
         // Update is called once per frame
@@ -35,6 +38,7 @@ namespace RPG.Combat
 
         public void Attack(Target target)
         {
+            ActionManager.StartAction(this);
             TargetTransform = target.transform;
         }
 
