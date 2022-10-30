@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee145586f5dd0a49b50d315555b81cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <BasicAttackCooldown>k__BackingField: 1
   <WeaponRange>k__BackingField: 2
 --- !u!114 &8534051746060958665
 MonoBehaviour:

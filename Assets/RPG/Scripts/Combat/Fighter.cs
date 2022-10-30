@@ -9,30 +9,35 @@ namespace RPG.Combat
         private Transform TargetTransform { get; set; }
         private Mover MoverRef { get; set; }
         private ActionManager ActionManager { get; set; }
+        private Animator Animator { get; set; }
 
-        [field : SerializeField]
-        public float WeaponRange { get; set; }
+        private float timeSinceLastAttack = 0f; 
+
+        [field: SerializeField] public float BasicAttackCooldown { get; set; } = 1f;
+        [field : SerializeField] public float WeaponRange { get; set; }
 
         // Start is called before the first frame update
         void Start()
         {
             MoverRef = GetComponent<Mover>();
             ActionManager = GetComponent<ActionManager>();
+            Animator = GetComponent<Animator>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (TargetTransform != null)
+            timeSinceLastAttack += Time.deltaTime;
+            
+            if (TargetTransform == null) return;
+            if (IsTargetInRange())
             {
-                if (IsTargetInRange())
-                {
-                    MoverRef.MoveTo(TargetTransform.position);
-                }
-                else
-                {
-                    MoverRef.Cancel();
-                }
+                MoverRef.MoveTo(TargetTransform.position);
+            }
+            else
+            {
+                MoverRef.Cancel();
+                HandleAttackBehaviour();
             }
         }
 
@@ -42,15 +47,33 @@ namespace RPG.Combat
             TargetTransform = target.transform;
         }
 
+        public void HandleAttackBehaviour()
+        {
+            if (timeSinceLastAttack > BasicAttackCooldown)
+            {
+                Animator.SetTrigger("attack");
+                timeSinceLastAttack = 0f;
+            }
+            
+        }
+
         public void Cancel()
         {
-            Debug.Log("Hello");
             TargetTransform = null;
         }
 
         private bool IsTargetInRange()
         {
             return Vector3.Distance(TargetTransform.position, gameObject.transform.position) >= WeaponRange;
+        }
+
+        /// <summary>
+        /// Animation hit event
+        /// To be used to trigger on hit events or particle effects
+        /// </summary>
+        public void Hit()
+        {
+
         }
     }
 }
