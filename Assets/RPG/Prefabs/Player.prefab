@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <BasicAttackCooldown>k__BackingField: 1
   <WeaponRange>k__BackingField: 2
+  <WeaponDamage>k__BackingField: 5
 --- !u!114 &8534051746060958665
 MonoBehaviour:
   m_ObjectHideFlags: 0
