@@ -6,7 +6,7 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour, IAction
     {
-        private Transform TargetTransform { get; set; }
+        private Health Target { get; set; }
         private Mover MoverRef { get; set; }
         private ActionManager ActionManager { get; set; }
         private Animator Animator { get; set; }
@@ -30,10 +30,12 @@ namespace RPG.Combat
         {
             _timeSinceLastAttack += Time.deltaTime;
             
-            if (TargetTransform == null) return;
+            if (Target == null) { return; }
+            if (Target.IsDead) { return; }
+
             if (IsTargetInRange())
             {
-                MoverRef.MoveTo(TargetTransform.position);
+                MoverRef.MoveTo(Target.transform.position);
             }
             else
             {
@@ -48,18 +50,21 @@ namespace RPG.Combat
         /// </summary>
         public void Hit()
         {
-            TargetTransform.GetComponent<Health>().TakeDamage(WeaponDamage);
+            if (Target == null) { return; }
+
+            Target.TakeDamage(WeaponDamage);
         }
 
         public void Cancel()
         {
-            TargetTransform = null;
+            Animator.SetTrigger("stopAttack");
+            Target = null;
         }
 
         public void Attack(Target target)
         {
             ActionManager.StartAction(this);
-            TargetTransform = target.transform;
+            Target = target.GetComponent<Health>();
         }
 
         public void HandleAttackBehaviour()
@@ -74,7 +79,7 @@ namespace RPG.Combat
 
         private bool IsTargetInRange()
         {
-            return Vector3.Distance(TargetTransform.position, gameObject.transform.position) >= WeaponRange;
+            return Vector3.Distance(Target.transform.position, gameObject.transform.position) >= WeaponRange;
         }
     }
 }

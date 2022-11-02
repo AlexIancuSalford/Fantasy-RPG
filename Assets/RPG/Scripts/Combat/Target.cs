@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
+    [RequireComponent(typeof(Health))]
     public class Target : MonoBehaviour
     {
         // Start is called before the first frame update

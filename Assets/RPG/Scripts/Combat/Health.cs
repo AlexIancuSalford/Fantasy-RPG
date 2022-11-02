@@ -6,7 +6,7 @@ namespace RPG.Combat
     {
         [field : SerializeField] public float CurrentHealth { get; private set; } = 100f;
 
-        private bool IsDead { get; set; } = false;
+        public bool IsDead { get; private set; } = false;
 
         public void TakeDamage(float damage)
         {
