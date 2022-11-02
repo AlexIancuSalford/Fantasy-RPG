@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -8,10 +6,25 @@ namespace RPG.Combat
     {
         [field : SerializeField] public float CurrentHealth { get; private set; } = 100f;
 
+        private bool IsDead { get; set; } = false;
+
         public void TakeDamage(float damage)
         {
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
             Debug.Log(CurrentHealth);
+
+            if (CurrentHealth == 0)
+            {
+                TriggerDeathAnimation();
+            }
+        }
+
+        private void TriggerDeathAnimation()
+        {
+            if (IsDead) { return; }
+
+            IsDead = true;
+            GetComponent<Animator>().SetTrigger("death");
         }
     }
 }
