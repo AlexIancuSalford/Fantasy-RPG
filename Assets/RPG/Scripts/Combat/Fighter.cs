@@ -69,6 +69,7 @@ namespace RPG.Combat
 
         public void HandleAttackBehaviour()
         {
+            transform.LookAt(Target.transform);
             if (_timeSinceLastAttack > BasicAttackCooldown)
             {
                 Animator.SetTrigger("attack");
