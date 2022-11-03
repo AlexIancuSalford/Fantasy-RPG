@@ -82,5 +82,14 @@ namespace RPG.Combat
         {
             return Vector3.Distance(Target.transform.position, gameObject.transform.position) >= WeaponRange;
         }
+
+        public bool CanAttack(Target target)
+        {
+            if (target == null) { return false; }
+
+            Health targetHealth = target.GetComponent<Health>();
+
+            return targetHealth != null && !targetHealth.IsDead;
+        }
     }
 }
