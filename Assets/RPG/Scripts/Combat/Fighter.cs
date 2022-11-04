@@ -57,7 +57,7 @@ namespace RPG.Combat
 
         public void Cancel()
         {
-            Animator.SetTrigger("stopAttack");
+            StopAttackAnimation();
             Target = null;
         }
 
@@ -72,15 +72,10 @@ namespace RPG.Combat
             transform.LookAt(Target.transform);
             if (_timeSinceLastAttack > BasicAttackCooldown)
             {
-                Animator.SetTrigger("attack");
+                StartAttackAnimation();
                 _timeSinceLastAttack = 0f;
             }
             
-        }
-
-        private bool IsTargetInRange()
-        {
-            return Vector3.Distance(Target.transform.position, gameObject.transform.position) >= WeaponRange;
         }
 
         public bool CanAttack(Target target)
@@ -90,6 +85,23 @@ namespace RPG.Combat
             Health targetHealth = target.GetComponent<Health>();
 
             return targetHealth != null && !targetHealth.IsDead;
+        }
+
+        private bool IsTargetInRange()
+        {
+            return Vector3.Distance(Target.transform.position, gameObject.transform.position) >= WeaponRange;
+        }
+
+        private void StopAttackAnimation()
+        {
+            Animator.ResetTrigger("attack");
+            Animator.SetTrigger("stopAttack");
+        }
+
+        private void StartAttackAnimation()
+        {
+            Animator.ResetTrigger("stopAttack");
+            Animator.SetTrigger("attack");
         }
     }
 }
