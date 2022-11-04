@@ -61,7 +61,7 @@ namespace RPG.Combat
             Target = null;
         }
 
-        public void Attack(Target target)
+        public void Attack(GameObject target)
         {
             ActionManager.StartAction(this);
             Target = target.GetComponent<Health>();
@@ -78,7 +78,7 @@ namespace RPG.Combat
             
         }
 
-        public bool CanAttack(Target target)
+        public bool CanAttack(GameObject target)
         {
             if (target == null) { return false; }
 

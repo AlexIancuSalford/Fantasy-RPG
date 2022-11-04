@@ -52,11 +52,13 @@ namespace RPG.Controller
             {
                 Target target = raycastHit.transform.GetComponent<Target>();
 
-                if (!Fighter.CanAttack(target)) { continue; }
+                if (target == null) { continue; }
+
+                if (!Fighter.CanAttack(target.gameObject)) { continue; }
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Fighter.Attack(target);
+                    Fighter.Attack(target.gameObject);
                 }
 
                 return true;

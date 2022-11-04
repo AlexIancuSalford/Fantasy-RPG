@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using RPG.Combat;
 using UnityEngine;
 
 namespace RPG.Controller
@@ -9,19 +8,25 @@ namespace RPG.Controller
         [field: SerializeField] public float ChaseRange { get; set; } = 6.0f;
 
         private GameObject _player;
+        private Fighter Fighter { get; set; }
 
         // Start is called before the first frame update
         void Start()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
+            Fighter = GetComponent<Fighter>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (IsPlayerInRange())
+            if (IsPlayerInRange() && Fighter.CanAttack(_player))
             {
-                Debug.Log($"Player is in range of {gameObject.name}");
+                Fighter.Attack(_player);
+            }
+            else
+            {
+                Fighter.Cancel();
             }
         }
 
