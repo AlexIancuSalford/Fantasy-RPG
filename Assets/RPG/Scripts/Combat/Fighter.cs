@@ -11,7 +11,7 @@ namespace RPG.Combat
         private ActionManager ActionManager { get; set; }
         private Animator Animator { get; set; }
 
-        private float _timeSinceLastAttack = 0f; 
+        private float _timeSinceLastAttack = Mathf.Infinity; 
 
         [field: SerializeField] public float BasicAttackCooldown { get; set; } = 1f;
         [field : SerializeField] public float WeaponRange { get; set; }

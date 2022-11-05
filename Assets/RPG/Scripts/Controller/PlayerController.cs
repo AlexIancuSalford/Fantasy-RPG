@@ -1,5 +1,7 @@
 using RPG.Combat;
+using RPG.Core;
 using RPG.Movement;
+using RPGCharacterAnims.Actions;
 using UnityEngine;
 
 namespace RPG.Controller
@@ -8,12 +10,14 @@ namespace RPG.Controller
     {
         private Mover MoveToTarget { get; set; }
         private Fighter Fighter { get; set; }
+        private Health Health { get; set; }
 
         // Start is called before the first frame update
         void Start()
         {
             MoveToTarget = GetComponent<Mover>();
             Fighter = GetComponent<Fighter>();
+            Health = GetComponent<Health>();
         }
 
         // Update is called once per frame
@@ -21,9 +25,11 @@ namespace RPG.Controller
         {
             switch (true)
             {
+                case bool x when Health.IsDead:
+                    return;
                 case bool x when IsInCombat():
                     break;
-                case bool y when CanMoveToCursor():
+                case bool x when CanMoveToCursor():
                     break;
                 default:
                     break;

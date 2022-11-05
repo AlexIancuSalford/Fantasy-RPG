@@ -9,6 +9,7 @@ namespace RPG.Movement
         private NavMeshAgent Agent { get; set; }
         private Animator Animator { get; set; }
         private ActionManager ActionManager { get; set; }
+        private Health Health { get; set; }
 
         // Start is called before the first frame update
         void Start()
@@ -16,11 +17,14 @@ namespace RPG.Movement
             Agent = GetComponent<NavMeshAgent>();
             Animator = GetComponent<Animator>();
             ActionManager = GetComponent<ActionManager>();
+            Health = GetComponent<Health>();
         }
 
         // Update is called once per frame
         void Update()
         {
+            Agent.enabled = !Health.IsDead;
+
             Animator.SetFloat("forwardSpeed", transform.InverseTransformDirection(Agent.velocity).z);
         }
 

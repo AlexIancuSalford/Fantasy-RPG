@@ -1,4 +1,5 @@
 using RPG.Combat;
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Controller
@@ -8,18 +9,23 @@ namespace RPG.Controller
         [field: SerializeField] public float ChaseRange { get; set; } = 6.0f;
 
         private GameObject _player;
+
         private Fighter Fighter { get; set; }
+        private Health Health { get; set; }
 
         // Start is called before the first frame update
         void Start()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
             Fighter = GetComponent<Fighter>();
+            Health = GetComponent<Health>();
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (Health.IsDead) { return; }
+
             if (IsPlayerInRange() && Fighter.CanAttack(_player))
             {
                 Fighter.Attack(_player);
