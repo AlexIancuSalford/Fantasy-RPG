@@ -1,12 +1,13 @@
 using RPG.Combat;
 using RPG.Core;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RPG.Controller
 {
     public class AIController : MonoBehaviour
     {
-        [field: SerializeField] public float ChaseRange { get; set; } = 6.0f;
+        [field : SerializeField] public float ChaseRange { get; set; } = 6.0f;
 
         private GameObject _player;
 
@@ -44,6 +45,12 @@ namespace RPG.Controller
             }
 
             return false;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(gameObject.transform.position, ChaseRange);
         }
     }
 }
