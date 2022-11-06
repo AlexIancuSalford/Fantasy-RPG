@@ -1,5 +1,7 @@
+using System.Security.Cryptography.X509Certificates;
 using RPG.Combat;
 using RPG.Core;
+using RPG.Movement;
 using UnityEngine;
 
 namespace RPG.Controller
@@ -9,9 +11,11 @@ namespace RPG.Controller
         [field : SerializeField] public float ChaseRange { get; set; } = 6.0f;
 
         private GameObject _player;
+        private Vector3 _guardLocation;
 
         private Fighter Fighter { get; set; }
         private Health Health { get; set; }
+        private Mover Mover { get; set; }
 
         // Start is called before the first frame update
         void Start()
@@ -19,20 +23,24 @@ namespace RPG.Controller
             _player = GameObject.FindGameObjectWithTag("Player");
             Fighter = GetComponent<Fighter>();
             Health = GetComponent<Health>();
+            Mover = GetComponent<Mover>();
+
+            _guardLocation = gameObject.transform.position;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (Health.IsDead) { return; }
-
-            if (IsPlayerInRange() && Fighter.CanAttack(_player))
+            switch (true)
             {
-                Fighter.Attack(_player);
-            }
-            else
-            {
-                Fighter.Cancel();
+                case bool x when Health.IsDead:
+                    return;
+                case bool x when IsPlayerInRange() && Fighter.CanAttack(_player):
+                    Fighter.Attack(_player);
+                    break;
+                default:
+                    Mover.StartMoveAction(_guardLocation);
+                    break;
             }
         }
 
