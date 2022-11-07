@@ -9,11 +9,14 @@ namespace RPG.Controller
     public class AIController : MonoBehaviour
     {
         [field : SerializeField] public float ChaseRange { get; set; } = 4.0f;
-        [field: SerializeField] public float SuspicionTime { get; set; } = 4.0f;
+        [field : SerializeField] public float SuspicionTime { get; set; } = 4.0f;
+        [field : SerializeField] public PatrolController PatrolRoute { get; set; } 
 
         private GameObject _player;
         private Vector3 _guardLocation;
         private float _timeSincePlayerSpotted = Mathf.Infinity;
+        private float _waypointMarginOfError = 1f;
+        private int _currentWaypointIndex = 0;
 
         private Fighter Fighter { get; set; }
         private Health Health { get; set; }
@@ -47,7 +50,7 @@ namespace RPG.Controller
                     SuspicionBehaviour();
                     break;
                 default:
-                    GuardingBehaviour();
+                    PatrolBehaviour();
                     break;
             }
 
@@ -59,15 +62,41 @@ namespace RPG.Controller
             Fighter.Attack(_player);
         }
 
-        private void GuardingBehaviour()
+        private void PatrolBehaviour()
         {
-            Mover.StartMoveAction(_guardLocation);
+            Vector3 nextPosition = _guardLocation;
+
+            if (PatrolRoute != null)
+            {
+                if (IsAtWaypoint())
+                {
+                    GetNextWaypoint();
+                }
+
+                nextPosition = GetCurrentWaypoint();
+            }
+
+            Mover.StartMoveAction(nextPosition);
+        }
+
+        private bool IsAtWaypoint()
+        {
+            return Vector3.Distance(gameObject.transform.position, GetCurrentWaypoint()) < _waypointMarginOfError;
+        }
+
+        private Vector3 GetCurrentWaypoint()
+        {
+            return PatrolRoute.GetWaypointAtIndex(_currentWaypointIndex);
+        }
+
+        private void GetNextWaypoint()
+        {
+            _currentWaypointIndex = PatrolRoute.GetNextWaypointIndex(_currentWaypointIndex);
         }
 
         private void SuspicionBehaviour()
         {
             ActionManager.CancelAction();
-            //GetComponent<ActionManager>().CancelAction();
         }
 
         private bool IsPlayerInRange()

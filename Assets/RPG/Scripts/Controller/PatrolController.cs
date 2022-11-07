@@ -22,12 +22,21 @@ namespace RPG.Controller
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                int j = i + 1;
-                j = i + 1 == transform.childCount ? 0 : j;
+                int j = GetNextWaypointIndex(i);
 
                 Gizmos.DrawSphere(transform.GetChild(i).position, WaypointSize);
                 Gizmos.DrawLine(transform.GetChild(i).position, transform.GetChild(j).position);
             }
+        }
+
+        public int GetNextWaypointIndex(int index)
+        {
+            return (index + 1) % transform.childCount;
+        }
+
+        public Vector3 GetWaypointAtIndex(int index)
+        {
+            return transform.GetChild(index).position;
         }
     }
 }
