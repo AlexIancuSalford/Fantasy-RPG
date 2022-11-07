@@ -1,19 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RPG.Controller
 {
-    [ExecuteInEditMode]
     public class PatrolController : MonoBehaviour
     {
         [field: SerializeField, Range(0f, 0.5f)] public float WaypointSize { get; set; }
-
-        void Awake()
-        {
-            Debug.Log(WaypointSize);
-        }
 
         // Start is called before the first frame update
         void Start()
@@ -31,7 +22,11 @@ namespace RPG.Controller
         {
             for (int i = 0; i < transform.childCount; i++)
             {
+                int j = i + 1;
+                j = i + 1 == transform.childCount ? 0 : j;
+
                 Gizmos.DrawSphere(transform.GetChild(i).position, WaypointSize);
+                Gizmos.DrawLine(transform.GetChild(i).position, transform.GetChild(j).position);
             }
         }
     }
