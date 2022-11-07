@@ -8,14 +8,17 @@ namespace RPG.Controller
 {
     public class AIController : MonoBehaviour
     {
-        [field : SerializeField] public float ChaseRange { get; set; } = 6.0f;
+        [field : SerializeField] public float ChaseRange { get; set; } = 4.0f;
+        [field: SerializeField] public float SuspicionTime { get; set; } = 4.0f;
 
         private GameObject _player;
         private Vector3 _guardLocation;
+        private float _timeSincePlayerSpotted = Mathf.Infinity;
 
         private Fighter Fighter { get; set; }
         private Health Health { get; set; }
         private Mover Mover { get; set; }
+        private ActionManager ActionManager { get; set; }
 
         // Start is called before the first frame update
         void Start()
@@ -24,6 +27,7 @@ namespace RPG.Controller
             Fighter = GetComponent<Fighter>();
             Health = GetComponent<Health>();
             Mover = GetComponent<Mover>();
+            ActionManager = GetComponent<ActionManager>();
 
             _guardLocation = gameObject.transform.position;
         }
@@ -36,12 +40,34 @@ namespace RPG.Controller
                 case bool x when Health.IsDead:
                     return;
                 case bool x when IsPlayerInRange() && Fighter.CanAttack(_player):
-                    Fighter.Attack(_player);
+                    _timeSincePlayerSpotted = 0;
+                    AttackingBehaviour();
+                    break;
+                case bool x when (_timeSincePlayerSpotted < SuspicionTime):
+                    SuspicionBehaviour();
                     break;
                 default:
-                    Mover.StartMoveAction(_guardLocation);
+                    GuardingBehaviour();
                     break;
             }
+
+            _timeSincePlayerSpotted += Time.deltaTime;
+        }
+
+        private void AttackingBehaviour()
+        {
+            Fighter.Attack(_player);
+        }
+
+        private void GuardingBehaviour()
+        {
+            Mover.StartMoveAction(_guardLocation);
+        }
+
+        private void SuspicionBehaviour()
+        {
+            ActionManager.CancelAction();
+            //GetComponent<ActionManager>().CancelAction();
         }
 
         private bool IsPlayerInRange()
