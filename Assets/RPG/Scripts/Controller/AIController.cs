@@ -18,6 +18,7 @@ namespace RPG.Controller
         private Fighter Fighter { get; set; }
         private Health Health { get; set; }
         private Mover Mover { get; set; }
+        private ActionManager ActionManager { get; set; }
 
         // Start is called before the first frame update
         void Start()
@@ -26,6 +27,7 @@ namespace RPG.Controller
             Fighter = GetComponent<Fighter>();
             Health = GetComponent<Health>();
             Mover = GetComponent<Mover>();
+            ActionManager = GetComponent<ActionManager>();
 
             _guardLocation = gameObject.transform.position;
         }
@@ -64,7 +66,8 @@ namespace RPG.Controller
 
         private void SuspicionBehaviour()
         {
-            GetComponent<ActionManager>().CancelAction();
+            ActionManager.CancelAction();
+            //GetComponent<ActionManager>().CancelAction();
         }
 
         private bool IsPlayerInRange()
