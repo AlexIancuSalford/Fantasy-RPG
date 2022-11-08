@@ -10,11 +10,13 @@ namespace RPG.Controller
     {
         [field : SerializeField] public float ChaseRange { get; set; } = 4.0f;
         [field : SerializeField] public float SuspicionTime { get; set; } = 4.0f;
-        [field : SerializeField] public PatrolController PatrolRoute { get; set; } 
+        [field : SerializeField] public PatrolController PatrolRoute { get; set; }
+        [field: SerializeField] public float WaypointStopTime { get; set; } = 4f;
 
         private GameObject _player;
         private Vector3 _guardLocation;
         private float _timeSincePlayerSpotted = Mathf.Infinity;
+        private float _timeAtWaypoint = Mathf.Infinity;
         private float _waypointMarginOfError = 1f;
         private int _currentWaypointIndex = 0;
 
@@ -54,7 +56,7 @@ namespace RPG.Controller
                     break;
             }
 
-            _timeSincePlayerSpotted += Time.deltaTime;
+            UpdateTimers();
         }
 
         private void AttackingBehaviour()
@@ -70,13 +72,17 @@ namespace RPG.Controller
             {
                 if (IsAtWaypoint())
                 {
+                    _timeAtWaypoint = 0f;
                     GetNextWaypoint();
                 }
 
                 nextPosition = GetCurrentWaypoint();
             }
 
-            Mover.StartMoveAction(nextPosition);
+            if (_timeAtWaypoint > WaypointStopTime)
+            {
+                Mover.StartMoveAction(nextPosition);
+            }
         }
 
         private bool IsAtWaypoint()
@@ -107,6 +113,12 @@ namespace RPG.Controller
             }
 
             return false;
+        }
+
+        private void UpdateTimers()
+        {
+            _timeSincePlayerSpotted += Time.deltaTime;
+            _timeAtWaypoint += Time.deltaTime;
         }
 
         private void OnDrawGizmosSelected()

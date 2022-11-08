@@ -1520,6 +1520,11 @@ PrefabInstance:
       propertyPath: <PatrolRoute>k__BackingField
       value: 
       objectReference: {fileID: 1025118046}
+    - target: {fileID: 8493788472014146507, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: <WaypointStopTime>k__BackingField
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ef17f46b49ffc498b90370543ae7cc, type: 3}
 --- !u!1 &1319996267
