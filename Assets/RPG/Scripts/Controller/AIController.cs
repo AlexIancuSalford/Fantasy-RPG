@@ -9,11 +9,16 @@ namespace RPG.Controller
     public class AIController : MonoBehaviour
     {
         [field : SerializeField] public float ChaseRange { get; set; } = 4.0f;
-        [field: SerializeField] public float SuspicionTime { get; set; } = 4.0f;
+        [field : SerializeField] public float SuspicionTime { get; set; } = 4.0f;
+        [field : SerializeField] public PatrolController PatrolRoute { get; set; }
+        [field: SerializeField] public float WaypointStopTime { get; set; } = 4f;
 
         private GameObject _player;
         private Vector3 _guardLocation;
         private float _timeSincePlayerSpotted = Mathf.Infinity;
+        private float _timeAtWaypoint = Mathf.Infinity;
+        private float _waypointMarginOfError = 1f;
+        private int _currentWaypointIndex = 0;
 
         private Fighter Fighter { get; set; }
         private Health Health { get; set; }
@@ -47,11 +52,11 @@ namespace RPG.Controller
                     SuspicionBehaviour();
                     break;
                 default:
-                    GuardingBehaviour();
+                    PatrolBehaviour();
                     break;
             }
 
-            _timeSincePlayerSpotted += Time.deltaTime;
+            UpdateTimers();
         }
 
         private void AttackingBehaviour()
@@ -59,15 +64,45 @@ namespace RPG.Controller
             Fighter.Attack(_player);
         }
 
-        private void GuardingBehaviour()
+        private void PatrolBehaviour()
         {
-            Mover.StartMoveAction(_guardLocation);
+            Vector3 nextPosition = _guardLocation;
+
+            if (PatrolRoute != null)
+            {
+                if (IsAtWaypoint())
+                {
+                    _timeAtWaypoint = 0f;
+                    GetNextWaypoint();
+                }
+
+                nextPosition = GetCurrentWaypoint();
+            }
+
+            if (_timeAtWaypoint > WaypointStopTime)
+            {
+                Mover.StartMoveAction(nextPosition);
+            }
+        }
+
+        private bool IsAtWaypoint()
+        {
+            return Vector3.Distance(gameObject.transform.position, GetCurrentWaypoint()) < _waypointMarginOfError;
+        }
+
+        private Vector3 GetCurrentWaypoint()
+        {
+            return PatrolRoute.GetWaypointAtIndex(_currentWaypointIndex);
+        }
+
+        private void GetNextWaypoint()
+        {
+            _currentWaypointIndex = PatrolRoute.GetNextWaypointIndex(_currentWaypointIndex);
         }
 
         private void SuspicionBehaviour()
         {
             ActionManager.CancelAction();
-            //GetComponent<ActionManager>().CancelAction();
         }
 
         private bool IsPlayerInRange()
@@ -78,6 +113,12 @@ namespace RPG.Controller
             }
 
             return false;
+        }
+
+        private void UpdateTimers()
+        {
+            _timeSincePlayerSpotted += Time.deltaTime;
+            _timeAtWaypoint += Time.deltaTime;
         }
 
         private void OnDrawGizmosSelected()
