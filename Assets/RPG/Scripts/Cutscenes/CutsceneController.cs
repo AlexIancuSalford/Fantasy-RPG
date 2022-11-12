@@ -1,3 +1,5 @@
+using RPG.Controller;
+using RPG.Core;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -7,10 +9,12 @@ namespace RPG.Cutscene
     public class CutsceneController : MonoBehaviour
     {
         private PlayableDirector PlayableDirector { get; set; }
+        private GameObject Player { get; set; }
 
         private void Start()
         {
             PlayableDirector = GetComponent<PlayableDirector>();
+            Player = GetPlayer();
 
             PlayableDirector.played += DisableControl;
             PlayableDirector.stopped += EnableControl;
@@ -18,12 +22,18 @@ namespace RPG.Cutscene
 
         private void DisableControl(PlayableDirector playableDirector)
         {
-            Debug.Log("Disable Control");
+            Player.GetComponent<ActionManager>().CancelAction();
+            Player.GetComponent<PlayerController>().enabled = false;
         }
 
         private void EnableControl(PlayableDirector playableDirector)
         {
-            Debug.Log("Enable Control");
+            Player.GetComponent<PlayerController>().enabled = true;
+        }
+
+        private GameObject GetPlayer()
+        {
+            return Player == null ? GameObject.FindGameObjectWithTag("Player") : Player;
         }
     }
 }
