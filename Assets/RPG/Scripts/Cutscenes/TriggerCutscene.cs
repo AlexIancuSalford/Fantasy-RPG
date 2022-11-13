@@ -3,7 +3,7 @@ using UnityEngine.Playables;
 
 namespace RPG.Cutscene
 {
-    public class IntroCutscene : MonoBehaviour
+    public class TriggerCutscene : MonoBehaviour
     {
         private bool _IsPlaying = true;
 
