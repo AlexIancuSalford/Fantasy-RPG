@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 3063.5508, g: 3221.039, b: 4705.289, a: 1}
+  m_IndirectSpecularColor: {r: 3062.8105, g: 3220.1055, b: 4702.6406, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1054,6 +1054,7 @@ GameObject:
   - component: {fileID: 544618775}
   - component: {fileID: 544618776}
   - component: {fileID: 544618777}
+  - component: {fileID: 544618778}
   m_Layer: 2
   m_Name: Intro Sequence
   m_TagString: Untagged
@@ -1145,6 +1146,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 940eb64e52655f0419170ed997c3ab45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &544618778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544618772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7fe66984336f8438a9bfdfb8d64862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &572726343
@@ -2690,7 +2703,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353725660}
-  m_LocalRotation: {x: 0.26053554, y: -0.20781618, z: 0.05753363, w: 0.94107574}
+  m_LocalRotation: {x: 0.2605355, y: -0.20781615, z: 0.057533618, w: 0.94107574}
   m_LocalPosition: {x: -8.83, y: 2.48, z: -26.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
