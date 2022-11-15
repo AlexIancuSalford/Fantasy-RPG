@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,7 +7,7 @@ namespace RPG.Scene
 {
     public class Portal : MonoBehaviour
     {
-        [field : SerializeField] public string SceneToLoad { get; set; }
+        [field: SerializeField] public string SceneToLoad { get; set; }
 
         // Start is called before the first frame update
         void Start()
@@ -21,12 +23,18 @@ namespace RPG.Scene
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Collision");
-
             if (other.tag.Equals("Player"))
             {
-                SceneManager.LoadScene(SceneToLoad);
+                StartCoroutine(LoadScene());
             }
+        }
+
+        private IEnumerator LoadScene()
+        {
+            DontDestroyOnLoad(this);
+            yield return SceneManager.LoadSceneAsync(SceneToLoad);
+            Debug.Log("Scene Loaded");
+            Destroy(this);
         }
     }
 }
