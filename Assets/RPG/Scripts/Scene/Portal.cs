@@ -6,7 +6,13 @@ namespace RPG.Scene
 {
     public class Portal : MonoBehaviour
     {
+        public enum DestinationId
+        {
+            A, B, C, D, E, F, G, H
+        }
+
         [field : SerializeField] public string SceneToLoad { get; set; }
+        [field: SerializeField] public DestinationId DestinationPortalId { get; set; }
 
         private Transform _spawnPoint;
 
