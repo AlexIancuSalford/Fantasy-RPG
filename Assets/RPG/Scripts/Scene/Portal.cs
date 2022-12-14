@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 namespace RPG.Scene
@@ -12,7 +13,7 @@ namespace RPG.Scene
         }
 
         [field : SerializeField] public string SceneToLoad { get; set; }
-        [field: SerializeField] public DestinationId DestinationPortalId { get; set; }
+        [field: SerializeField] public DestinationId DestinationPortal { get; set; }
 
         private Transform _spawnPoint;
 
@@ -49,10 +50,10 @@ namespace RPG.Scene
             Portal otherPortal = GetOtherPortal();
             GameObject player = GameObject.FindWithTag("Player");
 
-            player.transform.position = otherPortal._spawnPoint.position;
+            player.GetComponent<NavMeshAgent>().Warp(otherPortal._spawnPoint.position);
             player.transform.rotation = otherPortal._spawnPoint.rotation;
 
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         private Portal GetOtherPortal()
@@ -60,6 +61,7 @@ namespace RPG.Scene
             foreach (Portal portal in FindObjectsOfType<Portal>())
             {
                 if (portal == this) { continue; }
+                if (portal.DestinationPortal != DestinationPortal) { continue; }
 
                 return portal;
             }

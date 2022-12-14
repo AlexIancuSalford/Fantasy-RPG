@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 1750071914002097255}
   - component: {fileID: 1750071913999117369}
   - component: {fileID: 1750071913999842731}
-  - component: {fileID: 1778101240761924173}
-  - component: {fileID: 1778200270268953153}
-  - component: {fileID: 1778108051457423243}
   - component: {fileID: 1778720666815542677}
   - component: {fileID: 956082997361765368}
   - component: {fileID: 1514492530712042725}
@@ -91,48 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1778101240761924173
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750071914002168759}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43242884812647362, guid: 5d44c4571c4d84d4391e6dbb4f3e99bb, type: 2}
---- !u!64 &1778200270268953153
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750071914002168759}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43126679997777902, guid: 5d44c4571c4d84d4391e6dbb4f3e99bb, type: 2}
---- !u!64 &1778108051457423243
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750071914002168759}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43276544475145956, guid: 5d44c4571c4d84d4391e6dbb4f3e99bb, type: 2}
 --- !u!64 &1778720666815542677
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -172,7 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1083de8968b8fd74da201fbf61c35edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SceneToLoad>k__BackingField: 
+  <SceneToLoad>k__BackingField: Sandbox_2
+  <DestinationPortal>k__BackingField: 0
 --- !u!54 &64959316769626688
 Rigidbody:
   m_ObjectHideFlags: 0
