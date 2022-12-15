@@ -129,6 +129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SceneToLoad>k__BackingField: Sandbox_2
   <DestinationPortal>k__BackingField: 0
+  <FadeOutTime>k__BackingField: 0.5
+  <FadeInTime>k__BackingField: 1
+  <FadeWaitTime>k__BackingField: 0.5
 --- !u!54 &64959316769626688
 Rigidbody:
   m_ObjectHideFlags: 0

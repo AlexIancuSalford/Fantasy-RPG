@@ -14,6 +14,9 @@ namespace RPG.Scene
 
         [field : SerializeField] public string SceneToLoad { get; set; }
         [field: SerializeField] public DestinationId DestinationPortal { get; set; }
+        [field: SerializeField] public float FadeOutTime { get; set; } = 1f;
+        [field: SerializeField] public float FadeInTime { get; set; } = 2f;
+        [field: SerializeField] public float FadeWaitTime { get; set; } = .5f;
 
         private Transform _spawnPoint;
 
@@ -44,7 +47,11 @@ namespace RPG.Scene
 
         private IEnumerator LoadScene()
         {
-            DontDestroyOnLoad(this);
+            FadeEffect fadeEffect = FindObjectOfType<FadeEffect>();
+
+            DontDestroyOnLoad(gameObject);
+
+            yield return fadeEffect.FadeOut(FadeOutTime);
             yield return SceneManager.LoadSceneAsync(SceneToLoad);
 
             Portal otherPortal = GetOtherPortal();
@@ -52,6 +59,9 @@ namespace RPG.Scene
 
             player.GetComponent<NavMeshAgent>().Warp(otherPortal._spawnPoint.position);
             player.transform.rotation = otherPortal._spawnPoint.rotation;
+
+            yield return new WaitForSeconds(FadeWaitTime);
+            yield return fadeEffect.FadeIn(FadeInTime);
 
             Destroy(gameObject);
         }
