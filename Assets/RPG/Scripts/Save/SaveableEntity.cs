@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using RPG.Core;
+using RPG.Helper;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace RPG.Save
 {
@@ -12,13 +15,18 @@ namespace RPG.Save
 
         public object SaveState()
         {
-            Debug.Log("Capture state for entity: " + UUID);
-            return null;
+            return new Vector3f(transform.position);
         }
 
         public void LoadState(object obj)
         {
-            Debug.Log("Restore state for entity: " + UUID);
+            GetComponent<NavMeshAgent>().enabled = false;
+
+            Vector3f position = (Vector3f)obj;
+            transform.position = position;
+
+            GetComponent<NavMeshAgent>().enabled = true;
+            GetComponent<ActionManager>().CancelAction();
         }
 
 #if UNITY_EDITOR

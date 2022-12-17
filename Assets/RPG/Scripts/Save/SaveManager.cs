@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using RPG.Helper;
-using UnityEditor;
 using UnityEngine;
 
 namespace RPG.Save
@@ -41,7 +36,7 @@ namespace RPG.Save
                 state[entity.UUID] = entity.SaveState();
             }
 
-            throw new NotImplementedException();
+            return state;
         }
     }
 }
