@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 12183.471, g: 12185.8125, b: 13263.594, a: 1}
+  m_IndirectSpecularColor: {r: 12194.014, g: 12199.93, b: 13297.93, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -408,6 +408,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 291932800}
     m_Modifications:
+    - target: {fileID: 3204038844713581795, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: UUID
+      value: 2823fc1d-c02d-4cfb-9280-93b859129141
+      objectReference: {fileID: 0}
     - target: {fileID: 6424633957709818053, guid: 78ef17f46b49ffc498b90370543ae7cc,
         type: 3}
       propertyPath: m_Name
@@ -1347,6 +1352,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 291932800}
     m_Modifications:
+    - target: {fileID: 3204038844713581795, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: UUID
+      value: 3bbd4dcb-be6e-431a-9bbc-07a28c790e27
+      objectReference: {fileID: 0}
     - target: {fileID: 6424633957709818053, guid: 78ef17f46b49ffc498b90370543ae7cc,
         type: 3}
       propertyPath: m_Name
@@ -1515,6 +1525,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 291932800}
     m_Modifications:
+    - target: {fileID: 3204038844713581795, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: UUID
+      value: cbe1977d-814f-4e2e-ad7e-93f3b9c8896c
+      objectReference: {fileID: 0}
     - target: {fileID: 6424633957709818053, guid: 78ef17f46b49ffc498b90370543ae7cc,
         type: 3}
       propertyPath: m_Name
@@ -2305,6 +2320,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1600931214347501997, guid: dafd0eafc948039428833a86e582ecf3,
+        type: 3}
+      propertyPath: UUID
+      value: aaac9f87-8390-4403-a298-b6580c27e663
+      objectReference: {fileID: 0}
     - target: {fileID: 2923579664295712345, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LookAt
@@ -2393,12 +2413,12 @@ PrefabInstance:
     - target: {fileID: 2923579666313380682, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.2078176
+      value: -0.20781758
       objectReference: {fileID: 0}
     - target: {fileID: 2923579666313380682, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.057533875
+      value: 0.057533868
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dafd0eafc948039428833a86e582ecf3, type: 3}

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace RPG.Save
 {
+    [ExecuteAlways]
     public class SaveableEntity : MonoBehaviour
     {
-        public string UUID { get; private set; }
+        [SerializeField] public string UUID = "";
 
         public object SaveState()
         {
@@ -18,5 +20,22 @@ namespace RPG.Save
         {
             Debug.Log("Restore state for entity: " + UUID);
         }
+
+#if UNITY_EDITOR
+        private void Update()
+        {
+            if (Application.isPlaying) { return; }
+            if (string.IsNullOrEmpty(gameObject.scene.path)) { return; }
+
+            SerializedObject obj = new SerializedObject(this);
+            SerializedProperty property = obj.FindProperty("UUID");
+
+            if (string.IsNullOrEmpty(property.stringValue))
+            {
+                property.stringValue = System.Guid.NewGuid().ToString();
+                obj.ApplyModifiedProperties();
+            }
+        }
     }
+#endif
 }
