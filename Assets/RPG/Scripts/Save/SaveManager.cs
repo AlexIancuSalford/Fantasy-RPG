@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace RPG.Save
@@ -8,12 +9,17 @@ namespace RPG.Save
     {
         public void Save(string fileName)
         {
-            Debug.Log("Saving to file " + fileName);
+            Debug.Log("Saving to file " + GetPathFromFile(fileName));
         }
 
         public void Load(string fileName)
         {
-            Debug.Log("Loading from file " + fileName);
+            Debug.Log("Loading from file " + GetPathFromFile(fileName));
+        }
+
+        private string GetPathFromFile(string fileName)
+        {
+            return Path.Combine(Application.persistentDataPath, fileName + ".save");
         }
     }
 }
