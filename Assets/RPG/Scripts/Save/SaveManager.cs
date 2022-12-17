@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -11,21 +12,35 @@ namespace RPG.Save
     {
         public void Save(string fileName)
         {
-            CSerializer.WriteToFile(fileName, new Vector3f(GetPlayerPosition().transform.position));
+            CSerializer.WriteToFile(fileName, SaveState());
 
             Vector3 vector3 = new Vector3(10, 11, 12);
         }
 
         public void Load(string fileName)
         {
-            Vector3 result = (Vector3f)CSerializer.ReadFromFile(fileName);
-            Debug.Log("Loaded from file: " + result);
-            GameObject.FindWithTag("Player").transform.position = result;
+            LoadState(CSerializer.ReadFromFile(fileName));
         }
 
-        private Transform GetPlayerPosition()
+        private void LoadState(object state)
         {
-            return GameObject.FindWithTag("Player").transform;
+            Dictionary<string, object> stateDictionary = (Dictionary<string, object>)state;
+            foreach (SaveableEntity entity in FindObjectsOfType<SaveableEntity>())
+            {
+                entity.LoadState(stateDictionary[entity.UUID]);
+            }
+        }
+
+        private object SaveState()
+        {
+            Dictionary<string, object> state = new Dictionary<string, object>();
+
+            foreach (SaveableEntity entity in FindObjectsOfType<SaveableEntity>())
+            {
+                state[entity.UUID] = entity.SaveState();
+            }
+
+            throw new NotImplementedException();
         }
     }
 }
