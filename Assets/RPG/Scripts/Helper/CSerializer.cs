@@ -10,18 +10,6 @@ namespace RPG.Helper
 {
     public static class CSerializer
     {
-        public static Vector3 DeserializedVector { get; private set; }
-
-        public static byte[] SerializeVector(Vector3 vector)
-        {
-            byte[] vectorBytes = new byte[3 * 4];
-            BitConverter.GetBytes(vector.x).CopyTo(vectorBytes, 0);
-            BitConverter.GetBytes(vector.y).CopyTo(vectorBytes, 4);
-            BitConverter.GetBytes(vector.z).CopyTo(vectorBytes, 8);
-
-            return vectorBytes;
-        }
-
         public static void WriteToFile(string fileName, object obj)
         {
             string path = GetPathFromFile(fileName);
@@ -37,6 +25,11 @@ namespace RPG.Helper
         public static object ReadFromFile(string fileName)
         {
             string path = GetPathFromFile(fileName);
+
+            if (!File.Exists(path))
+            {
+                return new object();
+            }
 
             using (FileStream fs = File.Open(path, FileMode.Open))
             {
