@@ -11,15 +11,16 @@ namespace RPG.Save
     {
         public void Save(string fileName)
         {
-            Transform playerTransform = GetPlayerPosition();
-            byte[] playerBytes = CSerializer.SerializeVector(playerTransform.position);
-            CSerializer.WriteToFile(fileName, playerBytes);
+            CSerializer.WriteToFile(fileName, new Vector3f(GetPlayerPosition().transform.position));
+
+            Vector3 vector3 = new Vector3(10, 11, 12);
         }
 
         public void Load(string fileName)
         {
-            CSerializer.ReadFromFile(fileName);
-            GameObject.FindWithTag("Player").transform.position = CSerializer.DeserializedVector;
+            Vector3 result = (Vector3f)CSerializer.ReadFromFile(fileName);
+            Debug.Log("Loaded from file: " + result);
+            GameObject.FindWithTag("Player").transform.position = result;
         }
 
         private Transform GetPlayerPosition()
