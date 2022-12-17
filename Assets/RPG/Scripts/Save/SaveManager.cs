@@ -8,35 +8,39 @@ namespace RPG.Save
     {
         public void Save(string fileName)
         {
-            CSerializer.WriteToFile(fileName, SaveState());
+            Dictionary<string, object> loadDictionary = (Dictionary<string, object>)CSerializer.ReadFromFile(fileName);
 
-            Vector3 vector3 = new Vector3(10, 11, 12);
+            SaveState(loadDictionary);
+
+            CSerializer.WriteToFile(fileName, loadDictionary);
         }
 
-        public void Load(string fileName)
+        public Dictionary<string, object> Load(string fileName)
         {
-            LoadState(CSerializer.ReadFromFile(fileName));
+            return LoadState(CSerializer.ReadFromFile(fileName));
         }
 
-        private void LoadState(object state)
+        private Dictionary<string, object> LoadState(object state)
         {
             Dictionary<string, object> stateDictionary = (Dictionary<string, object>)state;
+
             foreach (SaveableEntity entity in FindObjectsOfType<SaveableEntity>())
             {
-                entity.LoadState(stateDictionary[entity.UUID]);
+                if (stateDictionary.ContainsKey(entity.UUID))
+                {
+                    entity.LoadState(stateDictionary[entity.UUID]);
+                }
             }
+
+            return stateDictionary;
         }
 
-        private object SaveState()
+        private void SaveState(Dictionary<string, object> stateDictionary)
         {
-            Dictionary<string, object> state = new Dictionary<string, object>();
-
             foreach (SaveableEntity entity in FindObjectsOfType<SaveableEntity>())
             {
-                state[entity.UUID] = entity.SaveState();
+                stateDictionary[entity.UUID] = entity.SaveState();
             }
-
-            return state;
         }
     }
 }
