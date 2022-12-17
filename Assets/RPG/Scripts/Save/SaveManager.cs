@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using RPG.Helper;
 using UnityEngine;
 
 namespace RPG.Save
@@ -9,17 +11,20 @@ namespace RPG.Save
     {
         public void Save(string fileName)
         {
-            Debug.Log("Saving to file " + GetPathFromFile(fileName));
+            Transform playerTransform = GetPlayerPosition();
+            byte[] playerBytes = CSerializer.SerializeVector(playerTransform.position);
+            CSerializer.WriteToFile(fileName, playerBytes);
         }
 
         public void Load(string fileName)
         {
-            Debug.Log("Loading from file " + GetPathFromFile(fileName));
+            CSerializer.ReadFromFile(fileName);
+            GameObject.FindWithTag("Player").transform.position = CSerializer.DeserializedVector;
         }
 
-        private string GetPathFromFile(string fileName)
+        private Transform GetPlayerPosition()
         {
-            return Path.Combine(Application.persistentDataPath, fileName + ".save");
+            return GameObject.FindWithTag("Player").transform;
         }
     }
 }
