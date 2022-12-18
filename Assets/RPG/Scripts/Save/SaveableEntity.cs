@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RPG.Core;
 using RPG.Helper;
@@ -11,6 +12,9 @@ namespace RPG.Save
     public class SaveableEntity : MonoBehaviour
     {
         [SerializeField] public string UUID = "";
+
+        public static Dictionary<string, SaveableEntity> globalSaveableEntities =
+            new Dictionary<string, SaveableEntity>();
 
         public object SaveState()
         {
@@ -36,7 +40,7 @@ namespace RPG.Save
             }
         }
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         private void Update()
         {
             if (Application.isPlaying) { return; }
@@ -45,12 +49,29 @@ namespace RPG.Save
             SerializedObject obj = new SerializedObject(this);
             SerializedProperty property = obj.FindProperty("UUID");
 
-            if (string.IsNullOrEmpty(property.stringValue))
+            if (string.IsNullOrEmpty(property.stringValue) || !IsUnique(property.stringValue))
             {
                 property.stringValue = System.Guid.NewGuid().ToString();
                 obj.ApplyModifiedProperties();
             }
+
+            globalSaveableEntities[property.stringValue] = this;
+        }
+        #endif
+
+        private bool IsUnique(string uuid)
+        {
+            if (!globalSaveableEntities.ContainsKey(uuid)) { return true; }
+
+            if (globalSaveableEntities[uuid] == this) { return true; }
+
+            if (globalSaveableEntities[uuid] == null || globalSaveableEntities[uuid].UUID != uuid)
+            {
+                globalSaveableEntities.Remove(uuid);
+                return true;
+            }
+
+            return false;
         }
     }
-#endif
 }
