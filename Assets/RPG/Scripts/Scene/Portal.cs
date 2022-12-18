@@ -1,4 +1,5 @@
 using System.Collections;
+using RPG.Save;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -25,18 +26,6 @@ namespace RPG.Scene
             _spawnPoint = this.transform.GetChild(0);
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -48,11 +37,14 @@ namespace RPG.Scene
         private IEnumerator LoadScene()
         {
             FadeEffect fadeEffect = FindObjectOfType<FadeEffect>();
+            SaveWrapper saveWrapper = FindObjectOfType<SaveWrapper>();
 
             DontDestroyOnLoad(gameObject);
 
             yield return fadeEffect.FadeOut(FadeOutTime);
+            saveWrapper.Save();
             yield return SceneManager.LoadSceneAsync(SceneToLoad);
+            saveWrapper.Load();
 
             Portal otherPortal = GetOtherPortal();
             GameObject player = GameObject.FindWithTag("Player");
