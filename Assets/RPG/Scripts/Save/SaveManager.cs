@@ -8,7 +8,7 @@ namespace RPG.Save
     {
         public void Save(string fileName)
         {
-            Dictionary<string, object> loadDictionary = (Dictionary<string, object>)CSerializer.ReadFromFile(fileName);
+            Dictionary<string, object> loadDictionary = CSerializer.ReadFromFile(fileName);
 
             SaveState(loadDictionary);
 

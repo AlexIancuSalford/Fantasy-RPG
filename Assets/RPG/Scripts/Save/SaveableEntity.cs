@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using RPG.Core;
 using RPG.Helper;
@@ -15,18 +14,26 @@ namespace RPG.Save
 
         public object SaveState()
         {
-            return new Vector3f(transform.position);
+            Dictionary<string, object> stateDictionary = new Dictionary<string, object>();
+            foreach (ISaveableEntity saveableEntity in GetComponents<ISaveableEntity>())
+            {
+                stateDictionary[saveableEntity.GetType().ToString()] = saveableEntity.SaveState();
+            }
+
+            return stateDictionary;
         }
 
         public void LoadState(object obj)
         {
-            GetComponent<NavMeshAgent>().enabled = false;
-
-            Vector3f position = (Vector3f)obj;
-            transform.position = position;
-
-            GetComponent<NavMeshAgent>().enabled = true;
-            GetComponent<ActionManager>().CancelAction();
+            Dictionary<string, object> stateDictionary = (Dictionary<string, object>)obj;
+            foreach (ISaveableEntity saveableEntity in GetComponents<ISaveableEntity>())
+            {
+                string type = saveableEntity.GetType().ToString();
+                if (stateDictionary.ContainsKey(type))
+                {
+                    saveableEntity.LoadState(stateDictionary[type]);
+                }
+            }
         }
 
 #if UNITY_EDITOR

@@ -13,7 +13,6 @@ namespace RPG.Helper
         public static void WriteToFile(string fileName, object obj)
         {
             string path = GetPathFromFile(fileName);
-            Debug.Log("Saving to file " + path);
 
             using (FileStream fs = File.Open(path, FileMode.Create))
             {
@@ -22,19 +21,19 @@ namespace RPG.Helper
             }
         }
 
-        public static object ReadFromFile(string fileName)
+        public static Dictionary<string, object> ReadFromFile(string fileName)
         {
             string path = GetPathFromFile(fileName);
 
             if (!File.Exists(path))
             {
-                return new object();
+                return new Dictionary<string, object>();
             }
 
             using (FileStream fs = File.Open(path, FileMode.Open))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                return formatter.Deserialize(fs);
+                return (Dictionary<string, object>)formatter.Deserialize(fs);
             }
         }
 

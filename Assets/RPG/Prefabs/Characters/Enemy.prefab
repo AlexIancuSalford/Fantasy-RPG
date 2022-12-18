@@ -180,8 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91628975e69798f46beb1e3779726c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChaseRange>k__BackingField: 4
+  <ChaseRange>k__BackingField: 6
   <SuspicionTime>k__BackingField: 4
+  <PatrolRoute>k__BackingField: {fileID: 0}
+  <WaypointStopTime>k__BackingField: 4
 --- !u!4 &6424633957709818057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2361840505468813481, guid: 15d51d214a357ea46b18ea73fb875494,
