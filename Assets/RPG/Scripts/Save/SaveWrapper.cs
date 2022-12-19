@@ -8,6 +8,11 @@ namespace RPG.Save
     {
         public const string _defaultSaveFile = "save";
 
+        private IEnumerator Start()
+        {
+            yield return GetComponent<SaveManager>().LoadLastScene(_defaultSaveFile);
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.S))

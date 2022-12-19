@@ -52,6 +52,8 @@ namespace RPG.Scene
             player.GetComponent<NavMeshAgent>().Warp(otherPortal._spawnPoint.position);
             player.transform.rotation = otherPortal._spawnPoint.rotation;
 
+            saveWrapper.Save();
+
             yield return new WaitForSeconds(FadeWaitTime);
             yield return fadeEffect.FadeIn(FadeInTime);
 
