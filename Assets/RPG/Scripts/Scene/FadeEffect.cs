@@ -8,7 +8,7 @@ namespace RPG.Scene
         private CanvasGroup _canvasGroup;
 
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
         }
@@ -44,6 +44,11 @@ namespace RPG.Scene
             yield return FadeOut(3.0f);
 
             yield return FadeIn(1.0f);
+        }
+
+        public void FadeOutImmediately()
+        {
+            _canvasGroup.alpha = 1;
         }
     }
 }
