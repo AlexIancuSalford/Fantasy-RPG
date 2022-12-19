@@ -16,6 +16,8 @@ namespace RPG.Combat
         [field: SerializeField] public float BasicAttackCooldown { get; set; } = 1f;
         [field : SerializeField] public float WeaponRange { get; set; }
         [field : SerializeField] public float WeaponDamage { get; set; }
+        [field : SerializeField] private GameObject Weapon { get; set; } = null;
+        [field : SerializeField] private Transform WeaponPosition { get; set; }
 
         // Start is called before the first frame update
         void Start()
@@ -23,6 +25,8 @@ namespace RPG.Combat
             MoverRef = GetComponent<Mover>();
             ActionManager = GetComponent<ActionManager>();
             Animator = GetComponent<Animator>();
+
+            InstantiateWeapon();
         }
 
         // Update is called once per frame
@@ -103,6 +107,12 @@ namespace RPG.Combat
         {
             Animator.ResetTrigger("stopAttack");
             Animator.SetTrigger("attack");
+        }
+
+        private void InstantiateWeapon()
+        {
+            if (Weapon == null) { return; }
+            Instantiate(Weapon, WeaponPosition);
         }
     }
 }
