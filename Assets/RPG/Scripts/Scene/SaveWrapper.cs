@@ -1,13 +1,15 @@
 using System.Collections;
+using System.Reflection;
 using RPG.Save;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RPG.Scene
 {
     public class SaveWrapper : MonoBehaviour
     {
         public const string _defaultSaveFile = "save";
-        private float _fadeInTime = 1f;
+        private float _fadeInTime = 2f;
 
         private FadeEffect FadeEffect { get; set; }
 
@@ -21,6 +23,7 @@ namespace RPG.Scene
             FadeEffect.FadeOutImmediately();
             yield return GetComponent<SaveManager>().LoadLastScene(_defaultSaveFile);
             yield return FadeEffect.FadeIn(_fadeInTime);
+            Load();
         }
 
         private void Update()
