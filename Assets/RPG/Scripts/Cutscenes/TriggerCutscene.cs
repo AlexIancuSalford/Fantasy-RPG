@@ -5,13 +5,13 @@ namespace RPG.Cutscene
 {
     public class TriggerCutscene : MonoBehaviour
     {
-        private bool _IsPlaying = true;
+        private static bool _isPlaying = true;
 
         private void OnTriggerEnter(Collider other)
         {
-            if (_IsPlaying != true || !other.CompareTag("Player")) { return; }
+            if (_isPlaying != true || !other.CompareTag("Player")) { return; }
             
-            _IsPlaying = false;
+            _isPlaying = false;
             GetComponent<PlayableDirector>().Play();
         }
     }

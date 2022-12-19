@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using RPG.Helper;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RPG.Save
 {
@@ -41,6 +43,25 @@ namespace RPG.Save
             {
                 stateDictionary[entity.UUID] = entity.SaveState();
             }
+
+            stateDictionary["lastSceneBuildIndex"] = SceneManager.GetActiveScene().buildIndex;
+        }
+
+        public IEnumerator LoadLastScene(string fileName)
+        {
+            Dictionary<string, object> stateDictionary = CSerializer.ReadFromFile(fileName);
+
+            if (stateDictionary.ContainsKey("lastSceneBuildIndex"))
+            {
+                int lastSceneBuildIndex = (int)stateDictionary["lastSceneBuildIndex"];
+
+                if (lastSceneBuildIndex != SceneManager.GetActiveScene().buildIndex)
+                {
+                    yield return SceneManager.LoadSceneAsync(lastSceneBuildIndex);
+                }
+            }
+
+            LoadState(stateDictionary);
         }
     }
 }

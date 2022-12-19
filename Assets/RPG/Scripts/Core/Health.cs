@@ -1,8 +1,9 @@
+using RPG.Save;
 using UnityEngine;
 
 namespace RPG.Core
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, ISaveableEntity
     {
         [field : SerializeField] public float CurrentHealth { get; private set; } = 100f;
 
@@ -24,17 +25,38 @@ namespace RPG.Core
 
             if (CurrentHealth == 0)
             {
-                TriggerDeathAnimation();
+                TriggerDeathAnimation(false);
             }
         }
 
-        private void TriggerDeathAnimation()
+        private void TriggerDeathAnimation(bool isLoading)
         {
             if (IsDead) { return; }
+
+            if (isLoading)
+            {
+                Animator = GetComponent<Animator>();
+                ActionManager = GetComponent<ActionManager>();
+            }
 
             IsDead = true;
             Animator.SetTrigger("death");
             ActionManager.CancelAction();
+        }
+
+        public object SaveState()
+        {
+            return CurrentHealth;
+        }
+
+        public void LoadState(object obj)
+        {
+            CurrentHealth = (float)obj;
+
+            if (CurrentHealth <= 0)
+            {
+                TriggerDeathAnimation(true);
+            }
         }
     }
 }
