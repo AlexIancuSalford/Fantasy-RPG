@@ -8,12 +8,7 @@ namespace RPG.Save
     public class SaveableEntity : MonoBehaviour
     {
         [SerializeField] public string UUID = "";
-        static Dictionary<string, SaveableEntity> globalLookup = new Dictionary<string, SaveableEntity>();
-
-        public string GetUniqueIdentifier()
-        {
-            return UUID;
-        }
+        static Dictionary<string, SaveableEntity> _saveableEntities = new Dictionary<string, SaveableEntity>();
 
         public object SaveState()
         {
@@ -41,37 +36,37 @@ namespace RPG.Save
 #if UNITY_EDITOR
         private void Update()
         {
-            if (Application.IsPlaying(gameObject)) return;
-            if (string.IsNullOrEmpty(gameObject.scene.path)) return;
+            if (Application.IsPlaying(gameObject)) { return; }
+            if (string.IsNullOrEmpty(gameObject.scene.path)) { return; }
 
             SerializedObject serializedObject = new SerializedObject(this);
-            SerializedProperty property = serializedObject.FindProperty("UUID");
+            SerializedProperty serializedProperty = serializedObject.FindProperty("UUID");
 
-            if (string.IsNullOrEmpty(property.stringValue) || !IsUnique(property.stringValue))
+            if (string.IsNullOrEmpty(serializedProperty.stringValue) || !IsUnique(serializedProperty.stringValue))
             {
-                property.stringValue = System.Guid.NewGuid().ToString();
+                serializedProperty.stringValue = System.Guid.NewGuid().ToString();
                 serializedObject.ApplyModifiedProperties();
             }
 
-            globalLookup[property.stringValue] = this;
+            _saveableEntities[serializedProperty.stringValue] = this;
         }
 #endif
 
         private bool IsUnique(string candidate)
         {
-            if (!globalLookup.ContainsKey(candidate)) return true;
+            if (!_saveableEntities.ContainsKey(candidate)) return true;
 
-            if (globalLookup[candidate] == this) return true;
+            if (_saveableEntities[candidate] == this) return true;
 
-            if (globalLookup[candidate] == null)
+            if (_saveableEntities[candidate] == null)
             {
-                globalLookup.Remove(candidate);
+                _saveableEntities.Remove(candidate);
                 return true;
             }
 
-            if (globalLookup[candidate].GetUniqueIdentifier() != candidate)
+            if (_saveableEntities[candidate].UUID != candidate)
             {
-                globalLookup.Remove(candidate);
+                _saveableEntities.Remove(candidate);
                 return true;
             }
 
