@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf72585aae789f4185e4a0c16f0b41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <weapon>k__BackingField: {fileID: 11400000, guid: 01f28ad04b9b8de4889b61e813632211,
+  <Weapon>k__BackingField: {fileID: 11400000, guid: 01f28ad04b9b8de4889b61e813632211,
     type: 2}
 --- !u!1001 &7326128677244635971
 PrefabInstance:
