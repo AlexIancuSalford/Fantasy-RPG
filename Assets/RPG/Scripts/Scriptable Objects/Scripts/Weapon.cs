@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using RPG.Core;
 using UnityEngine;
 
@@ -14,11 +15,16 @@ namespace RPG.Combat
         [field : SerializeField] private bool IsRightHanded { get; set; } = true;
         [field : SerializeField] private Projectile Projectile { get; set; } = null;
 
+        private const string WEAPON_NAME = "Weapon";
+
         public void SpawnWeapon(Transform rightHand, Transform leftHand, Animator animator)
         {
+            DestroyOldWeapon(leftHand, rightHand);
+
             if (WeaponPrefab != null)
             {
-                Instantiate(WeaponPrefab, IsRightHanded ? rightHand : leftHand);
+                GameObject weapon = Instantiate(WeaponPrefab, IsRightHanded ? rightHand : leftHand);
+                weapon.name = WEAPON_NAME;
             }
             if (OverrideController != null) { animator.runtimeAnimatorController = OverrideController; }
         }
@@ -36,6 +42,17 @@ namespace RPG.Combat
                 Quaternion.identity
                 );
             projectileInst.SetTarget(target, Damage);
+        }
+
+        public void DestroyOldWeapon(Transform leftHand, Transform rightHand)
+        {
+            Transform oldWeapon = rightHand.Find(WEAPON_NAME);
+
+            if (oldWeapon == null) { oldWeapon = leftHand.Find(WEAPON_NAME); }
+            if (oldWeapon == null) { return; }
+
+            oldWeapon.name = "DESTROYING";
+            Destroy(oldWeapon.gameObject);
         }
     }
 }
