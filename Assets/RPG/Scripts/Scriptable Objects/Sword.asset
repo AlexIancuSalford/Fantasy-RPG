@@ -19,4 +19,5 @@ MonoBehaviour:
   <AttackCooldown>k__BackingField: 1
   <Range>k__BackingField: 2
   <Damage>k__BackingField: 5
-  <IsRightHanded>k__BackingField: 0
+  <IsRightHanded>k__BackingField: 1
+  <Projectile>k__BackingField: {fileID: 0}
