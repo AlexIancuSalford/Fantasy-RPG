@@ -11,11 +11,12 @@ namespace RPG.Combat
         private ActionManager ActionManager { get; set; }
         private Animator Animator { get; set; }
 
-        private float _timeSinceLastAttack = Mathf.Infinity; 
+        private float _timeSinceLastAttack = Mathf.Infinity;
+        private Weapon _currentWeapon = null;
 
         [field : SerializeField] private Transform WeaponPosition { get; set; }
-        [field : SerializeField] private Weapon Weapon { get; set; } = null;
-        
+        [field : SerializeField] private Weapon DefaultWeapon { get; set; } = null;
+
 
         // Start is called before the first frame update
         void Start()
@@ -24,7 +25,7 @@ namespace RPG.Combat
             ActionManager = GetComponent<ActionManager>();
             Animator = GetComponent<Animator>();
 
-            InstantiateWeapon();
+            EquipWeapon(DefaultWeapon);
         }
 
         // Update is called once per frame
@@ -54,7 +55,7 @@ namespace RPG.Combat
         {
             if (Target == null) { return; }
 
-            Target.TakeDamage(Weapon.Damage);
+            Target.TakeDamage(_currentWeapon.Damage);
         }
 
         public void Cancel()
@@ -73,7 +74,7 @@ namespace RPG.Combat
         public void HandleAttackBehaviour()
         {
             transform.LookAt(Target.transform);
-            if (_timeSinceLastAttack > Weapon.AttackCooldown)
+            if (_timeSinceLastAttack > _currentWeapon.AttackCooldown)
             {
                 StartAttackAnimation();
                 _timeSinceLastAttack = 0f;
@@ -92,7 +93,7 @@ namespace RPG.Combat
 
         private bool IsTargetInRange()
         {
-            return Vector3.Distance(Target.transform.position, gameObject.transform.position) >= Weapon.Range;
+            return Vector3.Distance(Target.transform.position, gameObject.transform.position) >= _currentWeapon.Range;
         }
 
         private void StopAttackAnimation()
@@ -107,11 +108,10 @@ namespace RPG.Combat
             Animator.SetTrigger("attack");
         }
 
-        private void InstantiateWeapon()
+        public void EquipWeapon(Weapon weapon)
         {
-            if (Weapon == null) { return; }
-
-            Weapon.SpawnWeapon(WeaponPosition, GetComponent<Animator>());
+            _currentWeapon = weapon;
+            _currentWeapon.SpawnWeapon(WeaponPosition, GetComponent<Animator>());
         }
     }
 }
