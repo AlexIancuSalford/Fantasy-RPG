@@ -18,7 +18,6 @@ namespace RPG.Combat
         [field : SerializeField] private Transform LeftHandTransform { get; set; }
         [field : SerializeField] private Weapon DefaultWeapon { get; set; } = null;
 
-
         // Start is called before the first frame update
         void Start()
         {
