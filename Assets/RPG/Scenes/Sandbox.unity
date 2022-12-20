@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 12184.141, g: 12186.41, b: 13265.977, a: 1}
+  m_IndirectSpecularColor: {r: 12182.643, g: 12183.684, b: 13258.375, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2593,12 +2593,12 @@ PrefabInstance:
     - target: {fileID: 2923579665778158402, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17837971
+      value: 0.17837965
       objectReference: {fileID: 0}
     - target: {fileID: 2923579665778158402, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.04975897
+      value: -0.049758956
       objectReference: {fileID: 0}
     - target: {fileID: 2923579665778158403, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
@@ -2664,7 +2664,7 @@ PrefabInstance:
         type: 3}
       propertyPath: <DefaultWeapon>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 67cd67df2aa8e1b43997ce77cfd24294,
+      objectReference: {fileID: 11400000, guid: 5e75463dd796170469d37c5e3433e99e,
         type: 2}
     - target: {fileID: 4877044118872702616, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
