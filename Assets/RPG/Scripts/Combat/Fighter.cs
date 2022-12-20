@@ -16,9 +16,9 @@ namespace RPG.Combat
         [field : SerializeField] public float BasicAttackCooldown { get; set; } = 1f;
         [field : SerializeField] public float WeaponRange { get; set; }
         [field : SerializeField] public float WeaponDamage { get; set; }
-        [field : SerializeField] private GameObject Weapon { get; set; } = null;
         [field : SerializeField] private Transform WeaponPosition { get; set; }
-        [field : SerializeField] private AnimatorOverrideController OverrideController { get; set; } = null;
+        [field : SerializeField] private Weapon Weapon { get; set; } = null;
+        
 
         // Start is called before the first frame update
         void Start()
@@ -113,10 +113,8 @@ namespace RPG.Combat
         private void InstantiateWeapon()
         {
             if (Weapon == null) { return; }
-            Instantiate(Weapon, WeaponPosition);
 
-            if (OverrideController == null) { return; }
-            GetComponent<Animator>().runtimeAnimatorController = OverrideController;
+            Weapon.SpawnWeapon(WeaponPosition, GetComponent<Animator>());
         }
     }
 }
