@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 12182.072, g: 12182.645, b: 13256.477, a: 1}
+  m_IndirectSpecularColor: {r: 12183.096, g: 12183.957, b: 13259.18, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2388,12 +2388,12 @@ PrefabInstance:
     - target: {fileID: 2923579665778158402, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17837965
+      value: 0.17837971
       objectReference: {fileID: 0}
     - target: {fileID: 2923579665778158402, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.049758956
+      value: -0.04975897
       objectReference: {fileID: 0}
     - target: {fileID: 2923579665778158403, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
@@ -2408,12 +2408,12 @@ PrefabInstance:
     - target: {fileID: 2923579666313380682, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.2078176
+      value: -0.20781758
       objectReference: {fileID: 0}
     - target: {fileID: 2923579666313380682, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.057533875
+      value: 0.057533868
       objectReference: {fileID: 0}
     - target: {fileID: 4319649897396101526, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
@@ -2455,6 +2455,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -198.664
       objectReference: {fileID: 0}
+    - target: {fileID: 4877044118872702616, guid: dafd0eafc948039428833a86e582ecf3,
+        type: 3}
+      propertyPath: <OverrideController>k__BackingField
+      value: 
+      objectReference: {fileID: 22100000, guid: d4db353078d154d46a3dfc27a2923cb9,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dafd0eafc948039428833a86e582ecf3, type: 3}
 --- !u!1001 &3583811541752713722

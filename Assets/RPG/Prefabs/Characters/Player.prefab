@@ -79,6 +79,11 @@ PrefabInstance:
       propertyPath: <WeaponPosition>k__BackingField
       value: 
       objectReference: {fileID: 3619249493862709291}
+    - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
+      propertyPath: <OverrideController>k__BackingField
+      value: 
+      objectReference: {fileID: 22100000, guid: d4db353078d154d46a3dfc27a2923cb9,
+        type: 2}
     - target: {fileID: 2361840505468813477, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
       propertyPath: m_Name
