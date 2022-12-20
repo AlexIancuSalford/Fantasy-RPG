@@ -13,9 +13,6 @@ namespace RPG.Combat
 
         private float _timeSinceLastAttack = Mathf.Infinity; 
 
-        [field : SerializeField] public float BasicAttackCooldown { get; set; } = 1f;
-        [field : SerializeField] public float WeaponRange { get; set; }
-        [field : SerializeField] public float WeaponDamage { get; set; }
         [field : SerializeField] private Transform WeaponPosition { get; set; }
         [field : SerializeField] private Weapon Weapon { get; set; } = null;
         
@@ -57,7 +54,7 @@ namespace RPG.Combat
         {
             if (Target == null) { return; }
 
-            Target.TakeDamage(WeaponDamage);
+            Target.TakeDamage(Weapon.Damage);
         }
 
         public void Cancel()
@@ -76,7 +73,7 @@ namespace RPG.Combat
         public void HandleAttackBehaviour()
         {
             transform.LookAt(Target.transform);
-            if (_timeSinceLastAttack > BasicAttackCooldown)
+            if (_timeSinceLastAttack > Weapon.AttackCooldown)
             {
                 StartAttackAnimation();
                 _timeSinceLastAttack = 0f;
@@ -95,7 +92,7 @@ namespace RPG.Combat
 
         private bool IsTargetInRange()
         {
-            return Vector3.Distance(Target.transform.position, gameObject.transform.position) >= WeaponRange;
+            return Vector3.Distance(Target.transform.position, gameObject.transform.position) >= Weapon.Range;
         }
 
         private void StopAttackAnimation()
