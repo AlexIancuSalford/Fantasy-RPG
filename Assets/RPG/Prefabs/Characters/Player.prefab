@@ -73,8 +73,8 @@ PrefabInstance:
     - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
       propertyPath: <Weapon>k__BackingField
       value: 
-      objectReference: {fileID: 3069089152841685086, guid: 28104da2a04a6bf4e8ec25ef73d6a539,
-        type: 3}
+      objectReference: {fileID: 11400000, guid: 01f28ad04b9b8de4889b61e813632211,
+        type: 2}
     - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
       propertyPath: <WeaponPosition>k__BackingField
       value: 
