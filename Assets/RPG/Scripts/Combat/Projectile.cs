@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using RPG.Core;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [field : SerializeField] private Transform Target { get; set; } = null;
+    private Health _target { get; set; } = null;
+    
     [field : SerializeField] private float Speed { get; set; }
 
     // Start is called before the first frame update
@@ -16,16 +18,21 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Target == null) { return;}
-        transform.LookAt(AimLocation(Target));
+        if (_target == null) { return;}
+        transform.LookAt(AimLocation());
         transform.Translate(Vector3.forward * Time.deltaTime * Speed);
     }
 
-    private Vector3 AimLocation(Transform target)
+    private Vector3 AimLocation()
     {
-        CapsuleCollider targetCapsuleCollider = target.GetComponent<CapsuleCollider>();
-        if (targetCapsuleCollider == null) { return target.position; }
+        CapsuleCollider targetCapsuleCollider = _target.GetComponent<CapsuleCollider>();
+        if (targetCapsuleCollider == null) { return _target.transform.position; }
 
-        return target.position + Vector3.up * targetCapsuleCollider.height / 2;
+        return _target.transform.position + Vector3.up * targetCapsuleCollider.height / 2;
+    }
+
+    public void SetTarget(Health target)
+    {
+        _target = target;
     }
 }
