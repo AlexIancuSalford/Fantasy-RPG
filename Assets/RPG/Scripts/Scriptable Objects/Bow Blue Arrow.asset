@@ -20,5 +20,5 @@ MonoBehaviour:
   <Range>k__BackingField: 10
   <Damage>k__BackingField: 10
   <IsRightHanded>k__BackingField: 0
-  <Projectile>k__BackingField: {fileID: 8904109216726053769, guid: 9d4d44c7af642cf4d828f62c74bceaf6,
+  <Projectile>k__BackingField: {fileID: 6012421380074995914, guid: 6267fc64a5cddd740ad790718e4439e4,
     type: 3}

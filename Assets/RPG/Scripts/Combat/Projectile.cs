@@ -42,18 +42,13 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Health>() == null) { return; }
 
-        if (_target.gameObject == other.gameObject)
-        {
-            Debug.Log("Self Collision");
-        }
-
         _target.TakeDamage(_damage);
         StartCoroutine(DelayDestroy());
     }
 
     private IEnumerator DelayDestroy()
     {
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(.2f);
         Destroy(gameObject);
     }
 }

@@ -87,15 +87,5 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.key1.a
       value: 0.7058824
       objectReference: {fileID: 0}
-    - target: {fileID: 6525109060243903683, guid: 9d4d44c7af642cf4d828f62c74bceaf6,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 0.18030715
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525109060243903683, guid: 9d4d44c7af642cf4d828f62c74bceaf6,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.7475796
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d4d44c7af642cf4d828f62c74bceaf6, type: 3}
