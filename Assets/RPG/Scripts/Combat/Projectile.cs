@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private Health _target { get; set; } = null;
+    private Health _target = null;
+    private float _damage = 0f;
     
     [field : SerializeField] private float Speed { get; set; }
 
@@ -31,8 +32,23 @@ public class Projectile : MonoBehaviour
         return _target.transform.position + Vector3.up * targetCapsuleCollider.height / 2;
     }
 
-    public void SetTarget(Health target)
+    public void SetTarget(Health target, float damage)
     {
         _target = target;
+        _damage = damage;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<Health>() == null) { return; }
+
+        _target.TakeDamage(_damage);
+        StartCoroutine(DelayDestroy());
+    }
+
+    private IEnumerator DelayDestroy()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }

@@ -35,7 +35,7 @@ namespace RPG.Combat
                 (IsRightHanded ? rightHand : leftHand).position, 
                 Quaternion.identity
                 );
-            projectileInst.SetTarget(target);
+            projectileInst.SetTarget(target, Damage);
         }
     }
 }
