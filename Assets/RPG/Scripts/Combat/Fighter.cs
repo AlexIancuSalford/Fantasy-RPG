@@ -14,7 +14,8 @@ namespace RPG.Combat
         private float _timeSinceLastAttack = Mathf.Infinity;
         private Weapon _currentWeapon = null;
 
-        [field : SerializeField] private Transform WeaponPosition { get; set; }
+        [field : SerializeField] private Transform RightHandTransform { get; set; }
+        [field : SerializeField] private Transform LeftHandTransform { get; set; }
         [field : SerializeField] private Weapon DefaultWeapon { get; set; } = null;
 
 
@@ -111,7 +112,7 @@ namespace RPG.Combat
         public void EquipWeapon(Weapon weapon)
         {
             _currentWeapon = weapon;
-            _currentWeapon.SpawnWeapon(WeaponPosition, GetComponent<Animator>());
+            _currentWeapon.SpawnWeapon(RightHandTransform, LeftHandTransform, GetComponent<Animator>());
         }
     }
 }

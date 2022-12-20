@@ -63,6 +63,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3619249493862873981}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &3619249493862730393 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 405988, guid: 507f5dc602b42c549a32a51aa9236bb1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3619249493862873981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7727079639672542623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,10 +91,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3619249493862709291}
     - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
+      propertyPath: <LeftHandTransform>k__BackingField
+      value: 
+      objectReference: {fileID: 3619249493862730393}
+    - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
       propertyPath: <OverrideController>k__BackingField
       value: 
       objectReference: {fileID: 22100000, guid: d4db353078d154d46a3dfc27a2923cb9,
         type: 2}
+    - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
+      propertyPath: <RightHandTransform>k__BackingField
+      value: 
+      objectReference: {fileID: 3619249493862709291}
     - target: {fileID: 2361840505468813477, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
       propertyPath: m_Name
