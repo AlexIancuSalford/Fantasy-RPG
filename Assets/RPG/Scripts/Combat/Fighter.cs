@@ -1,10 +1,11 @@
 using RPG.Core;
 using RPG.Movement;
+using RPG.Save;
 using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, ISaveableEntity
     {
         private Health Target { get; set; }
         private Mover MoverRef { get; set; }
@@ -16,7 +17,15 @@ namespace RPG.Combat
 
         [field : SerializeField] private Transform RightHandTransform { get; set; }
         [field : SerializeField] private Transform LeftHandTransform { get; set; }
-        [field : SerializeField] public string DefaultWeapon = "Unarmed";
+        [field : SerializeField] public Weapon DefaultWeapon { get; set; } = null;
+
+        private void Awake()
+        {
+            if (_currentWeapon == null)
+            {
+                EquipWeapon(DefaultWeapon);
+            }
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -24,9 +33,6 @@ namespace RPG.Combat
             MoverRef = GetComponent<Mover>();
             ActionManager = GetComponent<ActionManager>();
             Animator = GetComponent<Animator>();
-
-            Weapon weapon = Resources.Load(DefaultWeapon) as Weapon;
-            EquipWeapon(weapon);
         }
 
         // Update is called once per frame
@@ -125,6 +131,17 @@ namespace RPG.Combat
         {
             _currentWeapon = weapon;
             _currentWeapon.SpawnWeapon(RightHandTransform, LeftHandTransform, GetComponent<Animator>());
+        }
+
+        public object SaveState()
+        {
+            return _currentWeapon.name;
+        }
+
+        public void LoadState(object obj)
+        {
+            Weapon weapon = Resources.Load(obj as string) as Weapon;
+            EquipWeapon(weapon);
         }
     }
 }
