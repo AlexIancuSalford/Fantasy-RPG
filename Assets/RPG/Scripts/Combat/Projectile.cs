@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     
     [field : SerializeField] private float Speed { get; set; }
     [field : SerializeField] bool IsHoming { get; set; } = true;
+    [field : SerializeField] private GameObject HitEffect { get; set; } = null;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +50,11 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Health>() == null) { return; }
         if (_target.IsDead) { return; }
+
+        if (HitEffect != null)
+        {
+            Instantiate(HitEffect, AimLocation(), transform.rotation);
+        }
 
         _target.TakeDamage(_damage);
         Destroy(gameObject);

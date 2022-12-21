@@ -4919,6 +4919,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 8
   <IsHoming>k__BackingField: 1
+  <HitEffect>k__BackingField: {fileID: 2302457091093092515, guid: 69d1b1037536b504884c93bb73d662db,
+    type: 3}
 --- !u!65 &-8538805553011342988
 BoxCollider:
   m_ObjectHideFlags: 0
