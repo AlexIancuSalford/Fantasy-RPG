@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour
         if (_target.IsDead) { return; }
 
         _target.TakeDamage(_damage);
-        StartCoroutine(DelayDestroy(0.2f));
+        Destroy(gameObject);
     }
 
     private IEnumerator DelayDestroy(float time)
