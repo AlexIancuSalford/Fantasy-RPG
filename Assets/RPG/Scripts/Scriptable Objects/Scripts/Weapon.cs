@@ -26,7 +26,16 @@ namespace RPG.Combat
                 GameObject weapon = Instantiate(WeaponPrefab, IsRightHanded ? rightHand : leftHand);
                 weapon.name = WEAPON_NAME;
             }
-            if (OverrideController != null) { animator.runtimeAnimatorController = OverrideController; }
+
+            AnimatorOverrideController overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
+            if (OverrideController != null)
+            {
+                animator.runtimeAnimatorController = OverrideController;
+            }
+            else if(overrideController != null)
+            {
+                animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
+            }
         }
 
         public bool HasProjectile()
