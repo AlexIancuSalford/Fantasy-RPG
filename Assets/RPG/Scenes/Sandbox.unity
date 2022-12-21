@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 12185.781, g: 12188.496, b: 13270.922, a: 1}
+  m_IndirectSpecularColor: {r: 12191.244, g: 12196.957, b: 13290.758, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -545,6 +545,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8785981804963202006, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: DefaultWeapon
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785981804963202006, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: <DefaultWeapon>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 01f28ad04b9b8de4889b61e813632211,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ef17f46b49ffc498b90370543ae7cc, type: 3}
 --- !u!4 &382994925 stripped
@@ -865,6 +876,17 @@ PrefabInstance:
       propertyPath: <ChaseRange>k__BackingField
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8785981804963202006, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: DefaultWeapon
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785981804963202006, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: <DefaultWeapon>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 01f28ad04b9b8de4889b61e813632211,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ef17f46b49ffc498b90370543ae7cc, type: 3}
 --- !u!1001 &715230160
@@ -999,6 +1021,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2905866431857179490, guid: 1ef8ab5d8b07dfd439e9edc1ac214c75,
+        type: 3}
+      propertyPath: DefaultWeapon
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2905866431857179490, guid: 1ef8ab5d8b07dfd439e9edc1ac214c75,
+        type: 3}
+      propertyPath: <DefaultWeapon>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 01f28ad04b9b8de4889b61e813632211,
+        type: 2}
     - target: {fileID: 9064248119750820951, guid: 1ef8ab5d8b07dfd439e9edc1ac214c75,
         type: 3}
       propertyPath: UUID
@@ -1669,6 +1702,17 @@ PrefabInstance:
       propertyPath: <WaypointStopTime>k__BackingField
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8785981804963202006, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: DefaultWeapon
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785981804963202006, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: <DefaultWeapon>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 01f28ad04b9b8de4889b61e813632211,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ef17f46b49ffc498b90370543ae7cc, type: 3}
 --- !u!4 &1315355418 stripped
@@ -1755,6 +1799,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1377978656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2923579664447048835, guid: dafd0eafc948039428833a86e582ecf3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2923579664978556311}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1377978663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377978656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50dbaa49f86c8940b31426c4cccf9db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UUID: 101daab2-d106-4755-93a0-5c1f4300b56f
 --- !u!4 &1413939612 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 7099dfc2c2c03224387983f7ba0a1ec2,
@@ -1833,6 +1896,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8785981804963202006, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: DefaultWeapon
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785981804963202006, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: <DefaultWeapon>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 01f28ad04b9b8de4889b61e813632211,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ef17f46b49ffc498b90370543ae7cc, type: 3}
 --- !u!1 &1508295386
@@ -2221,6 +2295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: UUID
       value: 7a2bf0d4-78b5-4dab-8762-f596150ac493
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907964831437415167, guid: d37fecaa49523934b8ac8cf719e3e083,
+        type: 3}
+      propertyPath: DefaultWeapon
+      value: Unarmed
       objectReference: {fileID: 0}
     - target: {fileID: 5907964831437415167, guid: d37fecaa49523934b8ac8cf719e3e083,
         type: 3}
@@ -2897,6 +2976,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -198.664
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877044118872702616, guid: dafd0eafc948039428833a86e582ecf3,
+        type: 3}
+      propertyPath: DefaultWeapon
+      value: Unarmed
       objectReference: {fileID: 0}
     - target: {fileID: 4877044118872702616, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
