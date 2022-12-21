@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1617771933008324142, guid: 78ef17f46b49ffc498b90370543ae7cc,
+        type: 3}
+      propertyPath: <CharacterClass>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6424633957709818053, guid: 78ef17f46b49ffc498b90370543ae7cc,
         type: 3}
       propertyPath: m_Name
@@ -75,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 8785981804963202006, guid: 78ef17f46b49ffc498b90370543ae7cc,
         type: 3}
       propertyPath: <DefaultWeapon>k__BackingField
-      value: Bow
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ef17f46b49ffc498b90370543ae7cc, type: 3}
