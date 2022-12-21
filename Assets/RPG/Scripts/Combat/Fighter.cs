@@ -16,7 +16,7 @@ namespace RPG.Combat
 
         [field : SerializeField] private Transform RightHandTransform { get; set; }
         [field : SerializeField] private Transform LeftHandTransform { get; set; }
-        [field : SerializeField] private Weapon DefaultWeapon { get; set; } = null;
+        [field : SerializeField] public string DefaultWeapon = "Unarmed";
 
         // Start is called before the first frame update
         void Start()
@@ -25,7 +25,8 @@ namespace RPG.Combat
             ActionManager = GetComponent<ActionManager>();
             Animator = GetComponent<Animator>();
 
-            EquipWeapon(DefaultWeapon);
+            Weapon weapon = Resources.Load(DefaultWeapon) as Weapon;
+            EquipWeapon(weapon);
         }
 
         // Update is called once per frame

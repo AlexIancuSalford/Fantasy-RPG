@@ -75,8 +75,7 @@ PrefabInstance:
     - target: {fileID: 8785981804963202006, guid: 78ef17f46b49ffc498b90370543ae7cc,
         type: 3}
       propertyPath: <DefaultWeapon>k__BackingField
-      value: 
-      objectReference: {fileID: 11400000, guid: 7de4732ffbff00c4fae544c6454c1393,
-        type: 2}
+      value: Bow
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ef17f46b49ffc498b90370543ae7cc, type: 3}
