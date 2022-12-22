@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8534051746060958665}
   - component: {fileID: 4004408367521058544}
   - component: {fileID: 6167991658997159043}
+  - component: {fileID: -3864344344718827089}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -113,9 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee145586f5dd0a49b50d315555b81cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BasicAttackCooldown>k__BackingField: 1
-  <WeaponRange>k__BackingField: 2
-  <WeaponDamage>k__BackingField: 5
+  <RightHandTransform>k__BackingField: {fileID: 0}
+  <LeftHandTransform>k__BackingField: {fileID: 0}
+  <DefaultWeapon>k__BackingField: {fileID: 0}
 --- !u!114 &8534051746060958665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,3 +155,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UUID: 
+--- !u!114 &-3864344344718827089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2361840505468813477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0773d2912721e24cb790b5f6ce8fd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingLevel: 1
+  <CharacterClass>k__BackingField: 0
+  <Progression>k__BackingField: {fileID: 11400000, guid: cf86f7431a4e7da40a76561dd71f0e14,
+    type: 2}
