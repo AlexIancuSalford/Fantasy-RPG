@@ -1,5 +1,6 @@
 using RPG.Core;
 using RPG.Save;
+using RPG.Stats;
 using UnityEngine;
 
 namespace RPG.Attributes
@@ -13,10 +14,16 @@ namespace RPG.Attributes
         private ActionManager ActionManager { get; set; }
         private Animator Animator { get; set; }
 
-        private void Start()
+        private void Awake()
         {
             ActionManager = GetComponent<ActionManager>();
             Animator = GetComponent<Animator>();
+            CurrentHealth = GetComponent<BaseStats>().GetHealth();
+        }
+
+        private void Start()
+        {
+            
         }
 
         public void TakeDamage(float damage)
