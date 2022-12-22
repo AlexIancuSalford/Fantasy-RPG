@@ -18,18 +18,21 @@
  * Health component indicates that it is dead, the projectile will be destroyed
  * after a certain amount of time specified by the destroy time field.
  *  
- *  The OnTriggerEnter method is called by Unity when the projectile's
+ * The OnTriggerEnter method is called by Unity when the projectile's
  * collider (a component that determines if it is colliding with other objects)
  * enters the trigger area of another collider. If the other collider belongs
  * to an object with a Health component, the projectile will stop moving,
  * instantiate the hit effect if it has one, and cause the target to take
  * damage equal to the damage field. The projectile will then destroy itself
  * after a short delay.
+ *
+ * The Projectile game object also holds a reference to the game object that
+ * shot the projectile, and will be used in order to determine experience point
+ * awarded to the player character or other applicable effects
  */
 
 using System.Collections;
 using RPG.Attributes;
-using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -39,6 +42,7 @@ namespace RPG.Combat
         private Health _target = null;
         private float _damage = 0f;
         private float _destroyTime = 3.0f;
+        private GameObject _instigator = null;
 
         [field: SerializeField] private float Speed { get; set; }
         [field: SerializeField] bool IsHoming { get; set; } = true;
@@ -85,10 +89,12 @@ namespace RPG.Combat
         /// </summary>
         /// <param name="target">The target for the projectile</param>
         /// <param name="damage">The amount of damage the projectile should deal</param>
-        public void SetTarget(Health target, float damage)
+        /// <param name="instigator">The reference to the game object instantiating the projectile</param>
+        public void SetTarget(Health target, GameObject instigator, float damage)
         {
             _target = target;
             _damage = damage;
+            _instigator = instigator;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -108,7 +114,7 @@ namespace RPG.Combat
             }
 
             // Deal damage to the target
-            _target.TakeDamage(_damage);
+            _target.TakeDamage(_instigator, _damage);
             // Destroy the projectile after a delay
             Destroy(gameObject, 0.2f);
         }

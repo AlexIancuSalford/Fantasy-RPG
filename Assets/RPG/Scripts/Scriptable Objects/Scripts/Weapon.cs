@@ -63,50 +63,83 @@ namespace RPG.Combat
 
         private const string WEAPON_NAME = "Weapon";
 
+        /// <summary>
+        /// Spawns the weapon game object and overrides the character's animator controller with the weapon's AnimatorOverrideController.
+        /// </summary>
+        /// <param name="rightHand">The character's right hand transform.</param>
+        /// <param name="leftHand">The character's left hand transform.</param>
+        /// <param name="animator">The character's animator component.</param>
         public void SpawnWeapon(Transform rightHand, Transform leftHand, Animator animator)
         {
+            // Destroy the old weapon, if any
             DestroyOldWeapon(leftHand, rightHand);
 
+            // Spawn the weapon game object
             if (WeaponPrefab != null)
             {
                 GameObject weapon = Instantiate(WeaponPrefab, IsRightHanded ? rightHand : leftHand);
                 weapon.name = WEAPON_NAME;
             }
 
+            // Override the character's animator controller with the weapon's AnimatorOverrideController, if any
             AnimatorOverrideController overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
             if (OverrideController != null)
             {
                 animator.runtimeAnimatorController = OverrideController;
             }
-            else if(overrideController != null)
+            // Otherwise, restore the character's original animator controller
+            else if (overrideController != null)
             {
                 animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
             }
         }
 
+        /// <summary>
+        /// Determines whether the weapon has a projectile.
+        /// </summary>
+        /// <returns>True if the weapon has a projectile, false otherwise.</returns>
         public bool HasProjectile()
         {
             return Projectile != null;
         }
 
-        public void LaunchProjectile(Transform leftHand, Transform rightHand, Health target)
+        /// <summary>
+        /// Launches a projectile from the weapon.
+        /// </summary>
+        /// <param name="leftHand">The character's left hand transform.</param>
+        /// <param name="rightHand">The character's right hand transform.</param>
+        /// <param name="target">The Health component of the target object to be hit by the projectile.</param>
+        /// <param name="instigator">The game object that launched the projectile.</param>
+        public void LaunchProjectile(Transform leftHand, Transform rightHand, Health target, GameObject instigator)
         {
+            // Create an instance of the projectile
             Projectile projectileInst = Instantiate(
                 Projectile, 
                 (IsRightHanded ? rightHand : leftHand).position, 
                 Quaternion.identity
                 );
-            projectileInst.SetTarget(target, Damage);
+            // Set the target and damage of the projectile
+            projectileInst.SetTarget(target, instigator, Damage);
         }
 
+        /// <summary>
+        /// Destroys the old weapon game object, if any.
+        /// </summary>
+        /// <param name="leftHand">The character's left hand transform.</param>
+        /// <param name="rightHand">The character's right hand transform.</param>
         public void DestroyOldWeapon(Transform leftHand, Transform rightHand)
         {
+            // Find the old weapon game object in the right hand
             Transform oldWeapon = rightHand.Find(WEAPON_NAME);
 
+            // If not found, try finding it in the left hand
             if (oldWeapon == null) { oldWeapon = leftHand.Find(WEAPON_NAME); }
+            // If still not found, return
             if (oldWeapon == null) { return; }
 
+            // Rename the old weapon game object to avoid conflicts when destroying it
             oldWeapon.name = "DESTROYING";
+            // Destroy the old weapon game object
             Destroy(oldWeapon.gameObject);
         }
     }

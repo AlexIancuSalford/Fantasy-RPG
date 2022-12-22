@@ -13,5 +13,10 @@ namespace RPG.Stats
         {
             return Progression.GetHealth(CharacterClass, startingLevel);
         }
+
+        public float GetExperiencePoints()
+        {
+            return 10;
+        }
     }
 }
