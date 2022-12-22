@@ -30,6 +30,7 @@
  * for objects that the player is targeting.
  */
 
+using RPG.Attributes;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;

@@ -53,6 +53,7 @@
  * component, passing the player game object as an argument
 */
 
+using RPG.Attributes;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
