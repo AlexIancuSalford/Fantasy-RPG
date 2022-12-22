@@ -1,26 +1,25 @@
+using RPG.Save;
 using UnityEngine;
 
 namespace RPG.Attributes
 {
-    public class Experience : MonoBehaviour
+    public class Experience : MonoBehaviour, ISaveableEntity
     {
-        [field : SerializeField] private float ExperiencePoints { get; set; } = 0;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        [field : SerializeField] public float ExperiencePoints { get; private set; }
 
         public void GainExperiencePoints(float experiencePoints)
         {
-            this.ExperiencePoints += experiencePoints;
+            ExperiencePoints += experiencePoints;
+        }
+
+        public object SaveState()
+        {
+            return ExperiencePoints;
+        }
+
+        public void LoadState(object obj)
+        {
+            ExperiencePoints = (float)obj;
         }
     }
 }
