@@ -14,7 +14,7 @@ namespace RPG.Stats
             {
                 if (progressionClass.characterClass == characterClass)
                 {
-                    return progressionClass.health[level - 1];
+                    //return progressionClass.health[level - 1];
                 }
             }
 
@@ -27,7 +27,16 @@ namespace RPG.Stats
             // Public fields are automatically serialized, but I'll leave
             // this here to make it clear
             [SerializeField] public CharacterClass characterClass;
-            [SerializeField] public float[] health;
+            [SerializeField] public ProgressionStats[] stats;
+        }
+
+        [Serializable]
+        private class ProgressionStats
+        {
+            // Public fields are automatically serialized, but I'll leave
+            // this here to make it clear
+            [SerializeField] public Stats stats;
+            [SerializeField] public float[] levels;
         }
     }
 }
