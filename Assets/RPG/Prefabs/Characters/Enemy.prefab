@@ -76,6 +76,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3864344344718827089, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <CharacterClass>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
       propertyPath: <Weapon>k__BackingField
       value: 
@@ -205,6 +210,21 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1617771933008324142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6424633957709818053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0773d2912721e24cb790b5f6ce8fd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingLevel: 1
+  <CharacterClass>k__BackingField: 1
+  <Progression>k__BackingField: {fileID: 0}
 --- !u!114 &7653823316314257134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,20 +253,6 @@ MonoBehaviour:
   <SuspicionTime>k__BackingField: 4
   <PatrolRoute>k__BackingField: {fileID: 0}
   <WaypointStopTime>k__BackingField: 4
---- !u!114 &1617771933008324142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6424633957709818053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0773d2912721e24cb790b5f6ce8fd8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingLevel: 1
-  <CharacterClass>k__BackingField: 1
 --- !u!4 &6424633957709818057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2361840505468813481, guid: 15d51d214a357ea46b18ea73fb875494,
