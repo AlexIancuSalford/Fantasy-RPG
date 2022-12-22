@@ -34,7 +34,7 @@ namespace RPG.Combat
     public class Fighter : MonoBehaviour, IAction, ISaveableEntity
     {
         // Private properties for references to other components on the same game object
-        private Health Target { get; set; }
+        public Health Target { get; private set; }
         private Mover MoverRef { get; set; }
         private ActionManager ActionManager { get; set; }
         private Animator Animator { get; set; }

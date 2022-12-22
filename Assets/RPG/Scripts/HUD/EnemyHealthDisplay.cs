@@ -1,17 +1,17 @@
-using RPG.Attributes;
+using RPG.Combat;
 using TMPro;
 using UnityEngine;
 
 namespace RPG.HUD
 {
-    public class HealthDisplay : MonoBehaviour
+    public class EnemyHealthDisplay : MonoBehaviour
     {
-        private Health health;
+        private Fighter fighter;
         private TextMeshProUGUI text;
 
         private void Awake()
         {
-            health = GameObject.FindWithTag("Player").GetComponent<Health>();
+            fighter = GameObject.FindWithTag("Player").GetComponent<Fighter>();
         }
 
         // Start is called before the first frame update
@@ -23,7 +23,7 @@ namespace RPG.HUD
         // Update is called once per frame
         void Update()
         {
-            text.text = $"{health.ToPercentage():0}%";
+            text.text = fighter.Target == null ? "N/A" : $"{fighter.Target.ToPercentage():0}%";
         }
     }
 }
