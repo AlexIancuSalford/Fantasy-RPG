@@ -108,12 +108,12 @@ namespace RPG.Combat
             // If the current weapon has a projectile, launch it towards the target
             if (_currentWeapon.HasProjectile())
             {
-                _currentWeapon.LaunchProjectile(RightHandTransform, LeftHandTransform, Target);
+                _currentWeapon.LaunchProjectile(RightHandTransform, LeftHandTransform, Target, gameObject);
             }
             // Otherwise, deal damage directly to the target
             else
             {
-                Target.TakeDamage(_currentWeapon.Damage);
+                Target.TakeDamage(gameObject, _currentWeapon.Damage);
             }
         }
 
