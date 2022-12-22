@@ -23,6 +23,7 @@
  *  checks if there is a target and if the target is dead, and either moves towards the target or handles attack behavior depending
  */
 
+using RPG.Attributes;
 using RPG.Core;
 using RPG.Movement;
 using RPG.Save;
