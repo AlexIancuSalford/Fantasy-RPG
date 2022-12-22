@@ -29,7 +29,6 @@ namespace RPG.Attributes
         public void TakeDamage(float damage)
         {
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
-            Debug.Log(CurrentHealth);
 
             if (CurrentHealth == 0)
             {
@@ -50,6 +49,11 @@ namespace RPG.Attributes
             IsDead = true;
             Animator.SetTrigger("death");
             ActionManager.CancelAction();
+        }
+
+        public float ToPercentage()
+        {
+            return CurrentHealth * 100 / GetComponent<BaseStats>().GetHealth();
         }
 
         public object SaveState()
