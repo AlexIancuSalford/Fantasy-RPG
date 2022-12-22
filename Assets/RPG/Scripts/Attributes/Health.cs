@@ -73,7 +73,7 @@ namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISaveableEntity
     {
-        [field : SerializeField] public float CurrentHealth { get; private set; } = 100f;
+        [field : SerializeField] private float CurrentHealth { get; set; } = 100f;
 
         public bool IsDead { get; private set; } = false;
 
@@ -85,9 +85,12 @@ namespace RPG.Attributes
             // Retrieve references to the ActionManager and Animator components.
             ActionManager = GetComponent<ActionManager>();
             Animator = GetComponent<Animator>();
+        }
 
+        private void Start()
+        {
             // Set the current health to the maximum health of the object.
-            CurrentHealth = GetComponent<BaseStats>().GetHealth();
+            CurrentHealth = GetComponent<BaseStats>().GetStat(Stats.Stats.Health);
         }
 
         /// <summary>
@@ -137,7 +140,7 @@ namespace RPG.Attributes
         /// <returns>The current health as a percentage of the maximum health.</returns>
         public float ToPercentage()
         {
-            return CurrentHealth * 100 / GetComponent<BaseStats>().GetHealth();
+            return CurrentHealth * 100 / GetComponent<BaseStats>().GetStat(Stats.Stats.Health);
         }
 
         /// <summary>
@@ -153,7 +156,7 @@ namespace RPG.Attributes
             if (experience == null) { return; }
 
             // Otherwise, award the instigator the experience points.
-            experience.GainExperiencePoints(GetComponent<BaseStats>().GetExperiencePoints());
+            experience.GainExperiencePoints(GetComponent<BaseStats>().GetStat(Stats.Stats.ExperiencePoints));
         }
 
         /// <summary>
