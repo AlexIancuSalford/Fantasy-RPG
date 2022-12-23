@@ -329,5 +329,13 @@ namespace RPG.Combat
                 yield return _currentWeapon.Damage;
             }
         }
+
+        public IEnumerable<float> GetModifiersPercentage(Stats.Stats stat)
+        {
+            if (stat == Stats.Stats.BaseDamage)
+            {
+                yield return _currentWeapon.PercentageBonusDamage;
+            }
+        }
     }
 }
