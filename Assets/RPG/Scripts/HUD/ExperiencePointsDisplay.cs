@@ -1,4 +1,4 @@
-using RPG.Attributes;
+using RPG.Stats;
 using TMPro;
 using UnityEngine;
 

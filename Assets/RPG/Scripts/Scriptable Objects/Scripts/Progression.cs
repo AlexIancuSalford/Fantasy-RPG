@@ -71,6 +71,20 @@ namespace RPG.Stats
         }
 
         /// <summary>
+        /// This method checks the number of available levels for the specified stat and character class
+        /// </summary>
+        /// <param name="stat"></param>
+        /// <param name="characterClass"></param>
+        /// <returns>The number of available levels</returns>
+        public int GetLevels(Stats stat, CharacterClass characterClass)
+        {
+            // If the dictionary lookup is now initialized yet, initialize it
+            if (dictionaryLookup == null) { Lookup(); }
+
+            return dictionaryLookup[characterClass][stat].Length;
+        }
+
+        /// <summary>
         /// Populates the dictionaryLookup field with the data from the progressionClasses field.
         /// This method is called each time the GetStat method is called, but only if the dictionaryLookup field is null.
         /// This allows the dictionaryLookup field to be initialized only once, improving the performance of the GetStat method.
