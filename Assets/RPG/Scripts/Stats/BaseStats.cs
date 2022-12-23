@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace RPG.Stats
@@ -36,11 +37,13 @@ namespace RPG.Stats
         {
             int newLevel = GetLevel();
             // If the new level is greater than the current level, set the current level to the new level
-            if (newLevel > CurrentLevel) { CurrentLevel = newLevel; }
-
-            // Spawn particle effect on level up
-            Instantiate(LevelUpEffect, transform);
-            OnLevelUp();
+            if (newLevel > CurrentLevel)
+            {
+                CurrentLevel = newLevel;
+                // Spawn particle effect on level up
+                Instantiate(LevelUpEffect, transform);
+                OnLevelUp();
+            }
         }
 
         /// <summary>
@@ -51,7 +54,12 @@ namespace RPG.Stats
         public float GetStat(Stats stat)
         {
             // Return the stat value using the Progression data.
-            return Progression.GetStat(stat, CharacterClass, GetLevel());
+            return Progression.GetStat(stat, CharacterClass, GetLevel()) + GetModifiers(stat);
+        }
+
+        private float GetModifiers(Stats stat)
+        {
+            return GetComponents<IStatsProvider>().Sum(statsProvider => statsProvider.GetModifiers(stat).Sum());
         }
 
         /// <summary>
