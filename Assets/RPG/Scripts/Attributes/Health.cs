@@ -95,9 +95,14 @@ namespace RPG.Attributes
             }
         }
 
-        private void Start()
+        private void OnEnable()
         {
             GetComponent<BaseStats>().OnLevelUp += RegenHealth;
+        }
+
+        private void OnDisable()
+        {
+            GetComponent<BaseStats>().OnLevelUp -= RegenHealth;
         }
 
         /// <summary>

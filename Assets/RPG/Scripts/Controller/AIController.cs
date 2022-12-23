@@ -34,10 +34,12 @@
  * The ActionManager property is a reference to the NPC's ActionManager
  * component, which manages the NPC's actions.
  *
+ * The Awake method is called before the Start method. In this method,
+ * the NPC finds the player game object using its tag, and then gets
+ * references to its Fighter, Health, Mover, and ActionManager components.
+ *
  * The Start method is a special Unity method that is called when the script
- * is first enabled. In this method, the NPC finds the player game object
- * using its tag, and then gets references to its Fighter, Health, Mover,
- * and ActionManager components. The Start method also stores the NPC's
+ * is first enabled. The Start method stores the NPC's
  * initial location in the _guardLocation field.
  *
  * The Update method is a special Unity method that is called once per frame.
@@ -87,11 +89,8 @@ namespace RPG.Controller
         private Mover Mover { get; set; }
         private ActionManager ActionManager { get; set; }
 
-        // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
-            // TODO: Move to Awake
-
             // Find the player GameObject using its tag.
             _player = GameObject.FindGameObjectWithTag("Player");
 
@@ -100,7 +99,11 @@ namespace RPG.Controller
             Health = GetComponent<Health>();
             Mover = GetComponent<Mover>();
             ActionManager = GetComponent<ActionManager>();
+        }
 
+        // Start is called before the first frame update
+        void Start()
+        {
             // Set the initial location of the NPC.
             _guardLocation = gameObject.transform.position;
         }

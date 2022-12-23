@@ -45,18 +45,26 @@ namespace RPG.Cutscene
         // A reference to the game object in the game that represents the player character.
         private GameObject Player { get; set; }
 
-        private void Start()
+        private void Awake()
         {
-            // TODO: Move to Awake
-
             // Get a reference to the PlayableDirector component on this game object.
             PlayableDirector = GetComponent<PlayableDirector>();
             // Get a reference to the player game object.
             Player = GetPlayer();
+        }
 
+        private void OnEnable()
+        {
             // Set up event handlers for the played and stopped events.
             PlayableDirector.played += DisableControl;
             PlayableDirector.stopped += EnableControl;
+        }
+
+        private void OnDisable()
+        {
+            // Set up event handlers for the played and stopped events.
+            PlayableDirector.played -= DisableControl;
+            PlayableDirector.stopped -= EnableControl;
         }
 
         /// <summary>
