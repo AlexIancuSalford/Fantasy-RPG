@@ -17,18 +17,10 @@
  * takes three arguments: a Stats enumeration, a CharacterClass enumeration,
  * and an integer (level). This method returns the value of a specific
  * stat for a specific character class at a specific level.
- *  
- * The method works by first filtering the progressionClasses array to
- * find the ProgressionClass object that corresponds to the specified
- * character class. It then selects all the ProgressionStats objects from
- * that ProgressionClass object and filters them again to find the
- * ProgressionStats object that corresponds to the specified stat.
- * The method then returns the value at the specified level in the
- * levels array for that ProgressionStats object. If no matching
- * ProgressionStats object is found, the method returns 0 by default.
  */
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
@@ -39,6 +31,8 @@ namespace RPG.Stats
     {
         [SerializeField] private ProgressionClass[] progressionClasses = null;
 
+        private Dictionary<CharacterClass, Dictionary<Stats, float[]>> dictionaryLookup = null;
+
         /// <summary>
         /// Gets the value of a specific stat for a specific character class at a specific level.
         /// </summary>
@@ -48,17 +42,30 @@ namespace RPG.Stats
         /// <returns>The value of the stat at the specified level for the specified character class, or 0 if no matching data was found.</returns>
         public float GetStat(Stats stat, CharacterClass characterClass, int level)
         {
-            return progressionClasses
-                // Find the ProgressionClass object for the specified character class
-                .Where(progressionClass => progressionClass.characterClass == characterClass)
-                // Select all the ProgressionStats objects for that character class
-                .SelectMany(progressionClass => progressionClass.stats)
-                // Find the ProgressionStats object for the specified stat
-                .Where(progressionStats => progressionStats.stat == stat && progressionStats.levels.Length >= level)
-                // Return the value at the specified level in the levels array for that stat
-                .Select(progressionStats => progressionStats.levels[level - 1])
-                // If no matching ProgressionStats object is found, return 0 by default
-                .FirstOrDefault();
+            Lookup();
+
+            return dictionaryLookup[characterClass][stat].Length < level 
+                ? 0
+                : dictionaryLookup[characterClass][stat][level - 1];
+        }
+
+        private void Lookup()
+        {
+            if (dictionaryLookup != null) { return; }
+
+            dictionaryLookup = new Dictionary<CharacterClass, Dictionary<Stats, float[]>>();
+
+            foreach (ProgressionClass progressionClass in progressionClasses)
+            {
+                Dictionary<Stats, float[]> statLookup = new Dictionary<Stats, float[]>();
+
+                foreach (ProgressionStats progressionStat in progressionClass.stats)
+                {
+                    statLookup[progressionStat.stat] = progressionStat.levels;
+                }
+
+                dictionaryLookup[progressionClass.characterClass] = statLookup;
+            }
         }
 
         [Serializable]
