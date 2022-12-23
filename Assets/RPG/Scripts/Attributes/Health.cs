@@ -107,6 +107,8 @@ namespace RPG.Attributes
         /// <param name="damage">The amount of damage to be taken.</param>
         public void TakeDamage(GameObject instigator, float damage)
         {
+            Debug.Log(damage);
+
             // Subtract the damage from the current health.
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
 

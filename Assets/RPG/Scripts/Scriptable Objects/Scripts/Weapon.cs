@@ -58,6 +58,7 @@ namespace RPG.Combat
         [field : SerializeField] public float AttackCooldown { get; set; } = 1f;
         [field : SerializeField] public float Range { get; private set; } = 2f;
         [field : SerializeField] public float Damage { get; private set; } = 5f;
+        [field : SerializeField] public float PercentageBonusDamage { get; set; } = 0.0f;
         [field : SerializeField] private bool IsRightHanded { get; set; } = true;
         [field : SerializeField] private Projectile Projectile { get; set; } = null;
 

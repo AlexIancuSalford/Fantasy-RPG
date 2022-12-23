@@ -23,6 +23,7 @@
  *  checks if there is a target and if the target is dead, and either moves towards the target or handles attack behavior depending
  */
 
+using System.Collections.Generic;
 using RPG.Attributes;
 using RPG.Core;
 using RPG.Movement;
@@ -32,7 +33,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveableEntity
+    public class Fighter : MonoBehaviour, IAction, ISaveableEntity, IStatsProvider
     {
         // Private properties for references to other components on the same game object
         public Health Target { get; private set; }
@@ -319,6 +320,22 @@ namespace RPG.Combat
             // Load the weapon with the given name and equip it
             Weapon weapon = Resources.Load(obj as string) as Weapon;
             EquipWeapon(weapon);
+        }
+
+        public IEnumerable<float> GetModifiers(Stats.Stats stat)
+        {
+            if (stat == Stats.Stats.BaseDamage)
+            {
+                yield return _currentWeapon.Damage;
+            }
+        }
+
+        public IEnumerable<float> GetModifiersPercentage(Stats.Stats stat)
+        {
+            if (stat == Stats.Stats.BaseDamage)
+            {
+                yield return _currentWeapon.PercentageBonusDamage;
+            }
         }
     }
 }
