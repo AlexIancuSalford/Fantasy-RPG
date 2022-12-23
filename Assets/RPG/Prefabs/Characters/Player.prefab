@@ -76,6 +76,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3864344344718827089, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <LevelUpEffect>k__BackingField
+      value: 
+      objectReference: {fileID: 8550195445537920229, guid: 91727a5294a98d747aa2acc9e650a2cc,
+        type: 3}
     - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
       propertyPath: <Weapon>k__BackingField
       value: 
@@ -84,7 +90,8 @@ PrefabInstance:
     - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
       propertyPath: <DefaultWeapon>k__BackingField
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 5e75463dd796170469d37c5e3433e99e,
+        type: 2}
     - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
       propertyPath: <WeaponPosition>k__BackingField
       value: 

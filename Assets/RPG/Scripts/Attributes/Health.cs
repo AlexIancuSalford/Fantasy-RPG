@@ -94,6 +94,11 @@ namespace RPG.Attributes
             }
         }
 
+        private void Start()
+        {
+            GetComponent<BaseStats>().OnLevelUp += RegenHealth;
+        }
+
         /// <summary>
         /// Makes the object take damage.
         /// </summary>
@@ -183,6 +188,14 @@ namespace RPG.Attributes
             {
                 TriggerDeathAnimation(true);
             }
+        }
+
+        /// <summary>
+        /// This method sets the current health to the value corresponding to its level
+        /// </summary>
+        private void RegenHealth()
+        {
+            CurrentHealth = GetComponent<BaseStats>().GetStat(Stats.Stats.Health);
         }
     }
 }

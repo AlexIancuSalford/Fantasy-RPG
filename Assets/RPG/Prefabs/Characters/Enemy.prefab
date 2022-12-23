@@ -89,7 +89,8 @@ PrefabInstance:
     - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
       propertyPath: <DefaultWeapon>k__BackingField
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 5e75463dd796170469d37c5e3433e99e,
+        type: 2}
     - target: {fileID: 1112353718, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
       propertyPath: <WeaponPosition>k__BackingField
       value: 
