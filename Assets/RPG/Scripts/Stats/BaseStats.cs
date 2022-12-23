@@ -10,6 +10,31 @@ namespace RPG.Stats
         [field : SerializeField] private CharacterClass CharacterClass { get; set; }
         [field : SerializeField] private Progression Progression { get; set; } = null;
 
+        public int CurrentLevel { get; private set; }
+
+        private void Start()
+        {
+            int newLevel = GetLevel();
+            Experience experience = GetComponent<Experience>();
+
+            if (experience != null)
+            {
+                // Subscribe to the OnGainExperiencePoints event of the experience component
+                experience.OnGainExperiencePoints += UpdateLevel;
+            }
+        }
+
+        /// <summary>
+        /// Updates the current level of the character if the new level is greater than the current level.
+        /// This method is called whenever the character gains experience points.
+        /// </summary>
+        private void UpdateLevel()
+        {
+            int newLevel = GetLevel();
+            // If the new level is greater than the current level, set the current level to the new level
+            if (newLevel > CurrentLevel) { CurrentLevel = newLevel; }
+        }
+
         /// <summary>
         /// Gets the value of the specified stat.
         /// </summary>
