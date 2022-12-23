@@ -9,5 +9,6 @@ namespace RPG.Stats
         Health,
         ExperiencePoints,
         LevelUpXp,
+        BaseDamage,
     }
 }

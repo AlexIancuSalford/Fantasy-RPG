@@ -110,7 +110,8 @@ namespace RPG.Combat
         /// <param name="rightHand">The character's right hand transform.</param>
         /// <param name="target">The Health component of the target object to be hit by the projectile.</param>
         /// <param name="instigator">The game object that launched the projectile.</param>
-        public void LaunchProjectile(Transform leftHand, Transform rightHand, Health target, GameObject instigator)
+        /// <param name="damage">The base damage of the instigator</param>
+        public void LaunchProjectile(Transform leftHand, Transform rightHand, Health target, GameObject instigator, float damage)
         {
             // Create an instance of the projectile
             Projectile projectileInst = Instantiate(
@@ -119,7 +120,7 @@ namespace RPG.Combat
                 Quaternion.identity
                 );
             // Set the target and damage of the projectile
-            projectileInst.SetTarget(target, instigator, Damage);
+            projectileInst.SetTarget(target, instigator, damage);
         }
 
         /// <summary>

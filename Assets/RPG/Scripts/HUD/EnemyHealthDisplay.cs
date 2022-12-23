@@ -23,7 +23,7 @@ namespace RPG.HUD
         // Update is called once per frame
         void Update()
         {
-            text.text = fighter.Target == null ? "N/A" : $"{fighter.Target.ToPercentage():0}%";
+            text.text = fighter.Target == null ? "N/A" : $"{fighter.Target.GetCurrentHealth():0}/{fighter.Target.GetMaxHealth():0}";
         }
     }
 }
