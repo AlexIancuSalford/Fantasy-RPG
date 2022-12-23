@@ -15,19 +15,36 @@ namespace RPG.Stats
         [field : SerializeField] private bool ShouldUseModifiers { get; set; } = false;
 
         public int CurrentLevel { get; private set; }
+        private Experience Experience { get; set; }
 
-        public Action OnLevelUp;
+        public event Action OnLevelUp;
+
+        private void Awake()
+        {
+            Experience = GetComponent<Experience>();
+        }
+
+        private void OnEnable()
+        {
+            if (Experience != null)
+            {
+                // Subscribe to the OnGainExperiencePoints event of the experience component
+                Experience.OnGainExperiencePoints += UpdateLevel;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (Experience != null)
+            {
+                // Subscribe to the OnGainExperiencePoints event of the experience component
+                Experience.OnGainExperiencePoints -= UpdateLevel;
+            }
+        }
 
         private void Start()
         {
-            int newLevel = GetLevel();
-            Experience experience = GetComponent<Experience>();
-
-            if (experience != null)
-            {
-                // Subscribe to the OnGainExperiencePoints event of the experience component
-                experience.OnGainExperiencePoints += UpdateLevel;
-            }
+            CurrentLevel = GetLevel();
         }
 
         /// <summary>

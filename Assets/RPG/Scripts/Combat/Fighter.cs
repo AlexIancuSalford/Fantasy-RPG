@@ -58,13 +58,8 @@ namespace RPG.Combat
             {
                 EquipWeapon(DefaultWeapon);
             }
-        }
 
-        // Start is called before the first frame update
-        void Start()
-        {
             // Get references to other components on the same game object
-            // TODO: Move this to Awake
             MoverRef = GetComponent<Mover>();
             ActionManager = GetComponent<ActionManager>();
             Animator = GetComponent<Animator>();
