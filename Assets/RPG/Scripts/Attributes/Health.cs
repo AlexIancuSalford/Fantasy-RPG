@@ -65,6 +65,7 @@
  */
 
 using RPG.Core;
+using RPG.Helper;
 using RPG.Save;
 using RPG.Stats;
 using UnityEngine;
@@ -73,7 +74,7 @@ namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISaveableEntity
     {
-        [field : SerializeField] private float CurrentHealth { get; set; } = 100f;
+        [ReadOnly, SerializeField] private float CurrentHealth = -1f;
 
         public bool IsDead { get; private set; } = false;
 
@@ -85,12 +86,12 @@ namespace RPG.Attributes
             // Retrieve references to the ActionManager and Animator components.
             ActionManager = GetComponent<ActionManager>();
             Animator = GetComponent<Animator>();
-        }
 
-        private void Start()
-        {
-            // Set the current health to the maximum health of the object.
-            CurrentHealth = GetComponent<BaseStats>().GetStat(Stats.Stats.Health);
+            if (CurrentHealth < 0f)
+            {
+                // Set the current health to the maximum health of the object.
+                CurrentHealth = GetComponent<BaseStats>().GetStat(Stats.Stats.Health);
+            }
         }
 
         /// <summary>

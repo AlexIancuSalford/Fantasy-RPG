@@ -82,7 +82,7 @@ namespace RPG.Helper
         /// </summary>
         /// <param name="fileName">The name of the file to get the path for.</param>
         /// <returns>The full path to the file.</returns>
-        private static string GetPathFromFile(string fileName)
+        public static string GetPathFromFile(string fileName)
         {
             // Combine the path to the Application.persistentDataPath folder and the file name.
             return Path.Combine(Application.persistentDataPath, fileName + ".save");
