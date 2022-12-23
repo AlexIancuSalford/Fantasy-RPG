@@ -1,28 +1,45 @@
 /*
- * This script defines a Progression class, which is a scriptable
- * object in Unity.Scriptable objects are asset files that contain
- * data that can be used by other components in your game.
+ * This script defines a Unity scriptable object called
+ * Progression. A scriptable object is a type of asset
+ * that allows you to store data that can be edited in
+ * the Unity editor.
  *  
- * The Progression class has a serialized field called progressionClasses,
- * which is an array of ProgressionClass objects. Each
- * ProgressionClass object has a characterClass field and a stats
- * field. The characterClass field is an enumeration (CharacterClass)
- * that represents a character class in a role-playing game, and the
- * stats field is an array of ProgressionStats objects.
- * Each ProgressionStats object has a stat field, which
- * is another enumeration (Stats) that represents a stat in the game,
- * and a levels field, which is an array of floats.
+ * The Progression scriptable object has a serialized
+ * field called progressionClasses which is an array
+ * of ProgressionClass objects. Each ProgressionClass
+ * object has two serialized fields: a CharacterClass
+ * field and an array of ProgressionStats objects.
+ * Each ProgressionStats object has two serialized
+ * fields: a Stats field and an array of floats called levels.
  *  
- * The Progression class also has a public method called GetStat, which
- * takes three arguments: a Stats enumeration, a CharacterClass enumeration,
- * and an integer (level). This method returns the value of a specific
- * stat for a specific character class at a specific level.
+ *  The Progression scriptable object also has a Dictionary
+ * field called dictionaryLookup which is used to store
+ * the data from the progressionClasses field in a more
+ * easily accessible form.
+ *  
+ *  The Progression scriptable object has a public method
+ * called GetStat which takes in three arguments:
+ * a Stats enum, a CharacterClass enum, and an
+ * integer called level. This method returns the
+ * value of the stat specified by the Stats enum
+ * for the character class specified by the CharacterClass
+ * enum at the level specified by the level argument.
+ * If the level specified is greater than the number
+ * of levels available for that stat, the method returns 0.
+ *  
+ *  The Progression scriptable object also has a private
+ * method called Lookup which is used to populate the
+ * dictionaryLookup field with the data from the
+ * progressionClasses field. This method is called each
+ * time the GetStat method is called, but only if the
+ * dictionaryLookup field is null. This allows the
+ * dictionaryLookup field to be initialized only once,
+ * improving the performance of the GetStat method.
  */
 
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 namespace RPG.Stats
 {
@@ -34,36 +51,52 @@ namespace RPG.Stats
         private Dictionary<CharacterClass, Dictionary<Stats, float[]>> dictionaryLookup = null;
 
         /// <summary>
-        /// Gets the value of a specific stat for a specific character class at a specific level.
+        /// Returns the value of the stat specified by the Stats enum for the character class specified by the CharacterClass enum at the level specified by the level argument.
+        /// If the level specified is greater than the number of levels available for that stat, the method returns 0.
         /// </summary>
         /// <param name="stat">The stat to get the value of.</param>
         /// <param name="characterClass">The character class to get the stat value for.</param>
-        /// <param name="level">The level to get the stat value at.</param>
-        /// <returns>The value of the stat at the specified level for the specified character class, or 0 if no matching data was found.</returns>
+        /// <param name="level">The level to get the stat value for.</param>
+        /// <returns>The value of the stat at the specified level for the specified character class.</returns>
         public float GetStat(Stats stat, CharacterClass characterClass, int level)
         {
+            // Initialize the dictionaryLookup field if it hasn't already been initialized.
             Lookup();
 
+            // Return 0 if the level specified is greater than the number of levels available for that stat,
+            // otherwise return the value of the stat at the specified level for the specified character class.
             return dictionaryLookup[characterClass][stat].Length < level 
                 ? 0
                 : dictionaryLookup[characterClass][stat][level - 1];
         }
 
+        /// <summary>
+        /// Populates the dictionaryLookup field with the data from the progressionClasses field.
+        /// This method is called each time the GetStat method is called, but only if the dictionaryLookup field is null.
+        /// This allows the dictionaryLookup field to be initialized only once, improving the performance of the GetStat method.
+        /// </summary>
         private void Lookup()
         {
+            // Return if the dictionaryLookup field has already been initialized.
             if (dictionaryLookup != null) { return; }
 
+            // Initialize the dictionaryLookup field.
             dictionaryLookup = new Dictionary<CharacterClass, Dictionary<Stats, float[]>>();
 
+            // Loop through each ProgressionClass object in the progressionClasses array.
             foreach (ProgressionClass progressionClass in progressionClasses)
             {
+                // Dictionary for storing data from the ProgressionStats objects in a more easily accessible form.
                 Dictionary<Stats, float[]> statLookup = new Dictionary<Stats, float[]>();
 
+                // Loop through each ProgressionStats object in the stats array of the current ProgressionClass object.
                 foreach (ProgressionStats progressionStat in progressionClass.stats)
                 {
+                    // Add the stat and levels data from the current ProgressionStats object to the statLookup dictionary.
                     statLookup[progressionStat.stat] = progressionStat.levels;
                 }
 
+                // Add the stat and levels data to the main dictionary
                 dictionaryLookup[progressionClass.characterClass] = statLookup;
             }
         }
