@@ -31,6 +31,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using RPG.Helper;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -130,6 +131,15 @@ namespace RPG.Save
 
             // Load the game state
             LoadState(stateDictionary);
+        }
+
+        /// <summary>
+        /// Deletes the file passed in.
+        /// </summary>
+        /// <param name="fileName">The file to be deleted</param>
+        public void Delete(string fileName)
+        {
+            File.Delete(CSerializer.GetPathFromFile(fileName));
         }
     }
 }

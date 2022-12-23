@@ -62,6 +62,11 @@ namespace RPG.Scene
             {
                 Load();
             }
+
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                Delete();
+            }
         }
 
         /// <summary>
@@ -78,6 +83,14 @@ namespace RPG.Scene
         public void Load()
         {
             GetComponent<SaveManager>().Load(_defaultSaveFile);
+        }
+
+        /// <summary>
+        /// Delete save file for debugging purposes.
+        /// </summary>
+        public void Delete()
+        {
+            GetComponent<SaveManager>().Delete(_defaultSaveFile);
         }
     }
 }
