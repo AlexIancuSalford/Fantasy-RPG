@@ -76,7 +76,7 @@ namespace RPG.Stats
         /// <param name="stat"></param>
         /// <param name="characterClass"></param>
         /// <returns>The number of available levels</returns>
-        public float GetLevels(Stats stat, CharacterClass characterClass)
+        public int GetLevels(Stats stat, CharacterClass characterClass)
         {
             // If the dictionary lookup is now initialized yet, initialize it
             if (dictionaryLookup == null) { Lookup(); }

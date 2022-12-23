@@ -18,19 +18,24 @@ namespace RPG.Stats
         public float GetStat(Stats stat)
         {
             // Return the stat value using the Progression data.
-            return Progression.GetStat(stat, CharacterClass, startingLevel);
+            return Progression.GetStat(stat, CharacterClass, GetLevel());
         }
 
         /// <summary>
         /// Gets the current level of the character.
         /// </summary>
         /// <returns>The current level of the character.</returns>
-        public float GetLevel()
+        public int GetLevel()
         {
+            Experience experience = GetComponent<Experience>();
+
+            // If there is no experience component, return the starting level
+            if (experience == null) { return startingLevel; }
+
             // Get the current experience points of the character.
-            float xp = GetComponent<Experience>().ExperiencePoints;
+            float xp = experience.ExperiencePoints;
             // Get the penultimate level of the character.
-            float pLevel = Progression.GetLevels(Stats.LevelUpXp, CharacterClass);
+            int pLevel = Progression.GetLevels(Stats.LevelUpXp, CharacterClass);
 
             // Iterate through each level up to the penultimate level.
             for (int i = 1; i <= pLevel; i++)
