@@ -64,6 +64,7 @@
  * TriggerDeathAnimation() method with the true argument.
  */
 
+using System;
 using RPG.Core;
 using RPG.Helper;
 using RPG.Save;
@@ -191,11 +192,29 @@ namespace RPG.Attributes
         }
 
         /// <summary>
+        /// This method is a getter for the current health
+        /// </summary>
+        /// <returns>The current health</returns>
+        public float GetCurrentHealth()
+        {
+            return CurrentHealth;
+        }
+
+        /// <summary>
+        /// This method returns the max health
+        /// </summary>
+        /// <returns>Return max health</returns>
+        public float GetMaxHealth()
+        {
+            return MathF.Max(CurrentHealth,GetComponent<BaseStats>().GetStat(Stats.Stats.Health));
+        }
+
+        /// <summary>
         /// This method sets the current health to the value corresponding to its level
         /// </summary>
         private void RegenHealth()
         {
-            CurrentHealth = GetComponent<BaseStats>().GetStat(Stats.Stats.Health);
+            CurrentHealth = GetMaxHealth();
         }
     }
 }

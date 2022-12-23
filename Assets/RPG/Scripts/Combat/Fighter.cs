@@ -27,6 +27,7 @@ using RPG.Attributes;
 using RPG.Core;
 using RPG.Movement;
 using RPG.Save;
+using RPG.Stats;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -105,15 +106,17 @@ namespace RPG.Combat
             // If there is no target, do nothing
             if (Target == null) { return; }
 
+            float damage = GetComponent<BaseStats>().GetStat(Stats.Stats.BaseDamage);
+
             // If the current weapon has a projectile, launch it towards the target
             if (_currentWeapon.HasProjectile())
             {
-                _currentWeapon.LaunchProjectile(RightHandTransform, LeftHandTransform, Target, gameObject);
+                _currentWeapon.LaunchProjectile(RightHandTransform, LeftHandTransform, Target, gameObject, damage);
             }
             // Otherwise, deal damage directly to the target
             else
             {
-                Target.TakeDamage(gameObject, _currentWeapon.Damage);
+                Target.TakeDamage(gameObject, damage);
             }
         }
 

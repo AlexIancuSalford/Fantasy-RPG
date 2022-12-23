@@ -23,7 +23,7 @@ namespace RPG.HUD
         // Update is called once per frame
         void Update()
         {
-            text.text = $"{health.ToPercentage():0}%";
+            text.text = $"{health.GetCurrentHealth():0}/{health.GetMaxHealth():0}";
         }
     }
 }
