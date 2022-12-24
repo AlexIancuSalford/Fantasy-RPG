@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Helper
@@ -17,6 +15,8 @@ namespace RPG.Helper
         public struct CursorMapping
         {
             public CursorType type;
+            public Texture2D texture;
+            public Vector2 hotspot;
         }
     }
 }
