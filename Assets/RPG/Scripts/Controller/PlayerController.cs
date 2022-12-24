@@ -210,7 +210,7 @@ namespace RPG.Controller
         private bool CanInteractWithObject()
         {
             // Use a raycast to check if the player can interact with an object
-            RaycastHit[] raycastHits = Physics.RaycastAll(GetRayFromScreenPoint());
+            RaycastHit[] raycastHits = SortedRaycastAll();
 
             // If the raycast didn't hit anything, return false
             foreach (RaycastHit raycastHit in raycastHits)
@@ -242,6 +242,28 @@ namespace RPG.Controller
 
             // If no enemies were targeted or the player can't attack any of them, return false
             return false;
+        }
+
+        /// <summary>
+        /// This method sorts an array of raycast hits based on their distance from the cursor.
+        /// The method uses Array.Sort to sort the array of raycast hits in place.
+        ///
+        /// Using Array.Sort to sort the RaycastAll array is likely to be more performant
+        /// than using the OrderBy method from the System.Linq namespace. This is because
+        /// Array.Sort is a native method implemented in C#, while OrderBy is implemented
+        /// in C# and makes use of LINQ (Language Integrated Query) which is a higher
+        /// level abstraction.
+        /// </summary>
+        /// <returns>The sorted array of raycast hits</returns>
+        private RaycastHit[] SortedRaycastAll()
+        {
+            // Raycast from a given position and direction
+            RaycastHit[] hits = Physics.RaycastAll(GetRayFromScreenPoint());
+
+            // Sort the array based on distance
+            System.Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
+
+            return hits;
         }
     }
 }
