@@ -1,84 +1,83 @@
-/*
- * This is a script for a Health component in a Unity game. The script is
- * attached to a game object and adds a number of properties and functions
- * related to managing the health of the object.
- *  
- * The Health class has the following fields and properties:
- *  
- * CurrentHealth: A float representing the current health of the object.
- * This field is serialized, which means it will be saved to and loaded from
- * the game's save data. It has a default value of 100.
- *
- * IsDead: A bool representing whether the object is dead or not. It has a
- * default value of false.
- *
- * ActionManager: A reference to an ActionManager component attached to the
- * same game object.
- *
- * Animator: A reference to an Animator component attached to the same game
- * object.
- *
- * The Health class has the following methods:
- *  
- * Awake(): This method is called when the script is first initialized.
- * It retrieves references to the ActionManager and Animator components
- * attached to the same game object, and sets the CurrentHealth field to the
- * value returned by the GetHealth() method of the object's BaseStats
- * component.
- *
- * TakeDamage(GameObject instigator, float damage): This method is called
- * when the object takes damage. It subtracts the specified damage from the
- * CurrentHealth field, and sets IsDead to true if CurrentHealth is less than
- * or equal to zero. If CurrentHealth is not zero, it returns without doing
- * anything else. Otherwise, it calls the TriggerDeathAnimation() method with
- * the false argument and the AwardExperience() method with the instigator
- * argument.
- *
- * TriggerDeathAnimation(bool isLoading): This method is called to trigger
- * the death animation of the object. If IsDead is true, it returns without
- * doing anything. If isLoading is true, it retrieves references to the
- * Animator and ActionManager components attached to the same game object.
- * It then sets IsDead to true and triggers the "death" animation of the
- * Animator component. It also cancels the current action of the ActionManager
- * component.
- *
- * ToPercentage(): This method returns the CurrentHealth field as a percentage
- * of the object's maximum health, as returned by the GetHealth() method of
- * the object's BaseStats component.
- *
- * AwardExperience(GameObject instigator): This method is called to award
- * experience points to the specified instigator object. It retrieves the
- * Experience component of the instigator object and calls its
- * GainExperiencePoints() method with the value returned by the
- * GetExperiencePoints() method of the object's BaseStats component. If the
- * Experience component is not found, the method returns without doing
- * anything.
- *
- * SaveState(): This method is called to save the state of the object for
- * the game's save data. It returns the CurrentHealth field.
- *
- * LoadState(object obj): This method is called to load the state of the
- * object from the game's save data. It sets the CurrentHealth field to the
- * value of the obj argument, which is expected to be a float. If
- * CurrentHealth is less than or equal to zero, it calls the
- * TriggerDeathAnimation() method with the true argument.
- */
-
 using System;
 using RPG.Core;
 using RPG.Helper;
 using RPG.Save;
 using RPG.Stats;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace RPG.Attributes
 {
+    /// <summary>
+    /// This is a script for a Health component in a Unity game. The script is
+    /// attached to a game object and adds a number of properties and functions
+    /// related to managing the health of the object.
+    ///  
+    /// The Health class has the following fields and properties:
+    ///  
+    /// CurrentHealth: A float representing the current health of the object.
+    /// This field is serialized, which means it will be saved to and loaded from
+    /// the game's save data. It has a default value of 100.
+    /// 
+    /// IsDead: A bool representing whether the object is dead or not. It has a
+    /// default value of false.
+    /// 
+    /// ActionManager: A reference to an ActionManager component attached to the
+    /// same game object.
+    /// 
+    /// Animator: A reference to an Animator component attached to the same game
+    /// object.
+    /// 
+    /// The Health class has the following methods:
+    ///  
+    /// Awake(): This method is called when the script is first initialized.
+    /// It retrieves references to the ActionManager and Animator components
+    /// attached to the same game object, and sets the CurrentHealth field to the
+    /// value returned by the GetHealth() method of the object's BaseStats
+    /// component.
+    /// 
+    /// TakeDamage(GameObject instigator, float damage): This method is called
+    /// when the object takes damage. It subtracts the specified damage from the
+    /// CurrentHealth field, and sets IsDead to true if CurrentHealth is less than
+    /// or equal to zero. If CurrentHealth is not zero, it returns without doing
+    /// anything else. Otherwise, it calls the TriggerDeathAnimation() method with
+    /// the false argument and the AwardExperience() method with the instigator
+    /// argument.
+    /// 
+    /// TriggerDeathAnimation(bool isLoading): This method is called to trigger
+    /// the death animation of the object. If IsDead is true, it returns without
+    /// doing anything. If isLoading is true, it retrieves references to the
+    /// Animator and ActionManager components attached to the same game object.
+    /// It then sets IsDead to true and triggers the "death" animation of the
+    /// Animator component. It also cancels the current action of the ActionManager
+    /// component.
+    /// 
+    /// ToPercentage(): This method returns the CurrentHealth field as a percentage
+    /// of the object's maximum health, as returned by the GetHealth() method of
+    /// the object's BaseStats component.
+    /// 
+    /// AwardExperience(GameObject instigator): This method is called to award
+    /// experience points to the specified instigator object. It retrieves the
+    /// Experience component of the instigator object and calls its
+    /// GainExperiencePoints() method with the value returned by the
+    /// GetExperiencePoints() method of the object's BaseStats component. If the
+    /// Experience component is not found, the method returns without doing
+    /// anything.
+    /// 
+    /// SaveState(): This method is called to save the state of the object for
+    /// the game's save data. It returns the CurrentHealth field.
+    /// 
+    /// LoadState(object obj): This method is called to load the state of the
+    /// object from the game's save data. It sets the CurrentHealth field to the
+    /// value of the obj argument, which is expected to be a float. If
+    /// CurrentHealth is less than or equal to zero, it calls the
+    /// TriggerDeathAnimation() method with the true argument.
+    /// </summary>
     public class Health : MonoBehaviour, ISaveableEntity
     {
         [ReadOnly, SerializeField] private float CurrentHealth = -1f;
         [field : SerializeField] private UnityEvent<float> TakeDamageEvent { get; set; } = null;
+        [field : SerializeField] private UnityEvent<float> SetHealthBarEvent { get; set; } = null;
 
         public bool IsDead { get; private set; } = false;
 
@@ -101,6 +100,7 @@ namespace RPG.Attributes
         private void OnEnable()
         {
             GetComponent<BaseStats>().OnLevelUp += RegenHealth;
+            SetHealthBarEvent.Invoke(ToPercentage() / 100);
         }
 
         private void OnDisable()
@@ -118,6 +118,7 @@ namespace RPG.Attributes
             // Subtract the damage from the current health.
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
             TakeDamageEvent.Invoke(damage);
+            SetHealthBarEvent.Invoke(ToPercentage()/100);
 
             // If the object is not dead, return without doing anything else.
             if (CurrentHealth == 0)
