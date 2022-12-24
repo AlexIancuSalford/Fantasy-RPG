@@ -70,8 +70,10 @@
 
 using RPG.Attributes;
 using RPG.Combat;
+using RPG.Helper;
 using RPG.Movement;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using CursorType = RPG.Helper.CursorHelper.CursorType;
 using CursorMapping = RPG.Helper.CursorHelper.CursorMapping;
@@ -83,6 +85,8 @@ namespace RPG.Controller
         private Mover MoveToTarget { get; set; }
         private Fighter Fighter { get; set; }
         private Health Health { get; set; }
+        private float MaxNavMeshProjectionDistance { get; set; } = 1f;
+        private float MaxPathLenght { get; set; } = 30f;
 
         [field : SerializeField] private CursorMapping[] CursorMappings { get; set; } = null;
 
@@ -132,7 +136,7 @@ namespace RPG.Controller
         private bool CanMoveToCursor()
         {
             // Use a raycast to check if the player can move to the cursor
-            bool hasHit = Physics.Raycast(GetRayFromScreenPoint(), out RaycastHit hit);
+            bool hasHit = RaycastNavmesh(out Vector3 target);
 
             // If the raycast didn't hit anything, return false
             if (!hasHit) { return false; }
@@ -140,7 +144,7 @@ namespace RPG.Controller
             // If the left mouse button is pressed, call the StartMoveAction method of the Mover component with the hit point as an argument
             if (Input.GetMouseButton(0))
             {
-                MoveToTarget.StartMoveAction(hit.point);
+                MoveToTarget.StartMoveAction(target);
             }
 
             // Set the cursor to move, indicating the ability to move to location
@@ -264,6 +268,40 @@ namespace RPG.Controller
             System.Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
 
             return hits;
+        }
+
+        /// <summary>
+        /// Performs a raycast from the screen point and checks if it hits a NavMesh.
+        /// If it does, the position of the hit point on the NavMesh is returned.
+        /// </summary>
+        /// <param name="position">The hit point on the NavMesh, if the raycast is successful. Otherwise, a default Vector3 is returned.</param>
+        /// <returns>True if the raycast hits a NavMesh, false otherwise.</returns>
+        private bool RaycastNavmesh(out Vector3 position)
+        {
+            // Set the initial position to a default Vector3
+            position = new Vector3();
+            // Perform a Physics.Raycast from the screen point
+            bool hasHit = Physics.Raycast(GetRayFromScreenPoint(), out RaycastHit hit);
+
+            // If the raycast doesn't hit anything, return false
+            if (!hasHit) { return false; }
+
+            // Check if the hit point is on the NavMesh
+            bool hasCastPosition = NavMesh.SamplePosition(
+                hit.point, 
+                out NavMeshHit navMeshHit, 
+                MaxNavMeshProjectionDistance,
+                NavMesh.AllAreas);
+
+            // If the hit point is on the NavMesh, set the position and return true, otherwise return false
+            if (!hasCastPosition) { return false; }
+            position = navMeshHit.position;
+
+            // Done to avoid letting the player go to long paths
+            NavMeshPath navMeshPath = new NavMeshPath();
+            bool hasPath = NavMesh.CalculatePath(transform.position, position, NavMesh.AllAreas, navMeshPath);
+            
+            return hasPath && CMath.CalculatePathLength(navMeshPath) < MaxPathLenght;
         }
     }
 }
