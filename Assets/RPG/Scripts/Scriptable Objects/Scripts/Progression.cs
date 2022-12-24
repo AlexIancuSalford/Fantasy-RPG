@@ -1,48 +1,47 @@
-/*
- * This script defines a Unity scriptable object called
- * Progression. A scriptable object is a type of asset
- * that allows you to store data that can be edited in
- * the Unity editor.
- *  
- * The Progression scriptable object has a serialized
- * field called progressionClasses which is an array
- * of ProgressionClass objects. Each ProgressionClass
- * object has two serialized fields: a CharacterClass
- * field and an array of ProgressionStats objects.
- * Each ProgressionStats object has two serialized
- * fields: a Stats field and an array of floats called levels.
- *  
- *  The Progression scriptable object also has a Dictionary
- * field called dictionaryLookup which is used to store
- * the data from the progressionClasses field in a more
- * easily accessible form.
- *  
- *  The Progression scriptable object has a public method
- * called GetStat which takes in three arguments:
- * a Stats enum, a CharacterClass enum, and an
- * integer called level. This method returns the
- * value of the stat specified by the Stats enum
- * for the character class specified by the CharacterClass
- * enum at the level specified by the level argument.
- * If the level specified is greater than the number
- * of levels available for that stat, the method returns 0.
- *  
- *  The Progression scriptable object also has a private
- * method called Lookup which is used to populate the
- * dictionaryLookup field with the data from the
- * progressionClasses field. This method is called each
- * time the GetStat method is called, but only if the
- * dictionaryLookup field is null. This allows the
- * dictionaryLookup field to be initialized only once,
- * improving the performance of the GetStat method.
- */
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Stats
 {
+    /// <summary>
+    /// This script defines a Unity scriptable object called
+    /// Progression. A scriptable object is a type of asset
+    /// that allows you to store data that can be edited in
+    /// the Unity editor.
+    ///  
+    /// The Progression scriptable object has a serialized
+    /// field called progressionClasses which is an array
+    /// of ProgressionClass objects. Each ProgressionClass
+    /// object has two serialized fields: a CharacterClass
+    /// field and an array of ProgressionStats objects.
+    /// Each ProgressionStats object has two serialized
+    /// fields: a Stats field and an array of floats called levels.
+    ///  
+    /// The Progression scriptable object also has a Dictionary
+    /// field called dictionaryLookup which is used to store
+    /// the data from the progressionClasses field in a more
+    /// easily accessible form.
+    ///  
+    /// The Progression scriptable object has a public method
+    /// called GetStat which takes in three arguments:
+    /// a Stats enum, a CharacterClass enum, and an
+    /// integer called level. This method returns the
+    /// value of the stat specified by the Stats enum
+    /// for the character class specified by the CharacterClass
+    /// enum at the level specified by the level argument.
+    /// If the level specified is greater than the number
+    /// of levels available for that stat, the method returns 0.
+    ///  
+    /// The Progression scriptable object also has a private
+    /// method called Lookup which is used to populate the
+    /// dictionaryLookup field with the data from the
+    /// progressionClasses field. This method is called each
+    /// time the GetStat method is called, but only if the
+    /// dictionaryLookup field is null. This allows the
+    /// dictionaryLookup field to be initialized only once,
+    /// improving the performance of the GetStat method.
+    /// </summary>
     [CreateAssetMenu(fileName = "Progression", menuName = "Scriptable Object/Progression")]
     public class Progression : ScriptableObject
     {

@@ -1,42 +1,42 @@
-/* The projectile has several serialized fields that can be set in the Unity
- * Inspector: a speed, whether it is homing (meaning it will follow its target),
- * and a hit effect GameObject to instantiate upon impact.
- *  
- * The projectile also has a private field for a target, which is a Health
- * component representing the object that the projectile is intended to hit.
- * It also has a private field for damage, which is the amount of damage that
- * the projectile will do to the target when it hits. There is also a private
- * field for a destroy time, which is the amount of time that the projectile
- * will exist before being destroyed if it misses its target.
- *  
- * The Start and Update methods are called by Unity at the beginning and
- * during each frame of the game, respectively. The Start method sets the
- * projectile's rotation to face the location that it should aim for, and the
- * Update method handles the projectile's movement and destruction. If the
- * projectile has a target and is homing, it will rotate towards the target's
- * location. It will also continuously move forward at its speed. If the target's
- * Health component indicates that it is dead, the projectile will be destroyed
- * after a certain amount of time specified by the destroy time field.
- *  
- * The OnTriggerEnter method is called by Unity when the projectile's
- * collider (a component that determines if it is colliding with other objects)
- * enters the trigger area of another collider. If the other collider belongs
- * to an object with a Health component, the projectile will stop moving,
- * instantiate the hit effect if it has one, and cause the target to take
- * damage equal to the damage field. The projectile will then destroy itself
- * after a short delay.
- *
- * The Projectile game object also holds a reference to the game object that
- * shot the projectile, and will be used in order to determine experience point
- * awarded to the player character or other applicable effects
- */
-
-using System.Collections;
 using RPG.Attributes;
+using System.Collections;
 using UnityEngine;
 
 namespace RPG.Combat
 {
+    /// <summary>
+    /// The projectile has several serialized fields that can be set in the Unity
+    /// Inspector: a speed, whether it is homing (meaning it will follow its target),
+    /// and a hit effect GameObject to instantiate upon impact.
+    ///  
+    /// The projectile also has a private field for a target, which is a Health
+    /// component representing the object that the projectile is intended to hit.
+    /// It also has a private field for damage, which is the amount of damage that
+    /// the projectile will do to the target when it hits. There is also a private
+    /// field for a destroy time, which is the amount of time that the projectile
+    /// will exist before being destroyed if it misses its target.
+    ///  
+    /// The Start and Update methods are called by Unity at the beginning and
+    /// during each frame of the game, respectively. The Start method sets the
+    /// projectile's rotation to face the location that it should aim for, and the
+    /// Update method handles the projectile's movement and destruction. If the
+    /// projectile has a target and is homing, it will rotate towards the target's
+    /// location. It will also continuously move forward at its speed. If the target's
+    /// Health component indicates that it is dead, the projectile will be destroyed
+    /// after a certain amount of time specified by the destroy time field.
+    ///  
+    /// The OnTriggerEnter method is called by Unity when the projectile's
+    /// collider (a component that determines if it is colliding with other objects)
+    /// enters the trigger area of another collider. If the other collider belongs
+    /// to an object with a Health component, the projectile will stop moving,
+    /// instantiate the hit effect if it has one, and cause the target to take
+    /// damage equal to the damage field. The projectile will then destroy itself
+    /// after a short delay.
+    /// 
+    /// The Projectile game object also holds a reference to the game object that
+    /// shot the projectile, and will be used in order to determine experience point
+    /// awarded to the player character or other applicable effects
+    /// </summary>
     public class Projectile : MonoBehaviour
     {
         private Health _target = null;

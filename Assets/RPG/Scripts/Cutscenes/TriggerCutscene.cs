@@ -1,25 +1,5 @@
 /*
- * This script is a MonoBehaviour in Unity that triggers a cutscene when
- * the player enters a certain area in the game. It also implements the
- * ISaveableEntity interface to allow the script's state to be saved and
- * loaded.
- *  
- * The script has a static boolean field called _isPlaying that is used to
- * keep track of whether the cutscene is currently playing or not. It is set
- * to true initially.
- *  
- * The OnTriggerEnter() method is called when the player collides with a
- * trigger collider. If the cutscene is already playing or the player game
- * object does not have the "Player" tag, the method returns without doing
- * anything. Otherwise, it sets _isPlaying to false, and plays the cutscene
- * using the Play() method of the PlayableDirector component on the same game
- * object as this script.
- *  
- * The SaveState() method returns the current value of _isPlaying as an object.
- *  
- * The LoadState() method takes an object as an argument, and sets
- * _isPlaying to the value of the object cast to a bool. This allows the
- * script to restore its state when the game is loaded.
+ * 
  */
 
 using RPG.Save;
@@ -28,6 +8,29 @@ using UnityEngine.Playables;
 
 namespace RPG.Cutscene
 {
+    /// <summary>
+    /// This script is a MonoBehaviour in Unity that triggers a cutscene when
+    /// the player enters a certain area in the game. It also implements the
+    /// ISaveableEntity interface to allow the script's state to be saved and
+    /// loaded.
+    ///  
+    /// The script has a static boolean field called _isPlaying that is used to
+    /// keep track of whether the cutscene is currently playing or not. It is set
+    /// to true initially.
+    ///  
+    /// The OnTriggerEnter() method is called when the player collides with a
+    /// trigger collider. If the cutscene is already playing or the player game
+    /// object does not have the "Player" tag, the method returns without doing
+    /// anything. Otherwise, it sets _isPlaying to false, and plays the cutscene
+    /// using the Play() method of the PlayableDirector component on the same game
+    /// object as this script.
+    ///  
+    /// The SaveState() method returns the current value of _isPlaying as an object.
+    ///  
+    /// The LoadState() method takes an object as an argument, and sets
+    /// _isPlaying to the value of the object cast to a bool. This allows the
+    /// script to restore its state when the game is loaded.
+    /// </summary>
     public class TriggerCutscene : MonoBehaviour, ISaveableEntity
     {
         private static bool _isPlaying = true;

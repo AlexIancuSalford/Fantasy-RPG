@@ -1,26 +1,5 @@
 /*
- * The Fighter class extends MonoBehaviour and implements the IAction and ISaveableEntity interfaces.
- * This means it can be used as an action that can be performed by the ActionManager and can be saved and loaded by the save system.
  * 
- * The Target, MoverRef, ActionManager, and Animator properties are references to other components on the same game object. 
- * The Target property stores the current target of the fighter, MoverRef is a reference to the Mover component,
- * ActionManager is a reference to the ActionManager component, and Animator is a reference to the Animator component.
- *  
- *  The _timeSinceLastAttack field stores the time (in seconds) since the last attack was performed,
- *  and the _currentWeapon field stores the current weapon being used by the fighter.
- *  
- *  The RightHandTransform and LeftHandTransform properties are the transforms used to spawn
- *  projectiles when the current weapon has a projectile.
- *  The DefaultWeapon property is the weapon that will be equipped when the fighter is first initialized.
- *  
- *  The Awake() method is called when the script is first enabled.
- *  It checks if a weapon is currently equipped and, if not, equips the default weapon.
- *  
- *  The Start() method is called on the first frame that the script is enabled.
- *  It gets references to the Mover, ActionManager, and Animator components on the same game object.
- *  
- *  The Update() method is called once per frame. It increments the time since the last attack,
- *  checks if there is a target and if the target is dead, and either moves towards the target or handles attack behavior depending
  */
 
 using System.Collections.Generic;
@@ -33,6 +12,30 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
+    /// <summary>
+    /// The Fighter class extends MonoBehaviour and implements the IAction and ISaveableEntity interfaces.
+    /// This means it can be used as an action that can be performed by the ActionManager and can be saved and loaded by the save system.
+    /// 
+    /// The Target, MoverRef, ActionManager, and Animator properties are references to other components on the same game object. 
+    /// The Target property stores the current target of the fighter, MoverRef is a reference to the Mover component,
+    /// ActionManager is a reference to the ActionManager component, and Animator is a reference to the Animator component.
+    ///  
+    /// The _timeSinceLastAttack field stores the time (in seconds) since the last attack was performed,
+    /// and the _currentWeapon field stores the current weapon being used by the fighter.
+    ///  
+    /// The RightHandTransform and LeftHandTransform properties are the transforms used to spawn
+    /// projectiles when the current weapon has a projectile.
+    /// The DefaultWeapon property is the weapon that will be equipped when the fighter is first initialized.
+    ///  
+    /// The Awake() method is called when the script is first enabled.
+    /// It checks if a weapon is currently equipped and, if not, equips the default weapon.
+    ///  
+    /// The Start() method is called on the first frame that the script is enabled.
+    /// It gets references to the Mover, ActionManager, and Animator components on the same game object.
+    ///  
+    /// The Update() method is called once per frame. It increments the time since the last attack,
+    /// checks if there is a target and if the target is dead, and either moves towards the target or handles attack behavior depending
+    /// </summary>
     public class Fighter : MonoBehaviour, IAction, ISaveableEntity, IStatsProvider
     {
         // Private properties for references to other components on the same game object
@@ -317,6 +320,15 @@ namespace RPG.Combat
             EquipWeapon(weapon);
         }
 
+        /// <summary>
+        /// This method returns the what the damage value should be based on a Stats attribute passed in.
+        /// These values represent the multipliers that will be applied to the base value of a given attribute when calculating the final value.
+        /// For example, if the weapon contains an entry for "Damage" with a value of 1.5, it means that any damage done by this fighter
+        /// will be increased by the value returned here when calculating the final damage value.
+        ///
+        /// It is important to note that multiple additive multipliers can be applied if there are more in the list.
+        /// </summary>
+        /// <returns>A dictionary of attribute names and their corresponding float values</returns>
         public IEnumerable<float> GetModifiers(Stats.Stats stat)
         {
             if (stat == Stats.Stats.BaseDamage)
@@ -325,6 +337,16 @@ namespace RPG.Combat
             }
         }
 
+        /// <summary>
+        /// This method returns the value of an attribute based on a Stats attribute passed in.
+        /// These values represent the percentage increase or decrease that will be applied to the base value of a given attribute when calculating the final value.
+        /// For example, if the weapon contains an entry for "PercentageBonusDamage" with a value of 25, it means that any damage done by this fighter
+        /// will be increased by 25% (25) when calculating the final damage value.
+        ///
+        /// It is important to note that multiple percentage multipliers can be applied, and the percentage can also be negative,
+        /// essentially turning it into a debuff instead of a buff.
+        /// </summary>
+        /// <returns>A dictionary of attribute names and their corresponding float values</returns>
         public IEnumerable<float> GetModifiersPercentage(Stats.Stats stat)
         {
             if (stat == Stats.Stats.BaseDamage)

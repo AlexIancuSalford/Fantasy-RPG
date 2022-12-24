@@ -4,14 +4,7 @@ namespace RPG.Core
 {
     public class FollowCamera : MonoBehaviour
     {
-        [field: SerializeField]
-        public Transform Target { get; set; }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
+        [field: SerializeField] public Transform Target { get; set; }
 
         // Update is called once per frame
         void LateUpdate()
