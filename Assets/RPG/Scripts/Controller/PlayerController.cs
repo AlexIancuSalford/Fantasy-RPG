@@ -1,51 +1,71 @@
-/* 
- * The script has three private properties: MoveToTarget, Fighter, and Health.
- * MoveToTarget is a component for moving the player character to a target location,
- * Fighter is a component for handling combat, and Health is a component for
- * tracking the player's health.
+/*
+ * The PlayerController script is a script that controls the behavior of a player
+ * character in a game. It is attached to a game object in a Unity project and is
+ * responsible for handling player input and determining the appropriate action
+ * for the player to take based on that input.
  *  
- * In the Start method, these properties are assigned to the corresponding
- * components attached to the player character game object.
+ * The script is using several other scripts as dependencies, which are imported
+ * at the top:
  *  
- * In the Update method, a switch statement is used to determine what action
- * the player should take based on whether they are in combat, can move to the
- * cursor, or are dead. If the player is dead, the method returns without
- * doing anything. If the player is in combat, it allows the player to attack
- * the target if the left mouse button is pressed. If the player can move to
- * the cursor, it allows the player to move to the location indicated by the
- * cursor if the left mouse button is pressed.
- *  
- * The CanMoveToCursor method uses a raycast to determine if the player can
- * move to the location indicated by the cursor. If the left mouse button is
- * pressed and the player can move to the cursor, the StartMoveAction method
- * of the MoveToTarget component is called with the hit point as an argument.
- *  
- * The IsInCombat method uses a raycast to check if the player is targeting
- * an enemy. If an enemy is targeted and the left mouse button is pressed,
- * the Attack method of the Fighter component is called with the enemy game
- * object as an argument.
- *  
- * The GetRayFromScreenPoint method returns a ray going from the main camera
- * through the mouse cursor position on the screen. This ray is used to check
- * for objects that the player is targeting.
+ * RPG.Attributes: This script contains functionality related to character
+ * attributes, such as health, damage, and other statistics.
  *
- * The SetCursor method is used to change the mouse cursor in the game to a
- * custom cursor defined by the CursorType enum. The CursorType enum is
- * defined in the Helper namespace and contains a list of different cursor
- * types such as Attack, Walk, Talk, and None.
+ * RPG.Combat: This script contains functionality related to combat,
+ * such as attacking enemies and taking damage.
+ *
+ * RPG.Movement: This script contains functionality related to movement,
+ * such as moving the player character to a specified location.
+ *
+ *
+ * The PlayerController script has several private fields:
  *  
- * The GetCursorMapping method is used to retrieve the CursorMapping
- * object that corresponds to a specific CursorType. The CursorMapping
- * object contains information about the custom cursor such as its texture,
- * hotspot, and priority. This information is used to set the custom
- * cursor when the SetCursor method is called.
+ * MoveToTarget: This is a Mover component that is used to move the player character
+ * to a specified location.
+ *
+ * Fighter: This is a Fighter component that is used to handle combat-related
+ * actions, such as attacking enemies.
+ *
+ * Health: This is a Health component that is used to track the player
+ * character's health and determine if they are dead.
+ *
+ * CursorMappings: This is an array of CursorMapping objects that are
+ * used to map a CursorType enum value to a cursor texture.
+ *
+ * In the Awake method, the MoveToTarget, Fighter, and Health fields are
+ * assigned the corresponding components on the game object that the script is attached to.
  *  
- * In the Update method, the SetCursor method is called with a CursorType
- * argument based on the type of action that is possible when raycasting
- * over a target. For example, if the player is targeting an enemy and the
- * left mouse button is pressed, the Attack cursor is set. If the player
- * can move to the location indicated by the cursor, the Walk cursor is set.
- * If no action is possible, the None cursor is set.
+ * The Update method is called once per frame and is used to determine
+ * the appropriate action for the player to take based on their current
+ * state. It does this by using a switch statement with several case
+ * blocks, each of which checks for a different condition.
+ *  
+ * The first case block checks if the player has clicked on an UI element by
+ * calling the CanInteractWithUI method. If this is true, the SetCursor
+ * method is called with the CursorType.UI enum value to set the mouse
+ * cursor to the UI cursor.
+ *  
+ * The second case block checks if the player is dead by checking the
+ * IsDead property of the Health component. If this is true, the SetCursor
+ * method is called with the CursorType.None enum value to set the mouse
+ * cursor to the default cursor.
+ *  
+ * The third case block checks if the player can interact with an object
+ * by calling the CanInteractWithObject method. If this is true, no action is taken.
+ *  
+ * The fourth case block checks if the player can move to the location
+ * indicated by the mouse cursor by calling the CanMoveToCursor method. If
+ * this is true and the left mouse button is pressed, the StartMoveAction
+ * method of the Mover component is called with the hit point as an argument.
+ * The SetCursor method is then called with the CursorType.Move enum value
+ * to set the mouse cursor to the move cursor.
+ *  
+ * The default case block is reached if none of the previous conditions are
+ * met, in which case the SetCursor method is called with the CursorType.
+ * None enum value to set the mouse cursor to the default cursor.
+ *  
+ * The CanMoveToCursor method is used to determine if the player can move
+ * to the location indicated by the mouse cursor. It does this by using a
+ * raycast to check if the player can move to the cursor, and if the left mouse
  */
 
 using RPG.Attributes;
@@ -93,8 +113,7 @@ namespace RPG.Controller
                 case bool x when Health.IsDead:
                     SetCursor(CursorType.None);
                     return;
-                // If the player is in combat, allow the player to attack the target if the left mouse button is pressed
-                case bool x when IsInCombat():
+                case bool x when CanInteractWithObject():
                     break;
                 // If the player can move to the cursor, allow the player to move to the location indicated by the cursor if the left mouse button is pressed
                 case bool x when CanMoveToCursor():
@@ -128,41 +147,6 @@ namespace RPG.Controller
             SetCursor(CursorType.Move);
             // Return true since the player can move to the cursor
             return true;
-        }
-
-        /// <summary>
-        /// Determines if the player is in combat.
-        /// </summary>
-        /// <returns>True if the player is in combat, false otherwise.</returns>
-        private bool IsInCombat()
-        {
-            // Use a raycast to check if the player is targeting an enemy
-            RaycastHit[] raycastHits = Physics.RaycastAll(GetRayFromScreenPoint());
-
-            foreach (RaycastHit raycastHit in raycastHits)
-            {
-                // Get the Target component of the object that was hit by the raycast
-                Target target = raycastHit.transform.GetComponent<Target>();
-
-                // If the object doesn't have a Target component, continue to the next object
-                if (target == null) { continue; }
-
-                // If the player can't attack the target, continue to the next object
-                if (!Fighter.CanAttack(target.gameObject)) { continue; }
-
-                // If the player can't attack the target, continue to the next object
-                if (Input.GetMouseButton(0))
-                {
-                    Fighter.Attack(target.gameObject);
-                }
-
-                SetCursor(CursorType.Attack);
-                // return true since the player is in combat
-                return true;
-            }
-
-            // If no enemies were targeted or the player can't attack any of them, return false
-            return false;
         }
 
         /// <summary>
@@ -217,6 +201,47 @@ namespace RPG.Controller
         {
             // Returns true if the cursor is over an UI element
             return EventSystem.current.IsPointerOverGameObject();
+        }
+
+        /// <summary>
+        /// Determines if the player can interact with an object at the location indicated by the cursor.
+        /// </summary>
+        /// <returns>True if the player can interact with an object, false otherwise.</returns>
+        private bool CanInteractWithObject()
+        {
+            // Use a raycast to check if the player can interact with an object
+            RaycastHit[] raycastHits = Physics.RaycastAll(GetRayFromScreenPoint());
+
+            // If the raycast didn't hit anything, return false
+            foreach (RaycastHit raycastHit in raycastHits)
+            {
+                // Get all the game objects that implement the IRaycastable interface
+                IRaycastable[] raycastables = raycastHit.transform.GetComponents<IRaycastable>();
+
+                // Check if the raycasting hit anything
+                if (raycastables.Length <= 0) { continue; }
+                // Call the HandleRequest method on the first object hit implementing IRaycastable
+                if (raycastables[0].HandleRaycast(this))
+                {
+                    SetCursor(raycastables[0].GetCursorType());
+                    return true;
+                }
+
+                // I'll leave this here since in the future I may want to handle the raycasting on all 
+                // objects hit, but as of now, just handling the first object is fine.
+                //foreach (IRaycastable raycastable in raycastables)
+                //{
+                //    // Call the HandleRequest method on the object implementing IRaycastable
+                //    if (raycastable.HandleRaycast(this))
+                //    {
+                //        SetCursor(raycastable.GetCursorType());
+                //        return true;
+                //    }
+                //}
+            }
+
+            // If no enemies were targeted or the player can't attack any of them, return false
+            return false;
         }
     }
 }
