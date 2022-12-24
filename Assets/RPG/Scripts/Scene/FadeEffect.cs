@@ -6,6 +6,7 @@ namespace RPG.Scene
     public class FadeEffect : MonoBehaviour
     {
         private CanvasGroup _canvasGroup;
+        private Coroutine activeCoroutine = null;
 
         // Start is called before the first frame update
         void Awake()
@@ -13,30 +14,14 @@ namespace RPG.Scene
             _canvasGroup = GetComponent<CanvasGroup>();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public IEnumerator FadeOut(float time)
         {
-            while (!_canvasGroup.alpha.Equals(1))
-            {
-                _canvasGroup.alpha += Time.deltaTime / time;
-
-                yield return null;
-            }
+            return Fade(1, time);
         }
 
         public IEnumerator FadeIn(float time)
         {
-            while (!_canvasGroup.alpha.Equals(0))
-            {
-                _canvasGroup.alpha -= Time.deltaTime / time;
-
-                yield return null;
-            }
+            return Fade(0, time);
         }
 
         private IEnumerator FadeOutAndIn()
@@ -49,6 +34,27 @@ namespace RPG.Scene
         public void FadeOutImmediately()
         {
             _canvasGroup.alpha = 1;
+        }
+
+        private IEnumerator FadeRoutine(float target, float time)
+        {
+            while (!Mathf.Approximately(_canvasGroup.alpha, target))
+            {
+                _canvasGroup.alpha = Mathf.MoveTowards(_canvasGroup.alpha, target, Time.deltaTime / time);
+
+                yield return null;
+            }
+        }
+
+        private IEnumerator Fade(float target, float time)
+        {
+            if (activeCoroutine != null)
+            {
+                StopCoroutine(activeCoroutine);
+            }
+
+            activeCoroutine = StartCoroutine(FadeRoutine(target, time));
+            yield return activeCoroutine;
         }
     }
 }
