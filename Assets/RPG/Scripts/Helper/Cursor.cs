@@ -9,7 +9,8 @@ namespace RPG.Helper
             None,
             Move,
             Attack,
-            UI
+            UI,
+            Pickup,
         }
 
         [System.Serializable]
