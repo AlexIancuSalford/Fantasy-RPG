@@ -78,7 +78,7 @@ namespace RPG.Attributes
     public class Health : MonoBehaviour, ISaveableEntity
     {
         [ReadOnly, SerializeField] private float CurrentHealth = -1f;
-        [field : SerializeField] private UnityEvent TakeDamageEvent { get; set; } = null;
+        [field : SerializeField] private UnityEvent<float> TakeDamageEvent { get; set; } = null;
 
         public bool IsDead { get; private set; } = false;
 
@@ -117,7 +117,7 @@ namespace RPG.Attributes
         {
             // Subtract the damage from the current health.
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
-            TakeDamageEvent.Invoke();
+            TakeDamageEvent.Invoke(damage);
 
             // If the object is not dead, return without doing anything else.
             if (CurrentHealth == 0)

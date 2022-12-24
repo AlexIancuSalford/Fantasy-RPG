@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.HUD
@@ -11,6 +9,7 @@ namespace RPG.HUD
         public void SpawnText(float damage)
         {
             DamageText instance = Instantiate<DamageText>(DamageTextPrefab, transform);
+            instance.SetText($"{damage:0}");
         }
     }
 }
