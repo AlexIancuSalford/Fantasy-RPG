@@ -20,21 +20,26 @@
  * pressed and the player can move to the cursor, the StartMoveAction method
  * of the MoveToTarget component is called with the hit point as an argument.
  *  
- *  The IsInCombat method uses a raycast to check if the player is targeting
+ * The IsInCombat method uses a raycast to check if the player is targeting
  * an enemy. If an enemy is targeted and the left mouse button is pressed,
  * the Attack method of the Fighter component is called with the enemy game
  * object as an argument.
  *  
- *  The GetRayFromScreenPoint method returns a ray going from the main camera
+ * The GetRayFromScreenPoint method returns a ray going from the main camera
  * through the mouse cursor position on the screen. This ray is used to check
  * for objects that the player is targeting.
+ *
+ * The script also sets a custom cursor pointer based on the type of action
+ * possible when raycasting over a target. The type of cursor set is stored
+ * in an enum in the Helper namespace. Usage example: SetCursor(Cursor.Attack)
  */
 
 using RPG.Attributes;
 using RPG.Combat;
-using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
+using CursorType = RPG.Helper.CursorHelper.CursorType;
+using CursorMapping = RPG.Helper.CursorHelper.CursorMapping;
 
 namespace RPG.Controller
 {
@@ -43,6 +48,8 @@ namespace RPG.Controller
         private Mover MoveToTarget { get; set; }
         private Fighter Fighter { get; set; }
         private Health Health { get; set; }
+
+        [field : SerializeField] private CursorMapping[] CursorMappings { get; set; } = null;
 
         // Start is called before the first frame update
         void Start()
@@ -69,6 +76,7 @@ namespace RPG.Controller
                 case bool x when CanMoveToCursor():
                     break;
                 default:
+                    SetCursor(CursorType.None);
                     break;
             }
         }
@@ -91,6 +99,7 @@ namespace RPG.Controller
                 MoveToTarget.StartMoveAction(hit.point);
             }
 
+            SetCursor(CursorType.Move);
             // Return true since the player can move to the cursor
             return true;
         }
@@ -121,6 +130,7 @@ namespace RPG.Controller
                     Fighter.Attack(target.gameObject);
                 }
 
+                SetCursor(CursorType.Attack);
                 // return true since the player is in combat
                 return true;
             }
@@ -137,6 +147,11 @@ namespace RPG.Controller
         {
             // Return the ray from the main camera through the mouse cursor position on the screen
             return Camera.main.ScreenPointToRay(Input.mousePosition);
+        }
+
+        private void SetCursor(CursorType cursorType)
+        {
+            //Cursor.SetCursor();
         }
     }
 }
