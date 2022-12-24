@@ -69,13 +69,16 @@ using RPG.Core;
 using RPG.Helper;
 using RPG.Save;
 using RPG.Stats;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISaveableEntity
     {
         [ReadOnly, SerializeField] private float CurrentHealth = -1f;
+        [field : SerializeField] private UnityEvent<float> TakeDamageEvent { get; set; } = null;
 
         public bool IsDead { get; private set; } = false;
 
@@ -112,10 +115,9 @@ namespace RPG.Attributes
         /// <param name="damage">The amount of damage to be taken.</param>
         public void TakeDamage(GameObject instigator, float damage)
         {
-            Debug.Log(damage);
-
             // Subtract the damage from the current health.
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
+            TakeDamageEvent.Invoke(damage);
 
             // If the object is not dead, return without doing anything else.
             if (CurrentHealth == 0)
