@@ -52,6 +52,7 @@ using RPG.Attributes;
 using RPG.Combat;
 using RPG.Movement;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using CursorType = RPG.Helper.CursorHelper.CursorType;
 using CursorMapping = RPG.Helper.CursorHelper.CursorMapping;
 
@@ -84,8 +85,13 @@ namespace RPG.Controller
             // Determine what action the player should take based on whether they are in combat, can move to the cursor, or are dead
             switch (true)
             {
+                // If the player clicks on an UI element, set the cursor to none and return
+                case bool x when CanInteractWithUI():
+                    SetCursor(CursorType.UI);
+                    break;
                 // If the player is dead, return without doing anything
                 case bool x when Health.IsDead:
+                    SetCursor(CursorType.None);
                     return;
                 // If the player is in combat, allow the player to attack the target if the left mouse button is pressed
                 case bool x when IsInCombat():
@@ -201,6 +207,16 @@ namespace RPG.Controller
             // If no match is found, just return the first element
             // TODO: This should never be the case, but should add protection against it
             return CursorMappings[0];
+        }
+
+        /// <summary>
+        /// This method checks if the cursor is over an UI element using the Unity Engine EventSystem
+        /// </summary>
+        /// <returns>True if the cursor is over an UI element, false otherwise</returns>
+        private bool CanInteractWithUI()
+        {
+            // Returns true if the cursor is over an UI element
+            return EventSystem.current.IsPointerOverGameObject();
         }
     }
 }
