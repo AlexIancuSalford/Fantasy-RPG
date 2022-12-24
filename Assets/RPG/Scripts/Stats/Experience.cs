@@ -1,9 +1,21 @@
-using System;
 using RPG.Save;
+using System;
 using UnityEngine;
 
 namespace RPG.Stats
 {
+    /// <summary>
+    /// This script defines the Experience class. It has a single field, ExperiencePoints, which is a float that
+    /// represents the current amount of experience points the character has. The class also has an event called
+    /// OnGainExperiencePoints that is triggered when the character gains experience points.
+    /// 
+    /// The Experience class also implements the ISaveableEntity interface, which requires it to have
+    /// implementations of the SaveState and LoadState methods. These methods allow the Experience class to
+    /// be saved and loaded as part of the game's save data.
+    /// 
+    /// The Experience class has a single public method, GainExperiencePoints, which adds a specified amount of
+    /// experience points to the character's total experience points and triggers the OnGainExperiencePoints event.
+    /// </summary>
     public class Experience : MonoBehaviour, ISaveableEntity
     {
         [field : SerializeField] public float ExperiencePoints { get; private set; }

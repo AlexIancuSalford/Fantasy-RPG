@@ -1,38 +1,37 @@
-/*
- * The SaveableEntity script is a Unity component that allows a game object
- * to be saved and loaded in the game. It has two main methods: SaveState and
- * LoadState. These methods are used to serialize and deserialize the object's
- * data.
- *  
- * The SaveState method creates a dictionary and iterates over all the
- * components attached to the game object that implement the ISaveableEntity
- * interface. It then adds each component's state to the dictionary using the
- * component's type as the key and the result of the SaveState method as the
- * value. The dictionary is then returned as the object's state.
- *  
- * The LoadState method takes an object as a parameter, which is expected to
- * be a dictionary containing the object's state. It iterates over all the
- * components attached to the game object that implement the ISaveableEntity
- * interface and checks if the dictionary contains a state for that component.
- * If it does, it calls the LoadState method on the component, passing in the
- * state from the dictionary as an argument.
- *  
- * There is also a UUID (universally unique identifier) field that is
- * serialized and used to identify the object in the game. This field is
- * checked for uniqueness and if it is not unique, a new value is generated
- * and applied to the field. This is done in the Update method, which is only
- * called in the Unity editor.
- *  
- * The _saveableEntities dictionary is used to store all the SaveableEntity
- * components in the game. It is used to check the uniqueness of the UUID
- * field and to remove any null entries.
- */
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 namespace RPG.Save
 {
+    /// <summary>
+    /// The SaveableEntity script is a Unity component that allows a game object
+    /// to be saved and loaded in the game.It has two main methods: SaveState and
+    /// LoadState.These methods are used to serialize and deserialize the object's data.
+    ///
+    /// The SaveState method creates a dictionary and iterates over all the
+    /// components attached to the game object that implement the ISaveableEntity
+    /// interface. It then adds each component's state to the dictionary using the
+    /// component's type as the key and the result of the SaveState method as the
+    /// value.The dictionary is then returned as the object's state.
+    /// 
+    /// The LoadState method takes an object as a parameter, which is expected to
+    /// be a dictionary containing the object's state. It iterates over all the
+    /// components attached to the game object that implement the ISaveableEntity
+    /// interface and checks if the dictionary contains a state for that component.
+    /// If it does, it calls the LoadState method on the component, passing in the
+    /// state from the dictionary as an argument.
+    ///  
+    /// There is also a UUID (universally unique identifier) field that is
+    /// serialized and used to identify the object in the game.This field is
+    /// checked for uniqueness and if it is not unique, a new value is generated
+    /// and applied to the field.This is done in the Update method, which is only
+    /// called in the Unity editor.
+    /// 
+    /// The _saveableEntities dictionary is used to store all the SaveableEntity
+    /// components in the game. It is used to check the uniqueness of the UUID
+    /// field and to remove any null entries.
+    /// </summary>
     [ExecuteAlways]
     public class SaveableEntity : MonoBehaviour
     {

@@ -1,29 +1,5 @@
 /*
- * This script is a collection of static methods in a C# class in Unity that
- * provide utility functions for serializing and deserializing objects to and
- * from files.
- *  
- * The WriteToFile() method takes a string fileName and an object obj as
- * arguments, and serializes the object to a binary file with the specified
- * file name. It first gets the full path to the file using the GetPathFromFile()
- * method, and then creates a FileStream to the file using the File.Open()
- * method in FileMode.Create mode. It then creates a BinaryFormatter, and
- * uses the Serialize() method to serialize the object to the file stream.
- *  
- * The ReadFromFile() method takes a string fileName as an argument, and
- * deserializes an object from a binary file with the specified file name.
- * It first gets the full path to the file using the GetPathFromFile() method,
- * and then checks if the file exists. If the file does not exist, it returns
- * an empty dictionary. If the file does exist, it creates a FileStream to the
- * file using the File.Open() method in FileMode.Open mode, creates a
- * BinaryFormatter, and uses the Deserialize() method to deserialize the
- * object from the file stream. It then casts the deserialized object to a
- * dictionary of strings and objects, and returns it.
- *  
- * The GetPathFromFile() method takes a string fileName as an argument, and
- * returns the full path to a file with the specified file name in the
- * Application.persistentDataPath folder. It combines the path to the folder
- * and the file name using the Path.Combine() method.
+ * 
  */
 
 using System.Collections.Generic;
@@ -33,6 +9,33 @@ using UnityEngine;
 
 namespace RPG.Helper
 {
+    /// <summary>
+    /// This script is a collection of static methods in a C# class in Unity that
+    /// provide utility functions for serializing and deserializing objects to and
+    /// from files.
+    ///
+    /// The WriteToFile() method takes a string fileName and an object obj as
+    /// arguments, and serializes the object to a binary file with the specified
+    /// file name.It first gets the full path to the file using the GetPathFromFile()
+    /// method, and then creates a FileStream to the file using the File.Open()
+    /// method in FileMode.Create mode.It then creates a BinaryFormatter, and
+    /// uses the Serialize() method to serialize the object to the file stream.
+    ///
+    /// The ReadFromFile() method takes a string fileName as an argument, and
+    /// deserializes an object from a binary file with the specified file name.
+    /// It first gets the full path to the file using the GetPathFromFile() method,
+    /// and then checks if the file exists.If the file does not exist, it returns
+    /// an empty dictionary.If the file does exist, it creates a FileStream to the
+    /// file using the File.Open() method in FileMode.Open mode, creates a
+    /// BinaryFormatter, and uses the Deserialize() method to deserialize the
+    /// object from the file stream.It then casts the deserialized object to a
+    /// dictionary of strings and objects, and returns it.
+    /// 
+    /// The GetPathFromFile() method takes a string fileName as an argument, and
+    /// returns the full path to a file with the specified file name in the
+    /// Application.persistentDataPath folder. It combines the path to the folder
+    /// and the file name using the Path.Combine() method.
+    /// </summary>
     public static class CSerializer
     {
         /// <summary>

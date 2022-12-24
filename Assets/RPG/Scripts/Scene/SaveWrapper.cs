@@ -1,32 +1,31 @@
-/*
- * This script is for a SaveWrapper object in a Unity game that is
- * used to handle saving and loading game data. The script has several
- * functions that can be called to save or load the game data.
- *  
- * The "Awake" function is called when the object is initialized, and it
- * finds an object in the scene with the "FadeEffect" script and stores it
- * in the "FadeEffect" field.
- *  
- * The "Start" function is a coroutine that is called when the object is
- * initialized. It immediately fades the screen out, loads the last saved
- * scene using the "SaveManager" component attached to the object, fades the
- * screen back in, and then loads the saved game data.
- *  
- * The "Update" function is called every frame, and it checks for input from
- * the player to either save or load the game data.
- *  
- * The "Save" function saves the game data using the "SaveManager" component
- * attached to the object and the default save file name. The "Load" function
- * loads the game data using the "SaveManager" component and the default save
- * file name.
- */
-
 using System.Collections;
 using RPG.Save;
 using UnityEngine;
 
 namespace RPG.Scene
 {
+    /// <summary>
+    /// This script is for a SaveWrapper object in a Unity game that is
+    /// used to handle saving and loading game data. The script has several
+    /// functions that can be called to save or load the game data.
+    ///  
+    /// The "Awake" function is called when the object is initialized, and it
+    /// finds an object in the scene with the "FadeEffect" script and stores it
+    /// in the "FadeEffect" field.
+    ///  
+    /// The "Start" function is a coroutine that is called when the object is
+    /// initialized. It immediately fades the screen out, loads the last saved
+    /// scene using the "SaveManager" component attached to the object, fades the
+    /// screen back in, and then loads the saved game data.
+    ///  
+    /// The "Update" function is called every frame, and it checks for input from
+    /// the player to either save or load the game data.
+    ///  
+    /// The "Save" function saves the game data using the "SaveManager" component
+    /// attached to the object and the default save file name. The "Load" function
+    /// loads the game data using the "SaveManager" component and the default save
+    /// file name.
+    /// </summary>
     public class SaveWrapper : MonoBehaviour
     {
         public const string _defaultSaveFile = "save";

@@ -1,71 +1,5 @@
 /*
- * The PlayerController script is a script that controls the behavior of a player
- * character in a game. It is attached to a game object in a Unity project and is
- * responsible for handling player input and determining the appropriate action
- * for the player to take based on that input.
- *  
- * The script is using several other scripts as dependencies, which are imported
- * at the top:
- *  
- * RPG.Attributes: This script contains functionality related to character
- * attributes, such as health, damage, and other statistics.
  *
- * RPG.Combat: This script contains functionality related to combat,
- * such as attacking enemies and taking damage.
- *
- * RPG.Movement: This script contains functionality related to movement,
- * such as moving the player character to a specified location.
- *
- *
- * The PlayerController script has several private fields:
- *  
- * MoveToTarget: This is a Mover component that is used to move the player character
- * to a specified location.
- *
- * Fighter: This is a Fighter component that is used to handle combat-related
- * actions, such as attacking enemies.
- *
- * Health: This is a Health component that is used to track the player
- * character's health and determine if they are dead.
- *
- * CursorMappings: This is an array of CursorMapping objects that are
- * used to map a CursorType enum value to a cursor texture.
- *
- * In the Awake method, the MoveToTarget, Fighter, and Health fields are
- * assigned the corresponding components on the game object that the script is attached to.
- *  
- * The Update method is called once per frame and is used to determine
- * the appropriate action for the player to take based on their current
- * state. It does this by using a switch statement with several case
- * blocks, each of which checks for a different condition.
- *  
- * The first case block checks if the player has clicked on an UI element by
- * calling the CanInteractWithUI method. If this is true, the SetCursor
- * method is called with the CursorType.UI enum value to set the mouse
- * cursor to the UI cursor.
- *  
- * The second case block checks if the player is dead by checking the
- * IsDead property of the Health component. If this is true, the SetCursor
- * method is called with the CursorType.None enum value to set the mouse
- * cursor to the default cursor.
- *  
- * The third case block checks if the player can interact with an object
- * by calling the CanInteractWithObject method. If this is true, no action is taken.
- *  
- * The fourth case block checks if the player can move to the location
- * indicated by the mouse cursor by calling the CanMoveToCursor method. If
- * this is true and the left mouse button is pressed, the StartMoveAction
- * method of the Mover component is called with the hit point as an argument.
- * The SetCursor method is then called with the CursorType.Move enum value
- * to set the mouse cursor to the move cursor.
- *  
- * The default case block is reached if none of the previous conditions are
- * met, in which case the SetCursor method is called with the CursorType.
- * None enum value to set the mouse cursor to the default cursor.
- *  
- * The CanMoveToCursor method is used to determine if the player can move
- * to the location indicated by the mouse cursor. It does this by using a
- * raycast to check if the player can move to the cursor, and if the left mouse
  */
 
 using RPG.Attributes;
@@ -80,6 +14,75 @@ using CursorMapping = RPG.Helper.CursorHelper.CursorMapping;
 
 namespace RPG.Controller
 {
+    /// <summary>
+    /// The PlayerController script is a script that controls the behavior of a player
+    /// character in a game. It is attached to a game object in a Unity project and is
+    /// responsible for handling player input and determining the appropriate action
+    /// for the player to take based on that input.
+    ///  
+    /// The script is using several other scripts as dependencies, which are imported
+    /// at the top:
+    ///  
+    /// RPG.Attributes: This script contains functionality related to character
+    /// attributes, such as health, damage, and other statistics.
+    /// 
+    /// RPG.Combat: This script contains functionality related to combat,
+    /// such as attacking enemies and taking damage.
+    /// 
+    /// RPG.Movement: This script contains functionality related to movement,
+    /// such as moving the player character to a specified location.
+    /// 
+    /// 
+    /// The PlayerController script has several private fields:
+    ///  
+    /// MoveToTarget: This is a Mover component that is used to move the player character
+    /// to a specified location.
+    /// 
+    /// Fighter: This is a Fighter component that is used to handle combat-related
+    /// actions, such as attacking enemies.
+    /// 
+    /// Health: This is a Health component that is used to track the player
+    /// character's health and determine if they are dead.
+    /// 
+    /// CursorMappings: This is an array of CursorMapping objects that are
+    /// used to map a CursorType enum value to a cursor texture.
+    /// 
+    /// In the Awake method, the MoveToTarget, Fighter, and Health fields are
+    /// assigned the corresponding components on the game object that the script is attached to.
+    ///  
+    /// The Update method is called once per frame and is used to determine
+    /// the appropriate action for the player to take based on their current
+    /// state. It does this by using a switch statement with several case
+    /// blocks, each of which checks for a different condition.
+    ///  
+    /// The first case block checks if the player has clicked on an UI element by
+    /// calling the CanInteractWithUI method. If this is true, the SetCursor
+    /// method is called with the CursorType.UI enum value to set the mouse
+    /// cursor to the UI cursor.
+    ///  
+    /// The second case block checks if the player is dead by checking the
+    /// IsDead property of the Health component. If this is true, the SetCursor
+    /// method is called with the CursorType.None enum value to set the mouse
+    /// cursor to the default cursor.
+    ///  
+    /// The third case block checks if the player can interact with an object
+    /// by calling the CanInteractWithObject method. If this is true, no action is taken.
+    ///  
+    /// The fourth case block checks if the player can move to the location
+    /// indicated by the mouse cursor by calling the CanMoveToCursor method. If
+    /// this is true and the left mouse button is pressed, the StartMoveAction
+    /// method of the Mover component is called with the hit point as an argument.
+    /// The SetCursor method is then called with the CursorType.Move enum value
+    /// to set the mouse cursor to the move cursor.
+    ///  
+    /// The default case block is reached if none of the previous conditions are
+    /// met, in which case the SetCursor method is called with the CursorType.
+    /// None enum value to set the mouse cursor to the default cursor.
+    ///  
+    /// The CanMoveToCursor method is used to determine if the player can move
+    /// to the location indicated by the mouse cursor. It does this by using a
+    /// raycast to check if the player can move to the cursor, and if the left mouse
+    /// </summary>
     public class PlayerController : MonoBehaviour
     {
         private Mover MoveToTarget { get; set; }
