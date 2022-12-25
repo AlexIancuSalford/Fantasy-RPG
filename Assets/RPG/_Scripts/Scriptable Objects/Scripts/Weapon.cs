@@ -66,20 +66,23 @@ namespace RPG.Combat
 
         /// <summary>
         /// Spawns the weapon game object and overrides the character's animator controller with the weapon's AnimatorOverrideController.
+        /// This method also returns the WeaponComponent that was just instantiated, so it can be used individually.
         /// </summary>
         /// <param name="rightHand">The character's right hand transform.</param>
         /// <param name="leftHand">The character's left hand transform.</param>
         /// <param name="animator">The character's animator component.</param>
-        public void SpawnWeapon(Transform rightHand, Transform leftHand, Animator animator)
+        /// <returns>The WeaponComponent that was instantiated</returns>
+        public WeaponComponent SpawnWeapon(Transform rightHand, Transform leftHand, Animator animator)
         {
             // Destroy the old weapon, if any
             DestroyOldWeapon(leftHand, rightHand);
 
+            WeaponComponent weaponComponent = null;
             // Spawn the weapon game object
             if (WeaponPrefab != null)
             {
-                WeaponComponent weapon = Instantiate(WeaponPrefab, IsRightHanded ? rightHand : leftHand);
-                weapon.gameObject.name = WEAPON_NAME;
+                weaponComponent = Instantiate(WeaponPrefab, IsRightHanded ? rightHand : leftHand);
+                weaponComponent.gameObject.name = WEAPON_NAME;
             }
 
             // Override the character's animator controller with the weapon's AnimatorOverrideController, if any
@@ -93,6 +96,9 @@ namespace RPG.Combat
             {
                 animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
             }
+
+            // If the 
+            return weaponComponent;
         }
 
         /// <summary>
