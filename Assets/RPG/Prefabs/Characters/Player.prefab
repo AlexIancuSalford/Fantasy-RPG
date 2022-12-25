@@ -179,11 +179,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3402649562617672339, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6167991658997159043, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
       propertyPath: UUID
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 6306644867143941904, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9065038433367679005, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <AudioClips>k__BackingField.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9065038433367679005, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <AudioClips>k__BackingField.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e60ad64e34fc624ea76483921551c25, type: 3}
+    - target: {fileID: 9065038433367679005, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <AudioClips>k__BackingField.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: cc33d42442263404f9c18723ddf25ef7, type: 3}
+    - target: {fileID: 9065038433367679005, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <AudioClips>k__BackingField.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 677a588867b19234ba2e66c09d82ba28, type: 3}
+    - target: {fileID: 9065038433367679005, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <AudioClips>k__BackingField.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1bf9ee80f2374534b80d6c5880558f5e, type: 3}
+    - target: {fileID: 9065038433367679005, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <AudioClips>k__BackingField.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a490d2ac2e526246ab488aed902f6f1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15d51d214a357ea46b18ea73fb875494, type: 3}
 --- !u!4 &5474944015236126006 stripped
