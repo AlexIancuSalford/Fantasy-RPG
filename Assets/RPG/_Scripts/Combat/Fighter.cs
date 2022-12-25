@@ -1,10 +1,7 @@
-/*
- * 
- */
-
 using System.Collections.Generic;
 using RPG.Attributes;
 using RPG.Core;
+using RPG.Helper;
 using RPG.Movement;
 using RPG.Save;
 using RPG.Stats;
@@ -13,28 +10,20 @@ using UnityEngine;
 namespace RPG.Combat
 {
     /// <summary>
-    /// The Fighter class extends MonoBehaviour and implements the IAction and ISaveableEntity interfaces.
-    /// This means it can be used as an action that can be performed by the ActionManager and can be saved and loaded by the save system.
+    /// This script is a component that allows the character to engage in combat with other characters.
+    /// The character has a set of attributes, including health, movement, and stats, and can perform actions through the ActionManager
+    /// component. The character also has an animator that is used to play animation clips. The character is equipped with a weapon,
+    /// which can be a default weapon or a weapon that is set later.
     /// 
-    /// The Target, MoverRef, ActionManager, and Animator properties are references to other components on the same game object. 
-    /// The Target property stores the current target of the fighter, MoverRef is a reference to the Mover component,
-    /// ActionManager is a reference to the ActionManager component, and Animator is a reference to the Animator component.
-    ///  
-    /// The _timeSinceLastAttack field stores the time (in seconds) since the last attack was performed,
-    /// and the _currentWeapon field stores the current weapon being used by the fighter.
-    ///  
-    /// The RightHandTransform and LeftHandTransform properties are the transforms used to spawn
-    /// projectiles when the current weapon has a projectile.
-    /// The DefaultWeapon property is the weapon that will be equipped when the fighter is first initialized.
-    ///  
-    /// The Awake() method is called when the script is first enabled.
-    /// It checks if a weapon is currently equipped and, if not, equips the default weapon.
-    ///  
-    /// The Start() method is called on the first frame that the script is enabled.
-    /// It gets references to the Mover, ActionManager, and Animator components on the same game object.
-    ///  
-    /// The Update() method is called once per frame. It increments the time since the last attack,
-    /// checks if there is a target and if the target is dead, and either moves towards the target or handles attack behavior depending
+    /// The character has a target, which is another character with a health component. The character will move towards the target if
+    /// it is within range and attack the target if it is not within range. The character can attack the target using either a projectile
+    /// launched from the weapon or by directly dealing damage to the target with the weapon.
+    /// 
+    /// The character also implements interfaces for saving and loading, and providing stats. The character's stats include a base damage
+    /// stat, which is used to calculate the amount of damage dealt to the target during an attack.
+    /// 
+    /// The script includes methods for setting up the weapon component, handling attack behavior, checking if the target is in range,
+    /// and performing an attack. It also includes an animation event method for hitting the target with an attack.
     /// </summary>
     public class Fighter : MonoBehaviour, IAction, ISaveableEntity, IStatsProvider
     {
@@ -46,7 +35,8 @@ namespace RPG.Combat
 
         // Private fields for tracking the time since the last attack and the current weapon being used
         private float _timeSinceLastAttack = Mathf.Infinity;
-        private Weapon _currentWeapon = null;
+        [ReadOnly] public Weapon CurrentWeapon = null;
+        private CDeferredValue<WeaponComponent> CurrentWeaponComponent { get; set; } = null;
 
         // Public properties for transforms used to spawn projectiles and the default weapon to be equipped
         [field : SerializeField] private Transform RightHandTransform { get; set; }
@@ -56,16 +46,18 @@ namespace RPG.Combat
         // Called when the script is first enabled
         private void Awake()
         {
-            // If no weapon is currently equipped, equip the default weapon
-            if (_currentWeapon == null)
-            {
-                EquipWeapon(DefaultWeapon);
-            }
+            CurrentWeapon = DefaultWeapon;
+            CurrentWeaponComponent = new CDeferredValue<WeaponComponent>(SetupWeaponComponent);
 
             // Get references to other components on the same game object
             MoverRef = GetComponent<Mover>();
             ActionManager = GetComponent<ActionManager>();
             Animator = GetComponent<Animator>();
+        }
+
+        private void Start()
+        {
+            CurrentWeaponComponent.EnsureInitialized();
         }
 
         // Update is called once per frame
@@ -105,12 +97,14 @@ namespace RPG.Combat
             // If there is no target, do nothing
             if (Target == null) { return; }
 
+            CurrentWeaponComponent.Value.OnHit();
+
             float damage = GetComponent<BaseStats>().GetStat(Stats.Stats.BaseDamage);
 
             // If the current weapon has a projectile, launch it towards the target
-            if (_currentWeapon.HasProjectile())
+            if (CurrentWeapon.HasProjectile())
             {
-                _currentWeapon.LaunchProjectile(RightHandTransform, LeftHandTransform, Target, gameObject, damage);
+                CurrentWeapon.LaunchProjectile(RightHandTransform, LeftHandTransform, Target, gameObject, damage);
             }
             // Otherwise, deal damage directly to the target
             else
@@ -178,7 +172,7 @@ namespace RPG.Combat
             transform.LookAt(Target.transform);
 
             // If the time since the last attack is greater than the attack cooldown of the current weapon, start the attack animation
-            if (_timeSinceLastAttack > _currentWeapon.AttackCooldown)
+            if (_timeSinceLastAttack > CurrentWeapon.AttackCooldown)
             {
                 StartAttackAnimation();
                 _timeSinceLastAttack = 0f;
@@ -221,7 +215,7 @@ namespace RPG.Combat
         private bool IsTargetInRange()
         {
             // Return whether the distance to the target is within the range of the current weapon
-            return Vector3.Distance(Target.transform.position, gameObject.transform.position) >= _currentWeapon.Range;
+            return Vector3.Distance(Target.transform.position, gameObject.transform.position) >= CurrentWeapon.Range;
         }
 
         /// <summary>
@@ -257,20 +251,39 @@ namespace RPG.Combat
         }
 
         /// <summary>
-        /// Equips the given weapon.
+        /// The EquipWeapon method is responsible for equipping a character with a weapon. It does this by calling the AttachWeapon
+        /// method to set the character's CurrentWeapon field to the weapon being equipped and set up the weapon component for the weapon.
+        /// 
+        /// The EquipWeapon method also updates the animator's weapon type parameter to match the type of the equipped weapon,
+        /// and sets the time since the last attack to 0 to reset the attack cooldown.
         ///
-        /// This method is used to equip the given weapon. It sets the
-        /// _currentWeapon field to the given weapon and calls the
-        /// SpawnWeapon() method of the Weapon class to spawn the weapon
-        /// on the character using the RightHandTransform and
-        /// LeftHandTransform properties and the Animator component.
+        /// The EquipWeapon method is similar to the AttachWeapon method, but it includes an additional line of code to update the animator's weapon
+        /// type parameter. This is to allow the AttachWeapon method to be called by other scripts, while the EquipWeapon method is
+        /// specifically intended to be called when the character is equipping a new weapon.
         /// </summary>
         /// <param name="weapon"></param>
         public void EquipWeapon(Weapon weapon)
         {
-            // Set the current weapon to the given weapon and spawn it on the character
-            _currentWeapon = weapon;
-            _currentWeapon.SpawnWeapon(RightHandTransform, LeftHandTransform, GetComponent<Animator>());
+            CurrentWeapon = weapon;
+            CurrentWeaponComponent.Value = AttachWeapon(weapon);
+        }
+
+        /// <summary>
+        /// The AttachWeapon method is responsible for equipping a character with a weapon. It does this by setting the character's
+        /// CurrentWeapon field to the weapon being equipped and setting up the weapon component for the weapon.
+        /// 
+        /// The weapon component is a script attached to the weapon game object that provides functionality specific to that weapon.
+        /// The weapon component is set up by creating an instance of the weapon component and setting the character's CurrentWeaponComponent
+        /// field to a CDeferredValue object that wraps the weapon component instance.
+        /// 
+        /// The AttachWeapon method also updates the animator's weapon type parameter to match the type of the equipped weapon,
+        /// and sets the time since the last attack to 0 to reset the attack cooldown.
+        /// </summary>
+        /// <param name="weapon"></param>
+        /// <returns>The weapon component that was instantiated</returns>
+        private WeaponComponent AttachWeapon(Weapon weapon)
+        {
+            return weapon.SpawnWeapon(RightHandTransform, LeftHandTransform, GetComponent<Animator>()); ;
         }
 
         /// <summary>
@@ -292,7 +305,7 @@ namespace RPG.Combat
         public object SaveState()
         {
             // Return the name of the current weapon as the object to be saved
-            return _currentWeapon.name;
+            return CurrentWeapon.name;
         }
 
         /// <summary>
@@ -333,7 +346,7 @@ namespace RPG.Combat
         {
             if (stat == Stats.Stats.BaseDamage)
             {
-                yield return _currentWeapon.Damage;
+                yield return CurrentWeapon.Damage;
             }
         }
 
@@ -351,8 +364,18 @@ namespace RPG.Combat
         {
             if (stat == Stats.Stats.BaseDamage)
             {
-                yield return _currentWeapon.PercentageBonusDamage;
+                yield return CurrentWeapon.PercentageBonusDamage;
             }
+        }
+
+        /// <summary>
+        /// This method is used to deffer the initialization of the WeaponComponent with the help of the helper class CDeferredValue until it is used
+        /// to avoid race conditions or null pointer references (caused by race conditions or the order of script execution)
+        /// </summary>
+        /// <returns>The WeaponComponent that was spawned into the world</returns>
+        private WeaponComponent SetupWeaponComponent()
+        {
+            return AttachWeapon(DefaultWeapon);
         }
     }
 }

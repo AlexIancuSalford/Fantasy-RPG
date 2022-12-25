@@ -1,7 +1,3 @@
-/*
- * 
- */
-
 using RPG.Attributes;
 using UnityEngine;
 
@@ -10,7 +6,8 @@ namespace RPG.Combat
     /// <summary>
     /// This script appears to be for a Weapon scriptable object in a Unity game.
     /// A scriptable object is a data asset that can contain data but does not
-    /// have any logic or behavior.
+    /// have any logic or behavior. This one has some logic, though, mostly about
+    /// weapon behaviour.
     ///  
     /// The script has several public fields that can be set in the Unity editor:
     ///  
@@ -57,7 +54,7 @@ namespace RPG.Combat
     public class Weapon : ScriptableObject
     {
         [field : SerializeField] private AnimatorOverrideController OverrideController { get; set; } = null;
-        [field : SerializeField] private GameObject WeaponPrefab { get; set; } = null;
+        [field : SerializeField] private WeaponComponent WeaponPrefab { get; set; } = null;
         [field : SerializeField] public float AttackCooldown { get; set; } = 1f;
         [field : SerializeField] public float Range { get; private set; } = 2f;
         [field : SerializeField] public float Damage { get; private set; } = 5f;
@@ -69,20 +66,23 @@ namespace RPG.Combat
 
         /// <summary>
         /// Spawns the weapon game object and overrides the character's animator controller with the weapon's AnimatorOverrideController.
+        /// This method also returns the WeaponComponent that was just instantiated, so it can be used individually.
         /// </summary>
         /// <param name="rightHand">The character's right hand transform.</param>
         /// <param name="leftHand">The character's left hand transform.</param>
         /// <param name="animator">The character's animator component.</param>
-        public void SpawnWeapon(Transform rightHand, Transform leftHand, Animator animator)
+        /// <returns>The WeaponComponent that was instantiated</returns>
+        public WeaponComponent SpawnWeapon(Transform rightHand, Transform leftHand, Animator animator)
         {
             // Destroy the old weapon, if any
             DestroyOldWeapon(leftHand, rightHand);
 
+            WeaponComponent weaponComponent = null;
             // Spawn the weapon game object
             if (WeaponPrefab != null)
             {
-                GameObject weapon = Instantiate(WeaponPrefab, IsRightHanded ? rightHand : leftHand);
-                weapon.name = WEAPON_NAME;
+                weaponComponent = Instantiate(WeaponPrefab, IsRightHanded ? rightHand : leftHand);
+                weaponComponent.gameObject.name = WEAPON_NAME;
             }
 
             // Override the character's animator controller with the weapon's AnimatorOverrideController, if any
@@ -96,6 +96,9 @@ namespace RPG.Combat
             {
                 animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
             }
+
+            // If the 
+            return weaponComponent;
         }
 
         /// <summary>
@@ -143,7 +146,7 @@ namespace RPG.Combat
             if (oldWeapon == null) { return; }
 
             // Rename the old weapon game object to avoid conflicts when destroying it
-            oldWeapon.name = "DESTROYING";
+            oldWeapon.gameObject.name = "DESTROYING";
             // Destroy the old weapon game object
             Destroy(oldWeapon.gameObject);
         }

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OverrideController>k__BackingField: {fileID: 22100000, guid: d4db353078d154d46a3dfc27a2923cb9,
     type: 2}
-  <WeaponPrefab>k__BackingField: {fileID: 3069089152841685086, guid: 28104da2a04a6bf4e8ec25ef73d6a539,
+  <WeaponPrefab>k__BackingField: {fileID: 2453337508030907982, guid: 28104da2a04a6bf4e8ec25ef73d6a539,
     type: 3}
   <AttackCooldown>k__BackingField: 1
   <Range>k__BackingField: 2
   <Damage>k__BackingField: 5
+  <PercentageBonusDamage>k__BackingField: 0
   <IsRightHanded>k__BackingField: 1
   <Projectile>k__BackingField: {fileID: 0}
