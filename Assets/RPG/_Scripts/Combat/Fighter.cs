@@ -71,7 +71,7 @@ namespace RPG.Combat
             if (Target.IsDead) { return; }
 
             // If the target is within range, move towards it
-            if (IsTargetInRange())
+            if (IsTargetInRange(Target.transform))
             {
                 MoverRef.MoveTo(Target.transform.position);
             }
@@ -211,11 +211,12 @@ namespace RPG.Combat
         /// to the range of the current weapon. If the distance is within
         /// the range, it returns true, otherwise it returns false.
         /// </summary>
+        /// <param name="target">The target to check distance from</param>
         /// <returns>True if the target is within range, false otherwise</returns>
-        private bool IsTargetInRange()
+        private bool IsTargetInRange(Transform target)
         {
             // Return whether the distance to the target is within the range of the current weapon
-            return Vector3.Distance(Target.transform.position, gameObject.transform.position) >= CurrentWeapon.Range;
+            return Vector3.Distance(target.position, gameObject.transform.position) >= CurrentWeapon.Range;
         }
 
         /// <summary>

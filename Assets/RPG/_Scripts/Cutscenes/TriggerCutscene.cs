@@ -1,7 +1,3 @@
-/*
- * 
- */
-
 using RPG.Save;
 using UnityEngine;
 using UnityEngine.Playables;

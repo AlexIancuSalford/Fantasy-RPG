@@ -20,7 +20,8 @@ namespace RPG.Controller
     /// their chase range.The PatrolRoute field is a reference to a
     /// PatrolController object that specifies the patrol route that the NPC will
     /// follow when not attacking or suspicious of the player.The WaypointStopTime
-    /// field is a float value that determines the amount of time that the NPC will stay at each waypoint in their patrol route.
+    /// field is a float value that determines the amount of time that the NPC will
+    /// stay at each waypoint in their patrol route.
     ///
     /// The AIController class has several private fields that are used to store
     /// state information.The _player field is a reference to the player game
@@ -69,6 +70,10 @@ namespace RPG.Controller
         [field : SerializeField] public float ChaseRange { get; set; } = 4.0f;
         // The amount of time that the NPC will be in a suspicious state after the player has left their chase range.
         [field : SerializeField] public float SuspicionTime { get; set; } = 4.0f;
+        // The amount of time that the NPC will be in an aggravated state after the player has attacked.
+        [field : SerializeField] public float AggroTime { get; set; } = 4.0f;
+        // The range at which the NPC will trigger the aggro of nearby NPCs (Like shouting for help, for example)
+        [field: SerializeField] public float AggroShoutDistance { get; set; } = 5.0f;
         // The patrol route that the NPC will follow when not attacking or suspicious of the player.
         [field : SerializeField] public PatrolController PatrolRoute { get; set; }
         // The amount of time that the NPC will stay at each waypoint in their patrol route.
@@ -80,6 +85,8 @@ namespace RPG.Controller
         private float _timeAtWaypoint = Mathf.Infinity;
         private float _waypointMarginOfError = 1f;
         private int _currentWaypointIndex = 0;
+        private float _aggroTime = Mathf.Infinity;
+        private bool _isAggro = false;
 
         private Fighter Fighter { get; set; }
         private Health Health { get; set; }
@@ -116,15 +123,15 @@ namespace RPG.Controller
                     return;
                 // If the player is within range and the NPC is able to attack them, start attacking.
                 case bool x when IsPlayerInRange() && Fighter.CanAttack(_player):
-                    _timeSincePlayerSpotted = 0;
                     AttackingBehaviour();
                     break;
                 // If the player was recently spotted and the NPC is still in a suspicious state, act suspicious.
                 case bool x when (_timeSincePlayerSpotted < SuspicionTime):
                     SuspicionBehaviour();
                     break;
-                // If none of the above conditions are met, patrol.
+                // If none of the above conditions are met, patrol and reset aggro state.
                 default:
+                    _isAggro = false;
                     PatrolBehaviour();
                     break;
             }
@@ -135,10 +142,19 @@ namespace RPG.Controller
 
         /// <summary>
         /// The NPC's behavior when attacking the player.
+        ///
+        /// This method also triggers the aggro of the other NPCs around in a predefined area.
         /// </summary>
         private void AttackingBehaviour()
         {
+            _timeSincePlayerSpotted = 0;
             Fighter.Attack(_player);
+
+            if (!_isAggro)
+            {
+                _isAggro = true;
+                AggroNearbyEnemies();
+            }
         }
 
         /// <summary>
@@ -205,14 +221,14 @@ namespace RPG.Controller
         }
 
         /// <summary>
-        /// This methods checks if the player is in the range of the NPCs attack
+        /// This methods checks if the player is in the range of the NPCs attack or if the player attacked the NPC
         /// </summary>
-        /// <returns>Returns true if the player is within the NPC's chase range.</returns>
+        /// <returns>Returns true if the player is within the NPC's chase range or the player attacked the NPC.</returns>
         private bool IsPlayerInRange()
         {
             if (_player != null)
             {
-                return Vector3.Distance(_player.transform.position, gameObject.transform.position) <= ChaseRange;
+                return Vector3.Distance(_player.transform.position, gameObject.transform.position) <= ChaseRange || _aggroTime < AggroTime;
             }
 
             // If the player GameObject can't be found, return false.
@@ -226,6 +242,7 @@ namespace RPG.Controller
         {
             _timeSincePlayerSpotted += Time.deltaTime;
             _timeAtWaypoint += Time.deltaTime;
+            _aggroTime += Time.deltaTime;
         }
 
         /// <summary>
@@ -235,6 +252,43 @@ namespace RPG.Controller
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(gameObject.transform.position, ChaseRange);
+        }
+
+        /// <summary>
+        /// This method resets the timer for the aggravation state
+        ///
+        /// This is called as an event by the Health script component
+        /// </summary>
+        public void Aggro()
+        {
+            _aggroTime = 0;
+        }
+
+        /// <summary>
+        /// This method will spherecast from the aggro-ed NPC in a predetermined range and call the aggro method on every NPC with
+        /// an AIController. 
+        /// </summary>
+        private void AggroNearbyEnemies()
+        {
+            // Raycast in a sphere (using sphere cast, so technically not raycast per se) around this NPC and return an array of hist
+            RaycastHit[] hits = Physics.SphereCastAll(
+                transform.position,
+                AggroShoutDistance,
+                Vector3.up,
+                0
+            );
+
+            // Loop through the spherecast result
+            foreach (RaycastHit hit in hits)
+            {
+                // Get the AIController component
+                AIController controller = hit.collider.GetComponent<AIController>();
+                // If the hit result has no AIController component, continue to the next one
+                if (controller == null) { continue; }
+
+                // Call the Aggro method on the AIController hit by spherecast
+                controller.Aggro();
+            }
         }
     }
 }
