@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Unarmed
   m_EditorClassIdentifier: 
   <OverrideController>k__BackingField: {fileID: 0}
-  <WeaponPrefab>k__BackingField: {fileID: 0}
+  <WeaponPrefab>k__BackingField: {fileID: 2453337508030907982, guid: c67e6f3d539bd34478117b7bade12d68,
+    type: 3}
   <AttackCooldown>k__BackingField: 1
   <Range>k__BackingField: 2
   <Damage>k__BackingField: 3
+  <PercentageBonusDamage>k__BackingField: 0
+  <IsRightHanded>k__BackingField: 1
+  <Projectile>k__BackingField: {fileID: 0}
