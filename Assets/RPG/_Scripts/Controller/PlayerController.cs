@@ -1,7 +1,3 @@
-/*
- *
- */
-
 using RPG.Attributes;
 using RPG.Combat;
 using RPG.Helper;

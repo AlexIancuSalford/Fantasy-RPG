@@ -288,7 +288,7 @@ PrefabInstance:
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
       propertyPath: <TakeDamageEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
@@ -298,6 +298,11 @@ PrefabInstance:
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
       propertyPath: <TakeDamageEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <TakeDamageEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
@@ -312,6 +317,11 @@ PrefabInstance:
       objectReference: {fileID: 5910789641536319963}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
+      propertyPath: <TakeDamageEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 8493788472014146507}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
       propertyPath: <SetHealthBarEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4664667796369470892}
@@ -322,8 +332,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
+      propertyPath: <TakeDamageEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
       propertyPath: <TakeDamageEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: PlaySound
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <TakeDamageEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Aggro
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
@@ -342,12 +362,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
+      propertyPath: <TakeDamageEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: RPG.Controller.AIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
       propertyPath: <SetHealthBarEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: RPG.HUD.HealthBar, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
       propertyPath: <TakeDamageEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <TakeDamageEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
@@ -466,6 +496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ChaseRange>k__BackingField: 6
   <SuspicionTime>k__BackingField: 4
+  <AggroTime>k__BackingField: 4
+  <AggroShoutDistance>k__BackingField: 5
   <PatrolRoute>k__BackingField: {fileID: 0}
   <WaypointStopTime>k__BackingField: 4
 --- !u!4 &6424633957709818057 stripped
