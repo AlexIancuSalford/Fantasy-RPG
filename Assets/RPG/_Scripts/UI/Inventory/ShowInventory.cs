@@ -10,9 +10,10 @@ namespace RPG.UI.Inventory
     /// The script has a Start method and an Update method. The Start method is called when the script is first
     /// initialized, and it sets the UIElement to be inactive by default. The Update method is called once per frame
     /// and it checks if the ToggleKey has been pressed. If it has, it sets the UIElement to be the opposite o what it is
-    /// (e.g. if it's active, set to inactive, if it's inactive, set to active).
+    /// (e.g. if it's active, set to inactive, if it's inactive, set to active). Furthermore, it sets the HUD element off if
+    /// the Inventory is on and vice-versa.
     /// 
-    /// The [field : SerializeField] attribute above the ToggleKey and UIElement fields allows the values of these
+    /// The [field : SerializeField] attribute above the ToggleKey, UIElement, and HUDElement fields allows the values of these
     /// fields to be set in the Unity Inspector, rather than hardcoded in the script. This allows you to easily customize
     /// the key that toggles the inventory and the UI element that represents the inventory in the Unity Editor.
     /// </summary>
@@ -29,6 +30,11 @@ namespace RPG.UI.Inventory
         [field : SerializeField] public GameObject UIElement { get; set; } = null;
 
         /// <summary>
+        /// The UI element that represents the HUD (heads-up display).
+        /// </summary>
+        [field: SerializeField] public GameObject HUDElement { get; set; } = null;
+
+        /// <summary>
         /// Set the inventory UI element to be inactive by default.
         /// </summary>
         void Start()
@@ -38,13 +44,13 @@ namespace RPG.UI.Inventory
 
         /// <summary>
         /// Check if the toggle key has been pressed. If it has, set the inventory UI element to be active.
+        /// Since the HUD will be in the way of the inventory, turn it off while the inventory is on.
         /// </summary>
         void Update()
         {
-            if (Input.GetKeyDown(ToggleKey))
-            {
-                UIElement.SetActive(!UIElement.activeSelf);
-            }
+            if (!Input.GetKeyDown(ToggleKey)) { return; }
+            UIElement.SetActive(!UIElement.activeSelf);
+            if (HUDElement != null) { HUDElement.SetActive(!HUDElement.activeSelf); }
         }
     }
 }
