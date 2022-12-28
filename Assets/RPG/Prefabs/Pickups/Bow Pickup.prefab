@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2164442362116123710}
   - component: {fileID: 4024862802309416088}
-  - component: {fileID: 732071863946738280}
+  - component: {fileID: 4866014060485838991}
+  - component: {fileID: 3003603875325846262}
   m_Layer: 0
   m_Name: Bow Pickup
   m_TagString: Untagged
@@ -48,7 +49,7 @@ CapsuleCollider:
   m_Height: 1.92
   m_Direction: 2
   m_Center: {x: 0.11, y: 0, z: -0.75}
---- !u!114 &732071863946738280
+--- !u!114 &4866014060485838991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,11 +58,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 4478158201833648758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acf72585aae789f4185e4a0c16f0b41d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a1d7891fefbe3541a7c67ed8b46c523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Weapon>k__BackingField: {fileID: 11400000, guid: 67cd67df2aa8e1b43997ce77cfd24294,
-    type: 2}
+--- !u!114 &3003603875325846262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4478158201833648758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c1d7626d4c4234f956d33eb4105f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2800899380932346597
 PrefabInstance:
   m_ObjectHideFlags: 0

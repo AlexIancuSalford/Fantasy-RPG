@@ -1,10 +1,11 @@
-using System.Collections.Generic;
 using RPG.Attributes;
 using RPG.Core;
 using RPG.Helper;
 using RPG.Movement;
 using RPG.Save;
 using RPG.Stats;
+using System.Collections.Generic;
+using RPG.UI.Inventory;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -32,9 +33,10 @@ namespace RPG.Combat
         private Mover MoverRef { get; set; }
         private ActionManager ActionManager { get; set; }
         private Animator Animator { get; set; }
+        private Equipment Equipment { get; set; }
 
         // Private fields for tracking the time since the last attack and the current weapon being used
-        private float _timeSinceLastAttack = Mathf.Infinity;
+        private float timeSinceLastAttack = Mathf.Infinity;
         [ReadOnly] public Weapon CurrentWeapon = null;
         private CDeferredValue<WeaponComponent> CurrentWeaponComponent { get; set; } = null;
 
@@ -53,6 +55,13 @@ namespace RPG.Combat
             MoverRef = GetComponent<Mover>();
             ActionManager = GetComponent<ActionManager>();
             Animator = GetComponent<Animator>();
+            Equipment = GetComponent<Equipment>();
+
+            // Subscribe to the EquipmentUpdated from the equipment script to update and equip weapon when one is placed in a slot
+            if (Equipment != null)
+            {
+                Equipment.EquipmentUpdated += UpdateEquipment;
+            }
         }
 
         private void Start()
@@ -64,7 +73,7 @@ namespace RPG.Combat
         void Update()
         {
             // Increment the time since the last attack
-            _timeSinceLastAttack += Time.deltaTime;
+            timeSinceLastAttack += Time.deltaTime;
 
             // If there is no target or the target is dead, do nothing
             if (Target == null) { return; }
@@ -172,10 +181,10 @@ namespace RPG.Combat
             transform.LookAt(Target.transform);
 
             // If the time since the last attack is greater than the attack cooldown of the current weapon, start the attack animation
-            if (_timeSinceLastAttack > CurrentWeapon.AttackCooldown)
+            if (timeSinceLastAttack > CurrentWeapon.AttackCooldown)
             {
                 StartAttackAnimation();
-                _timeSinceLastAttack = 0f;
+                timeSinceLastAttack = 0f;
             }
             
         }
@@ -377,6 +386,22 @@ namespace RPG.Combat
         private WeaponComponent SetupWeaponComponent()
         {
             return AttachWeapon(DefaultWeapon);
+        }
+
+        /// <summary>
+        /// Method called when the EquipmentUpdated is triggered.
+        ///
+        /// This method will equip a weapon or other equipment when the weapon is placed into the equipment slot
+        /// </summary>
+        /// <exception cref="System.NotImplementedException"></exception>
+        private void UpdateEquipment()
+        {
+            // Get the weapon from the equipment weapon slot and cast it to the weapon type
+            Weapon weapon = Equipment.GetItemInSlot(EquipLocation.Weapon) as Weapon;
+            
+            // Equip the weapon if there is a weapon, equip the default weapon if there is none
+            // This will cover the case in which the player unequipped a weapon from the slot, as it will equip the unarmed "weapon"
+            EquipWeapon(weapon == null ? DefaultWeapon : weapon);
         }
     }
 }

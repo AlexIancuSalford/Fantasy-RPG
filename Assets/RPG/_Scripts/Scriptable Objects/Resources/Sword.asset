@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb649c38825b554d93f7a480eb7f81d, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
+  <ItemID>k__BackingField: df89312d-872b-46bd-9b13-89b2b746aba4
+  <DisplayName>k__BackingField: Sword
+  description: Normal sword
+  <Icon>k__BackingField: {fileID: 21300000, guid: 14dfde389db2d4b479965485295489ba,
+    type: 3}
+  <Pickup>k__BackingField: {fileID: -2020812815077183848, guid: 0dc4e38d0cb876d44a404be2e836deb8,
+    type: 3}
+  <Stackable>k__BackingField: 0
+  <AllowedEquipLocation>k__BackingField: 5
   <OverrideController>k__BackingField: {fileID: 22100000, guid: d4db353078d154d46a3dfc27a2923cb9,
     type: 2}
   <WeaponPrefab>k__BackingField: {fileID: 2453337508030907982, guid: 28104da2a04a6bf4e8ec25ef73d6a539,

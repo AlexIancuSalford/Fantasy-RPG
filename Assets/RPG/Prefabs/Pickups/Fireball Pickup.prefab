@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 225594966385844305}
   - component: {fileID: 3095084367880407287}
-  - component: {fileID: 1657336526120171015}
+  - component: {fileID: 4150852278856663185}
+  - component: {fileID: 4181714937029363230}
   m_Layer: 0
   m_Name: Fireball Pickup
   m_TagString: Untagged
@@ -44,11 +45,11 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.32
+  m_Radius: 0.59
   m_Height: 1
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.38}
---- !u!114 &1657336526120171015
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4150852278856663185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,11 +58,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2525745995866553881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acf72585aae789f4185e4a0c16f0b41d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a1d7891fefbe3541a7c67ed8b46c523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Weapon>k__BackingField: {fileID: 11400000, guid: 91d4eb01853d89145b629e8b64aca52e,
-    type: 2}
+--- !u!114 &4181714937029363230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2525745995866553881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c1d7626d4c4234f956d33eb4105f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1753735195062257146
 PrefabInstance:
   m_ObjectHideFlags: 0
