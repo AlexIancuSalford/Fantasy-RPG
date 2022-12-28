@@ -1,4 +1,5 @@
 using RPG.Attributes;
+using RPG.UI.Inventory;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -51,7 +52,7 @@ namespace RPG.Combat
     /// the Unity editor.
     /// </summary>
     [CreateAssetMenu(fileName = "Weapon", menuName = "Scriptable Object/Weapon", order = 0)]
-    public class Weapon : ScriptableObject
+    public class Weapon : EquipableItem
     {
         [field : SerializeField] private AnimatorOverrideController OverrideController { get; set; } = null;
         [field : SerializeField] private WeaponComponent WeaponPrefab { get; set; } = null;

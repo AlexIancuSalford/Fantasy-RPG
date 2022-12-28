@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb649c38825b554d93f7a480eb7f81d, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
+  <ItemID>k__BackingField: 58da2827-a2b7-4e4d-807f-f2899ebf4b43
+  <DisplayName>k__BackingField: Fire Gloves
+  description: Placeholder
+  <Icon>k__BackingField: {fileID: 21300000, guid: f8078c2bb5ee88d4a9472f76e501e0f3,
+    type: 3}
+  <Pickup>k__BackingField: {fileID: 4150852278856663185, guid: ea3891a1514a17e449378ca5efc80ea1,
+    type: 3}
+  <Stackable>k__BackingField: 0
+  <AllowedEquipLocation>k__BackingField: 5
   <OverrideController>k__BackingField: {fileID: 22100000, guid: 29474250db9aa2e4b919040f715188d2,
     type: 2}
   <WeaponPrefab>k__BackingField: {fileID: 3959267826479463840, guid: 202deb5fd55499a4a98e3bfa898eca7e,

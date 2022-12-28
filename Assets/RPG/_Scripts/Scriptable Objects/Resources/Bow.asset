@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb649c38825b554d93f7a480eb7f81d, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
+  <ItemID>k__BackingField: 0bbcd38e-d22f-45ed-be2e-5f73681ada4f
+  <DisplayName>k__BackingField: Standard Bow
+  description: Normal bow
+  <Icon>k__BackingField: {fileID: 21300000, guid: 507ed514e233f964fa11c7f81650391c,
+    type: 3}
+  <Pickup>k__BackingField: {fileID: 4866014060485838991, guid: ab05422c3b038914d869d91076c8b41e,
+    type: 3}
+  <Stackable>k__BackingField: 0
+  <AllowedEquipLocation>k__BackingField: 5
   <OverrideController>k__BackingField: {fileID: 22100000, guid: 93a47ca9eefd7b24fb109ce3d2bceb2d,
     type: 2}
   <WeaponPrefab>k__BackingField: {fileID: -2962625333008646812, guid: 80e00f1290b63934488567221cd1e706,
