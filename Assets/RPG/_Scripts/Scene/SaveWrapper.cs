@@ -81,7 +81,7 @@ namespace RPG.Scene
         /// </summary>
         public void Load()
         {
-            StartCoroutine(GetComponent<SaveManager>().LoadLastScene(_defaultSaveFile));
+            GetComponent<SaveManager>().Load(_defaultSaveFile);
         }
 
         /// <summary>

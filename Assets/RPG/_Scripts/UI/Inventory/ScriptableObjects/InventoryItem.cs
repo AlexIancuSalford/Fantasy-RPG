@@ -74,8 +74,7 @@ namespace RPG.UI.Inventory
         /// <summary>
         /// A dictionary of all InventoryItem objects, indexed by their ItemID.
         /// </summary>
-        private static Dictionary<string, InventoryItem> ItemLookupCache { get; set; } =
-            new Dictionary<string, InventoryItem>();
+        private static Dictionary<string, InventoryItem> ItemLookupCache { get; set; } = null;
 
         /// <summary>
         /// Returns the InventoryItem object with the specified ItemID.
@@ -103,8 +102,8 @@ namespace RPG.UI.Inventory
                 }
             }
 
-            if (itemID == null || !ItemLookupCache.ContainsKey(itemID)) return null;
-            return ItemLookupCache[itemID];
+            //Debug.Log($"Item {ItemLookupCache[itemID]}");
+            return (string.IsNullOrEmpty(itemID) || !ItemLookupCache.ContainsKey(itemID)) ? null : ItemLookupCache[itemID];
         }
 
         /// <summary>
