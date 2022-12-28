@@ -5,8 +5,8 @@ using RPG.Movement;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
-using CursorType = RPG.Helper.CursorHelper.CursorType;
 using CursorMapping = RPG.Helper.CursorHelper.CursorMapping;
+using CursorType = RPG.Helper.CursorHelper.CursorType;
 
 namespace RPG.Controller
 {
@@ -85,7 +85,8 @@ namespace RPG.Controller
         private Fighter Fighter { get; set; }
         private Health Health { get; set; }
         private float MaxNavMeshProjectionDistance { get; set; } = 1f;
-        private float MaxPathLenght { get; set; } = 30f;
+        private float MaxPathLength { get; set; } = 30f;
+        private bool IsDraggingUI { get; set; } = false;
 
         [field : SerializeField] private CursorMapping[] CursorMappings { get; set; } = null;
 
@@ -202,8 +203,26 @@ namespace RPG.Controller
         /// <returns>True if the cursor is over an UI element, false otherwise</returns>
         private bool CanInteractWithUI()
         {
-            // Returns true if the cursor is over an UI element
-            return EventSystem.current.IsPointerOverGameObject();
+            // Check if the mouse button was just released
+            if (Input.GetMouseButtonUp(0))
+            {
+                IsDraggingUI = false;
+            }
+
+            // Check if the cursor is over a UI element
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                // Check if the mouse button was just pressed down
+                if (Input.GetMouseButtonDown(0))
+                {
+                    IsDraggingUI = true;
+                }
+                return true;
+            }
+
+            // Return whether the UI is being dragged
+            return IsDraggingUI;
+
         }
 
         /// <summary>
@@ -300,7 +319,7 @@ namespace RPG.Controller
             NavMeshPath navMeshPath = new NavMeshPath();
             bool hasPath = NavMesh.CalculatePath(transform.position, position, NavMesh.AllAreas, navMeshPath);
             
-            return hasPath && CMath.CalculatePathLength(navMeshPath) < MaxPathLenght;
+            return hasPath && CMath.CalculatePathLength(navMeshPath) < MaxPathLength;
         }
     }
 }
