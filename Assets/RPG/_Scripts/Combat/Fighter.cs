@@ -4,29 +4,28 @@ using RPG.Helper;
 using RPG.Movement;
 using RPG.Save;
 using RPG.Stats;
-using System.Collections.Generic;
 using RPG.UI.Inventory;
 using UnityEngine;
 
 namespace RPG.Combat
 {
     /// <summary>
-    /// This script is a component that allows the character to engage in combat with other characters.
-    /// The character has a set of attributes, including health, movement, and stats, and can perform actions through the ActionManager
-    /// component. The character also has an animator that is used to play animation clips. The character is equipped with a weapon,
-    /// which can be a default weapon or a weapon that is set later.
+    /// This script is for a combat system. It is attached to a game object that will be able to attack other game objects.
+    /// The script has various references to other components on the same game object, including an ActionManager,
+    /// Animator, and Equipment.
     /// 
-    /// The character has a target, which is another character with a health component. The character will move towards the target if
-    /// it is within range and attack the target if it is not within range. The character can attack the target using either a projectile
-    /// launched from the weapon or by directly dealing damage to the target with the weapon.
+    /// The script includes an Update method that runs every frame. This method checks if the object has a target and if the
+    /// target is within range. If the target is in range, the object will move towards it. If the target is not in range,
+    /// the object will handle attack behavior. The script also has a method called Hit that is called when the object attacks
+    /// its target. This method will either launch a projectile or deal damage directly to the target, depending on the current
+    /// weapon.
     /// 
-    /// The character also implements interfaces for saving and loading, and providing stats. The character's stats include a base damage
-    /// stat, which is used to calculate the amount of damage dealt to the target during an attack.
-    /// 
-    /// The script includes methods for setting up the weapon component, handling attack behavior, checking if the target is in range,
-    /// and performing an attack. It also includes an animation event method for hitting the target with an attack.
+    /// The script also includes a Cancel method that stops the attack animation, cancels any movement, and removes the target.
+    /// It also implements the IAction and ISaveableEntity interfaces, which allow the object to be controlled by the ActionManager
+    /// and saved with the SaveSystem, respectively. The script also has a number of private fields and properties for tracking
+    /// various values, such as the time since the last attack and the current weapon being used.
     /// </summary>
-    public class Fighter : MonoBehaviour, IAction, ISaveableEntity, IStatsProvider
+    public class Fighter : MonoBehaviour, IAction, ISaveableEntity
     {
         // Private properties for references to other components on the same game object
         public Health Target { get; private set; }
@@ -341,41 +340,6 @@ namespace RPG.Combat
             // Load the weapon with the given name and equip it
             Weapon weapon = Resources.Load(obj as string) as Weapon;
             EquipWeapon(weapon);
-        }
-
-        /// <summary>
-        /// This method returns the what the damage value should be based on a Stats attribute passed in.
-        /// These values represent the multipliers that will be applied to the base value of a given attribute when calculating the final value.
-        /// For example, if the weapon contains an entry for "Damage" with a value of 1.5, it means that any damage done by this fighter
-        /// will be increased by the value returned here when calculating the final damage value.
-        ///
-        /// It is important to note that multiple additive multipliers can be applied if there are more in the list.
-        /// </summary>
-        /// <returns>A dictionary of attribute names and their corresponding float values</returns>
-        public IEnumerable<float> GetModifiers(Stats.Stats stat)
-        {
-            if (stat == Stats.Stats.BaseDamage)
-            {
-                yield return CurrentWeapon.Damage;
-            }
-        }
-
-        /// <summary>
-        /// This method returns the value of an attribute based on a Stats attribute passed in.
-        /// These values represent the percentage increase or decrease that will be applied to the base value of a given attribute when calculating the final value.
-        /// For example, if the weapon contains an entry for "PercentageBonusDamage" with a value of 25, it means that any damage done by this fighter
-        /// will be increased by 25% (25) when calculating the final damage value.
-        ///
-        /// It is important to note that multiple percentage multipliers can be applied, and the percentage can also be negative,
-        /// essentially turning it into a debuff instead of a buff.
-        /// </summary>
-        /// <returns>A dictionary of attribute names and their corresponding float values</returns>
-        public IEnumerable<float> GetModifiersPercentage(Stats.Stats stat)
-        {
-            if (stat == Stats.Stats.BaseDamage)
-            {
-                yield return CurrentWeapon.PercentageBonusDamage;
-            }
         }
 
         /// <summary>
