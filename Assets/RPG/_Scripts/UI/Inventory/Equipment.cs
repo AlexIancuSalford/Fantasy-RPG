@@ -31,7 +31,7 @@ namespace RPG.UI.Inventory
         /// <summary>
         /// A dictionary that maps EquipLocation enum values to EquipableItem objects, representing the items currently equipped by the player character.
         /// </summary>
-        private Dictionary<EquipLocation, EquipableItem> EquippedItems { get; set; } = new Dictionary<EquipLocation, EquipableItem>();
+        protected Dictionary<EquipLocation, EquipableItem> EquippedItems { get; set; } = new Dictionary<EquipLocation, EquipableItem>();
 
         /// <summary>
         /// An event that is raised when the player character's equipped items are updated.
