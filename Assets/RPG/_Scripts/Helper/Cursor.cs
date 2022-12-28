@@ -11,6 +11,7 @@ namespace RPG.Helper
             Attack,
             UI,
             Pickup,
+            FullPickup,
         }
 
         [System.Serializable]

@@ -1,5 +1,5 @@
-using System.Collections;
 using RPG.Save;
+using System.Collections;
 using UnityEngine;
 
 namespace RPG.Scene
@@ -81,7 +81,7 @@ namespace RPG.Scene
         /// </summary>
         public void Load()
         {
-            GetComponent<SaveManager>().Load(_defaultSaveFile);
+            StartCoroutine(GetComponent<SaveManager>().LoadLastScene(_defaultSaveFile));
         }
 
         /// <summary>

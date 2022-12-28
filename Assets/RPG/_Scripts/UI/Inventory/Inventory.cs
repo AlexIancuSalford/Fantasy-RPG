@@ -102,7 +102,7 @@ namespace RPG.UI.Inventory
         {
             for (int i = 0; i < InventorySlots.Length; i++)
             {
-                if (object.ReferenceEquals(InventorySlots[i].Item, item))
+                if (ReferenceEquals(InventorySlots[i].Item, item))
                 {
                     return true;
                 }
@@ -160,7 +160,6 @@ namespace RPG.UI.Inventory
             if (InventorySlots[slot].Item != null)
             {
                 return AddToFirstEmptySlot(item, number);
-                ;
             }
 
             int itemStack = FindStack(item);
@@ -251,6 +250,7 @@ namespace RPG.UI.Inventory
             {
                 if (InventorySlots[i].Item != null)
                 {
+                    Debug.Log(GetItemInSlot(i).DisplayName);
                     slotStrings[i].ItemID = InventorySlots[i].Item.ItemID;
                     slotStrings[i].Number = InventorySlots[i].Number;
                 }
@@ -268,6 +268,7 @@ namespace RPG.UI.Inventory
             InventorySlotRecord[] slotStrings = (InventorySlotRecord[])state;
             for (int i = 0; i < InventorySize; i++)
             {
+                Debug.Log(GetItemInSlot(i).DisplayName);
                 InventorySlots[i].Item = InventoryItem.GetFromID(slotStrings[i].ItemID);
                 InventorySlots[i].Number = slotStrings[i].Number;
             }
