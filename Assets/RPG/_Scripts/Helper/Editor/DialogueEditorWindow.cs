@@ -48,7 +48,12 @@ namespace RPG.Helper
 
             foreach (Node node in Dialogue.Nodes)
             {
-                EditorGUILayout.LabelField(node.Text);
+                string newText = EditorGUILayout.TextField(node.Text);
+
+                if (newText != node.Text)
+                {
+                    node.Text = newText;
+                }
             }
         }
     }

@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Nodes>k__BackingField:
   - <UUID>k__BackingField: 
-    <Text>k__BackingField: 
+    <Text>k__BackingField: Just to test
+    <NodeChildren>k__BackingField: []
+  - <UUID>k__BackingField: 
+    <Text>k__BackingField: I am going to cry
     <NodeChildren>k__BackingField: []
