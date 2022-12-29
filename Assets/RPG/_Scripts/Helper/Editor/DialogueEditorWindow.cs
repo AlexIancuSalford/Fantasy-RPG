@@ -1,12 +1,13 @@
 using System;
 using UnityEditor;
 using UnityEditor.Callbacks;
-using UnityEngine;
+using DialogueObject = RPG.Dialogue.Dialogue;
 
 namespace RPG.Helper
 {
     public class DialogueEditorWindow : EditorWindow
     {
+        private DialogueObject Dialogue { get; set; } = null;
         private static string WindowTitle { get; set; } = "Dialogue Editor";
 
         [MenuItem("Window/Dialogue/Dialogue Editor")]
@@ -19,7 +20,7 @@ namespace RPG.Helper
         [OnOpenAssetAttribute(1)]
         public static bool OnOpenAssetWindow(int instanceID, int line)
         {
-            Dialogue.Dialogue dialogue =  EditorUtility.InstanceIDToObject(instanceID) as Dialogue.Dialogue;
+            DialogueObject dialogue =  EditorUtility.InstanceIDToObject(instanceID) as DialogueObject;
 
             if (dialogue == null) { return false; }
             
@@ -27,10 +28,18 @@ namespace RPG.Helper
             return true;
         }
 
+        private void OnEnable()
+        {
+            Selection.selectionChanged += () =>
+            {
+                Dialogue = Selection.activeObject as DialogueObject;
+                Repaint();
+            };
+        }
+
         private void OnGUI()
         {
-            EditorGUILayout.LabelField("Hello World!");
-            EditorGUILayout.LabelField("Goodbye World");
+            EditorGUILayout.LabelField(Dialogue == null ? "No dialogue selected" : Dialogue.name);
         }
     }
 }
