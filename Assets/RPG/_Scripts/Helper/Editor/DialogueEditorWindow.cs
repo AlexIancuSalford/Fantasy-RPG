@@ -48,11 +48,17 @@ namespace RPG.Helper
 
             foreach (Node node in Dialogue.Nodes)
             {
+                EditorGUI.BeginChangeCheck();
+
+                EditorGUILayout.LabelField("Node:");
+                string newUUID = EditorGUILayout.TextField(node.UUID);
                 string newText = EditorGUILayout.TextField(node.Text);
 
-                if (newText != node.Text)
+                if (EditorGUI.EndChangeCheck())
                 {
+                    Undo.RecordObject(Dialogue, "Update Dialog");
                     node.Text = newText;
+                    node.UUID = newUUID;
                 }
             }
         }
