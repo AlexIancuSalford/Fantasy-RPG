@@ -14,10 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemID>k__BackingField: 0bda3de7-517d-4d0f-b7ab-ec18288ff633
   <DisplayName>k__BackingField: Hat
-  description: This is a hat
+  description: 'This is a hat
+
+
+
+
+    It''s 2 AM, I just want to sleep.
+
+    Can
+    I just leave this in a broken state and fix it later?'
   <Icon>k__BackingField: {fileID: 21300000, guid: c1b61b3a91732a747a8496fc75a13fe2,
     type: 3}
   <Pickup>k__BackingField: {fileID: 8158080298398385612, guid: 08af7b4911b5a224badb735db965cfbe,
     type: 3}
-  <Stackable>k__BackingField: 0
+  <Stackable>k__BackingField: 1
   <AllowedEquipLocation>k__BackingField: 0
