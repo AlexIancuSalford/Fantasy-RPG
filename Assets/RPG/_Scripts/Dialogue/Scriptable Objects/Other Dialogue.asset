@@ -21,7 +21,7 @@ MonoBehaviour:
       x: 10
       y: 10
       width: 200
-      height: 200
+      height: 100
   - <UUID>k__BackingField: 
     <Text>k__BackingField: I am going to cry
     <NodeChildren>k__BackingField: []
@@ -30,7 +30,7 @@ MonoBehaviour:
       x: 250
       y: 10
       width: 200
-      height: 200
+      height: 100
   - <UUID>k__BackingField: 
     <Text>k__BackingField: Hello
     <NodeChildren>k__BackingField: []
@@ -39,4 +39,4 @@ MonoBehaviour:
       x: 500
       y: 10
       width: 200
-      height: 200
+      height: 100
