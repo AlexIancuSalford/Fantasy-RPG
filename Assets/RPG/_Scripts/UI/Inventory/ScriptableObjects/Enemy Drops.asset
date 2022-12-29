@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1fc754755e54c4f8ce75cb1adb730d, type: 3}
   m_Name: Enemy Drops
   m_EditorClassIdentifier: 
-  <ItemDropList>k__BackingField: []
-  <DropChance>k__BackingField: []
-  <DropsMin>k__BackingField: 
-  <DropMax>k__BackingField: 
+  <ItemDropList>k__BackingField:
+  - Item: {fileID: 11400000, guid: ac45d045bea48f649a2a08de14effc41, type: 2}
+    RelativeChance:
+    - 10
+    NumberMax: 0100000001000000
+    NumberMin: 0100000001000000
+  <DropChance>k__BackingField:
+  - 50
+  - 90
+  <DropsMin>k__BackingField: 0100000002000000
+  <DropMax>k__BackingField: 0300000006000000
