@@ -99,6 +99,11 @@ namespace RPG.Helper
                 node.UUID = newUUID;
             }
 
+            foreach (Node childNode in Dialogue.GetAllNodeChildren(node))
+            {
+                EditorGUILayout.LabelField(childNode.Text);
+            }
+
             GUILayout.EndArea();
         }
 

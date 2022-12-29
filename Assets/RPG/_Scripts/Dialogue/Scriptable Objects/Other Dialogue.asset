@@ -13,30 +13,30 @@ MonoBehaviour:
   m_Name: Other Dialogue
   m_EditorClassIdentifier: 
   <Nodes>k__BackingField:
-  - <UUID>k__BackingField: 
+  - <UUID>k__BackingField: Node 1
     <Text>k__BackingField: Just to test
     <NodeChildren>k__BackingField: []
-    <Position>k__BackingField:
+    RectPosition:
       serializedVersion: 2
-      x: 10
-      y: 10
+      x: 607
+      y: 82
       width: 200
       height: 100
-  - <UUID>k__BackingField: 
+  - <UUID>k__BackingField: Node 2
     <Text>k__BackingField: I am going to cry
     <NodeChildren>k__BackingField: []
-    <Position>k__BackingField:
+    RectPosition:
       serializedVersion: 2
-      x: 250
-      y: 10
+      x: 79
+      y: 200.00002
       width: 200
       height: 100
-  - <UUID>k__BackingField: 
+  - <UUID>k__BackingField: Node 3
     <Text>k__BackingField: Hello
     <NodeChildren>k__BackingField: []
-    <Position>k__BackingField:
+    RectPosition:
       serializedVersion: 2
-      x: 500
-      y: 10
+      x: 383
+      y: 33.00001
       width: 200
       height: 100
