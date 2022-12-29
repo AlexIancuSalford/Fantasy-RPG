@@ -1,6 +1,7 @@
 using System;
 using UnityEditor;
 using UnityEditor.Callbacks;
+using UnityEngine;
 
 namespace RPG.Helper
 {
@@ -24,7 +25,12 @@ namespace RPG.Helper
             
             ShowEditorWindow();
             return true;
+        }
 
+        private void OnGUI()
+        {
+            EditorGUILayout.LabelField("Hello World!");
+            EditorGUILayout.LabelField("Goodbye World");
         }
     }
 }
