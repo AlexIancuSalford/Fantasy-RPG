@@ -287,13 +287,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
+      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
       propertyPath: <TakeDamageEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
+      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8695041392723928267}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
       propertyPath: <SetHealthBarEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RandomDrop
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
@@ -352,6 +377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
+      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RPG.UI.Inventory.RandomItemDropper, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
       propertyPath: <SetHealthBarEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetHealthBar
       objectReference: {fileID: 0}
@@ -369,6 +399,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <SetHealthBarEvent>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: RPG.HUD.HealthBar, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
+        type: 3}
+      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4004408367521058544, guid: 15d51d214a357ea46b18ea73fb875494,
         type: 3}
@@ -500,6 +535,23 @@ MonoBehaviour:
   <AggroShoutDistance>k__BackingField: 5
   <PatrolRoute>k__BackingField: {fileID: 0}
   <WaypointStopTime>k__BackingField: 4
+--- !u!114 &8695041392723928267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6424633957709818053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e21c02d190a8944bac3e01f7e724ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ScatterRadius>k__BackingField: 1
+  <Attempts>k__BackingField: 10
+  <DropLibrary>k__BackingField: {fileID: 11400000, guid: ceee93569bf3af242b4e08f4d5cea26a,
+    type: 2}
+  <NumberOfDrops>k__BackingField: 2
 --- !u!4 &6424633957709818057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2361840505468813481, guid: 15d51d214a357ea46b18ea73fb875494,
