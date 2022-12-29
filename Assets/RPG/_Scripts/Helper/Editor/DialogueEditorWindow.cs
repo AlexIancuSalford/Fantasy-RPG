@@ -1,4 +1,5 @@
 using System;
+using RPG.Dialogue;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using DialogueObject = RPG.Dialogue.Dialogue;
@@ -20,10 +21,10 @@ namespace RPG.Helper
         [OnOpenAssetAttribute(1)]
         public static bool OnOpenAssetWindow(int instanceID, int line)
         {
-            DialogueObject dialogue =  EditorUtility.InstanceIDToObject(instanceID) as DialogueObject;
+            DialogueObject dialogue = EditorUtility.InstanceIDToObject(instanceID) as DialogueObject;
 
             if (dialogue == null) { return false; }
-            
+
             ShowEditorWindow();
             return true;
         }
@@ -39,7 +40,16 @@ namespace RPG.Helper
 
         private void OnGUI()
         {
-            EditorGUILayout.LabelField(Dialogue == null ? "No dialogue selected" : Dialogue.name);
+            if (Dialogue == null)
+            {
+                EditorGUILayout.LabelField("No dialogue selected");
+                return;
+            }
+
+            foreach (Node node in Dialogue.Nodes)
+            {
+                EditorGUILayout.LabelField(node.Text);
+            }
         }
     }
 }
