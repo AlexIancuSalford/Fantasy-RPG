@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using RPG.Dialogue;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -12,6 +13,8 @@ namespace RPG.Helper
         private DialogueObject Dialogue { get; set; } = null;
         private GUIStyle NodeStyle { get; set; } = new GUIStyle();
         private static string WindowTitle { get; set; } = "Dialogue Editor";
+        private Node SelectedNode { get; set; } = null;
+        private Vector2 Offset { get; set; } = new Vector2();
 
         [MenuItem("Window/Dialogue/Dialogue Editor")]
         public static void ShowEditorWindow()
@@ -50,15 +53,38 @@ namespace RPG.Helper
                 return;
             }
 
+            ProcessEvents();
+
             foreach (Node node in Dialogue.Nodes)
             {
                 OnGUINode(node);
             }
         }
 
+        private void ProcessEvents()
+        {
+            switch (Event.current.type)
+            {
+                case EventType.MouseDown when SelectedNode == null:
+                    SelectedNode = GetNodeAtPosition(Event.current.mousePosition);
+                    Offset = SelectedNode != null
+                        ? SelectedNode.RectPosition.position - Event.current.mousePosition
+                        : Vector2.zero;
+                    break;
+                case EventType.MouseUp when SelectedNode != null:
+                    SelectedNode = null;
+                    break;
+                case EventType.MouseDrag when SelectedNode != null:
+                    Undo.RecordObject(Dialogue, "Move Dialogue Node");
+                    SelectedNode.RectPosition.position = Event.current.mousePosition + Offset;
+                    GUI.changed = true;
+                    break;
+            }
+        }
+
         private void OnGUINode(Node node)
         {
-            GUILayout.BeginArea(node.Position, NodeStyle);
+            GUILayout.BeginArea(node.RectPosition, NodeStyle);
 
             EditorGUI.BeginChangeCheck();
 
@@ -92,6 +118,11 @@ namespace RPG.Helper
                 12
             );
             NodeStyle.normal.textColor = Color.white;
+        }
+
+        private Node GetNodeAtPosition(Vector2 mousePosition)
+        {
+            return Dialogue.Nodes.LastOrDefault(node => node.RectPosition.Contains(mousePosition));
         }
     }
 }
