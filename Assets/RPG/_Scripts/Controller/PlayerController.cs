@@ -12,7 +12,7 @@ namespace RPG.Controller
 {
     /// <summary>
     /// The PlayerController script is a script that controls the behavior of a player
-    /// character in a game. It is attached to a game object in a Unity project and is
+    /// character in this game. It is attached to a game object in a Unity project and is
     /// responsible for handling player input and determining the appropriate action
     /// for the player to take based on that input.
     ///  
