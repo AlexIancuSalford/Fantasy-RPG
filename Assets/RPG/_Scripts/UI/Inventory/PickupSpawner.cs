@@ -1,8 +1,7 @@
 ﻿using RPG.Save;
-using RPG.UI.Inventory;
 using UnityEngine;
 
-namespace GameDevTV.Inventories
+namespace RPG.UI.Inventory
 {
     /// <summary>
     /// The PickupSpawner script is a Unity script that is used to manage the spawning and destruction of
@@ -59,7 +58,7 @@ namespace GameDevTV.Inventories
         /// Returns whether the Pickup component is attached to a child object of the PickupSpawner game object.
         /// </summary>
         /// <returns>True if the Pickup component is not found in a child object, and false otherwise.</returns>
-        public bool isCollected() 
+        public bool IsCollected() 
         { 
             return GetPickup() == null;
         }
@@ -90,7 +89,7 @@ namespace GameDevTV.Inventories
         /// <returns>True if the Pickup component is not found in a child object, and false otherwise.</returns>
         public object SaveState()
         {
-            return isCollected();
+            return IsCollected();
         }
 
         /// <summary>
@@ -103,10 +102,10 @@ namespace GameDevTV.Inventories
 
             switch (shouldBeCollected)
             {
-                case true when !isCollected():
+                case true when !IsCollected():
                     DestroyPickup();
                     break;
-                case false when isCollected():
+                case false when IsCollected():
                     SpawnPickup();
                     break;
             }

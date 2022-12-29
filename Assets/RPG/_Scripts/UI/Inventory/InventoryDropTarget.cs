@@ -1,7 +1,6 @@
-using RPG.UI.Inventory;
 using UnityEngine;
 
-namespace GameDevTV.UI.Inventories
+namespace RPG.UI.Inventory
 {
     /// <summary>
     /// Handles spawning pickups when item dropped into the world.

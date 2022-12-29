@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using RPG.UI.Inventory;
 
-namespace GameDevTV.UI.Inventories
+namespace RPG.UI.Inventory
 {
     /// <summary>
     /// This script defines a class called InventoryUI that manages the display of an inventory in a Unity game.
