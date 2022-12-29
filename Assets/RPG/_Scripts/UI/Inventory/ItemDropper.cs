@@ -1,7 +1,9 @@
 ﻿using RPG.Helper;
 using RPG.Save;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RPG.UI.Inventory
 {
@@ -32,6 +34,11 @@ namespace RPG.UI.Inventory
         /// A list of Pickup objects spawned by this component.
         /// </summary>
         private List<Pickup> DroppedItems { get; set; } = new List<Pickup>();
+
+        /// <summary>
+        /// A list of records of dropped items from other scenes
+        /// </summary>
+        private List<DropRecord> OtherSceneDroppedItems = new List<DropRecord>();
 
         /// <summary>
         /// Drops a specified number of the given inventory item.
@@ -83,14 +90,26 @@ namespace RPG.UI.Inventory
 
         public object SaveState()
         {
+            // Remove any dropped items that have been destroyed
             RemoveDestroyedDrops();
-            DropRecord[] droppedItemsList = new DropRecord[DroppedItems.Count];
-            for (int i = 0; i < droppedItemsList.Length; i++)
-            {
-                droppedItemsList[i].ItemID = DroppedItems[i].Item.ItemID;
-                droppedItemsList[i].Position = new Vector3f(DroppedItems[i].transform.position);
-                droppedItemsList[i].Number = DroppedItems[i].Number;
-            }
+
+            // Get the build index of the current scene
+            int currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+
+            // Create a list of DropRecord objects for the dropped items in the DroppedItems list
+            List<DropRecord> droppedItemsList = DroppedItems
+                .Select(pickup => new DropRecord
+                {
+                    // Set the ItemID, Position, Number, and SceneBuildIndex for the DropRecord object
+                    ItemID = pickup.Item.ItemID, 
+                    Position = new Vector3f(pickup.transform.position), 
+                    Number = pickup.Number, 
+                    SceneBuildIndex = currentSceneBuildIndex,
+                })
+                .ToList();
+
+            // Add the dropped items from other scenes to the list
+            droppedItemsList.AddRange(OtherSceneDroppedItems);
             return droppedItemsList;
         }
 
@@ -100,12 +119,31 @@ namespace RPG.UI.Inventory
         /// <param name="state">An object containing information about the dropped items.</param>
         public void LoadState(object state)
         {
-            var droppedItemsList = (DropRecord[])state;
-            foreach (var item in droppedItemsList)
+            // Get the build index of the current scene
+            int currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+            // Create a list of DropRecord objects from the state object
+            List<DropRecord> droppedItemsList = (List<DropRecord>)state;
+            // Clear the OtherSceneDroppedItems list
+            OtherSceneDroppedItems.Clear();
+
+            // Iterate through each DropRecord object in the droppedItemsList
+            foreach (DropRecord item in droppedItemsList)
             {
-                var pickupItem = InventoryItem.GetFromID(item.ItemID);
+                // If the DropRecord object is from a different scene, add it to the OtherSceneDroppedItems list
+                if (item.SceneBuildIndex != currentSceneBuildIndex)
+                {
+                    OtherSceneDroppedItems.Add(item);
+                    continue;
+                }
+
+                // Get the InventoryItem object corresponding to the ItemID of the DropRecord object
+                InventoryItem pickupItem = InventoryItem.GetFromID(item.ItemID);
+                
+                // Get the Position and Number values of the DropRecord object
                 Vector3 position = item.Position;
                 int number = item.Number;
+                
+                // Spawn the pickup with the SpawnPickup method
                 SpawnPickup(pickupItem, position, number);
             }
         }

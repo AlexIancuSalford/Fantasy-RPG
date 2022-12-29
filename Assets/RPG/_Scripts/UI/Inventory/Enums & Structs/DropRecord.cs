@@ -1,7 +1,4 @@
 using RPG.Helper;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace RPG.UI.Inventory
 {
@@ -11,5 +8,6 @@ namespace RPG.UI.Inventory
         public string ItemID;
         public Vector3f Position;
         public int Number;
+        public int SceneBuildIndex;
     }
 }
