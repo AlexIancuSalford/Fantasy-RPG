@@ -21,13 +21,14 @@ MonoBehaviour:
     - 7643a2d1-1a35-482b-8c58-4242c850f132
     RectPosition:
       serializedVersion: 2
-      x: 21.999985
-      y: 123
+      x: 28.999985
+      y: 121.000015
       width: 200
       height: 100
   - <UUID>k__BackingField: a2a84a86-ff26-4f50-84e7-5d46e97abbe3
     <Text>k__BackingField: Hello There
-    <NodeChildren>k__BackingField: []
+    <NodeChildren>k__BackingField:
+    - 100cd578-bcaa-48c1-a378-1236a615dee8
     RectPosition:
       serializedVersion: 2
       x: 353
@@ -53,3 +54,4 @@ MonoBehaviour:
       y: 122
       width: 200
       height: 100
+  <DefaultCanvasSize>k__BackingField: {x: 4000, y: 4000}
