@@ -46,7 +46,7 @@ MonoBehaviour:
       width: 200
       height: 100
   - <UUID>k__BackingField: 100cd578-bcaa-48c1-a378-1236a615dee8
-    <Text>k__BackingField: 
+    <Text>k__BackingField: Go Away
     <NodeChildren>k__BackingField: []
     RectPosition:
       serializedVersion: 2
