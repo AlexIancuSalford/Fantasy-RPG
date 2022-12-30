@@ -17,12 +17,6 @@ namespace RPG.Dialogue
         // Add a field to store the dictionary
         private Dictionary<string, Node> nodesByUUID = new Dictionary<string, Node>();
 
-#if UNITY_EDITOR
-        private void Awake()
-        {
-        }
-#endif
-
         // Use OnValidate to build the dictionary when the scriptable object is changed in the Unity editor
         private void OnValidate()
         {
@@ -38,13 +32,13 @@ namespace RPG.Dialogue
                 BuildDictionary();
             }
 
-            if (parentNode.NodeChildren == null)
+            if (parentNode.GetNodeChildren() == null)
             {
                 yield break;
             }
 
             // Use the dictionary to look up the nodes by their UUID
-            foreach (string childID in parentNode.NodeChildren)
+            foreach (string childID in parentNode.GetNodeChildren())
             {
                 Node childNode;
                 if (nodesByUUID.TryGetValue(childID, out childNode))
@@ -78,8 +72,13 @@ namespace RPG.Dialogue
 
             if (parent != null)
             {
-                parent.NodeChildren.Add(node.name);
+                parent.GetNodeChildren().Add(node.name);
             }
+
+#if UNITY_EDITOR
+            // Record an undo operation, so the add or delete operation can be undone by CTRL-Z
+            Undo.RecordObject(this, "Add/Delete Dialog Node");
+#endif
 
             Nodes.Add(node);
             OnValidate();
@@ -87,12 +86,15 @@ namespace RPG.Dialogue
 
         public void DeleteNode(Node node)
         {
+#if UNITY_EDITOR
+            Undo.RecordObject(this, "Delete Dialogue node");
+#endif
             Nodes.Remove(node);
             OnValidate();
 
             foreach (Node listNode in Nodes)
             {
-                listNode.NodeChildren.Remove(node.name);
+                listNode.GetNodeChildren().Remove(node.name);
             }
 #if UNITY_EDITOR
             Undo.DestroyObjectImmediate(node);
@@ -103,7 +105,10 @@ namespace RPG.Dialogue
         {
             if (Nodes.Count == 0)
             {
-                CreateNode(null);
+                Node newNode = CreateInstance<Node>();
+                newNode.name = Guid.NewGuid().ToString();
+                Nodes.Add(newNode);
+                OnValidate();
             }
 
 #if UNITY_EDITOR
