@@ -7,7 +7,7 @@ using UnityEngine;
 namespace RPG.Dialogue
 {
     [CreateAssetMenu(fileName = "Dialogue", menuName = "Scriptable Object/Dialogue")]
-    public class Dialogue : ScriptableObject
+    public class Dialogue : ScriptableObject, ISerializationCallbackReceiver
     {
         [field : SerializeField] public List<Node> Nodes { get; private set; } = new List<Node>();
         [field : SerializeField] public Vector2 DefaultCanvasSize { get; private set; } = new Vector2(4000, 4000);
@@ -18,12 +18,6 @@ namespace RPG.Dialogue
 #if UNITY_EDITOR
         private void Awake()
         {
-            if (Nodes.Count == 0)
-            {
-                CreateNode(null);
-            }
-
-            OnValidate();
         }
 #endif
 
@@ -98,6 +92,30 @@ namespace RPG.Dialogue
             }
 
             Undo.DestroyObjectImmediate(node);
+        }
+
+        public void OnBeforeSerialize()
+        {
+            if (Nodes.Count == 0)
+            {
+                CreateNode(null);
+            }
+
+            if (AssetDatabase.GetAssetPath(this) != "")
+            {
+                foreach (Node node in Nodes)
+                {
+                    if (AssetDatabase.GetAssetPath(node) == "")
+                    {
+                        AssetDatabase.AddObjectToAsset(node, this);
+                    }
+                }
+            }
+        }
+
+        public void OnAfterDeserialize()
+        {
+            
         }
     }
 }
