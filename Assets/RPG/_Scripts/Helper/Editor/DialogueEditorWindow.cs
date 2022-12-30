@@ -1,6 +1,6 @@
+using RPG.Dialogue;
 using System;
 using System.Linq;
-using RPG.Dialogue;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -11,10 +11,13 @@ namespace RPG.Helper
     public class DialogueEditorWindow : EditorWindow
     {
         private DialogueObject Dialogue { get; set; } = null;
-        private GUIStyle NodeStyle { get; set; } = new GUIStyle();
-        private static string WindowTitle { get; set; } = "Dialogue Editor";
-        private Node SelectedNode { get; set; } = null;
-        private Vector2 Offset { get; set; } = new Vector2();
+        [field : NonSerialized] private GUIStyle NodeStyle { get; set; } = new GUIStyle();
+        [field : NonSerialized] private static string WindowTitle { get; set; } = "Dialogue Editor";
+        [field : NonSerialized] private Node SelectedNode { get; set; } = null;
+        [field : NonSerialized] private Vector2 Offset { get; set; } = new Vector2();
+        
+        [NonSerialized] private Node newNode = null;
+        [NonSerialized] private Node deleteNode = null;
 
         [MenuItem("Window/Dialogue/Dialogue Editor")]
         public static void ShowEditorWindow()
@@ -60,6 +63,9 @@ namespace RPG.Helper
                 OnGUINode(node);
                 DrawConnections(node);
             }
+
+            ProcessDialogAction(ref newNode, Node.ActionType.Add);
+            ProcessDialogAction(ref deleteNode, Node.ActionType.Delete);
         }
 
         private void ProcessEvents()
@@ -74,6 +80,7 @@ namespace RPG.Helper
                     break;
                 case EventType.MouseUp when SelectedNode != null:
                     SelectedNode = null;
+                    EditorUtility.SetDirty(Dialogue);
                     break;
                 case EventType.MouseDrag when SelectedNode != null:
                     Undo.RecordObject(Dialogue, "Move Dialogue Node");
@@ -89,16 +96,16 @@ namespace RPG.Helper
 
             EditorGUI.BeginChangeCheck();
 
-            EditorGUILayout.LabelField("Node:", EditorStyles.whiteLabel);
-            string newUUID = EditorGUILayout.TextField(node.UUID);
             string newText = EditorGUILayout.TextField(node.Text);
 
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(Dialogue, "Update Dialog");
                 node.Text = newText;
-                node.UUID = newUUID;
+                EditorUtility.SetDirty(Dialogue);
             }
+
+            DrawButtons(node);
 
             GUILayout.EndArea();
         }
@@ -151,6 +158,42 @@ namespace RPG.Helper
             offset.x *= .8f;
 
             return offset;
+        }
+
+        private void ProcessDialogAction(ref Node node, Node.ActionType actionType)
+        {
+            if (node == null) { return; }
+
+            Undo.RecordObject(Dialogue, "Add/Delete Dialog Node");
+
+            switch (actionType)
+            {
+                case Node.ActionType.Add:
+                    Dialogue.CreateNode(node);
+                    break;
+                case Node.ActionType.Delete:
+                    Dialogue.DeleteNode(node);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(actionType), actionType, null);
+            }
+
+            EditorUtility.SetDirty(Dialogue);
+            node = null;
+        }
+
+        private void DrawButtons(Node node)
+        {
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("Del Node"))
+            {
+                deleteNode = node;
+            }
+            if (GUILayout.Button("Add Node"))
+            {
+                newNode = node;
+            }
+            GUILayout.EndHorizontal();
         }
     }
 }
