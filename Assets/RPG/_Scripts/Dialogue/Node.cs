@@ -21,8 +21,9 @@ namespace RPG.Dialogue
 #if UNITY_EDITOR
             // Record an undo operation for moving the node
             Undo.RecordObject(this, "Move Dialogue Node");
-#endif
             rectPosition.position = newPosition;
+            EditorUtility.SetDirty(this);
+#endif
         }
 
         public void SetText(string newText)
@@ -33,8 +34,9 @@ namespace RPG.Dialogue
 #if UNITY_EDITOR
                 // Record undo operation
                 Undo.RecordObject(this, "Update Dialog Text");
-#endif
                 Text = newText;
+                EditorUtility.SetDirty(this);
+#endif
             }
         }
 
@@ -47,16 +49,18 @@ namespace RPG.Dialogue
         {
 #if UNITY_EDITOR
             Undo.RecordObject(this, "Add Dialogue Link");
-#endif
             NodeChildren.Add(childID);
+            EditorUtility.SetDirty(this);
+#endif
         }
 
         public void RemoveNodeChild(string childID)
         {
 #if UNITY_EDITOR
             Undo.RecordObject(this, "Remove Dialogue Link");
-#endif
             NodeChildren.Remove(childID);
+            EditorUtility.SetDirty(this);
+#endif
         }
 
         public enum ActionType
