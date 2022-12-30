@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace RPG.Dialogue
@@ -18,11 +20,7 @@ namespace RPG.Dialogue
         {
             if (Nodes.Count == 0)
             {
-                Node rootNode = new Node()
-                {
-                    UUID = System.Guid.NewGuid().ToString()
-                };
-                Nodes.Add(rootNode);
+                CreateNode(null);
             }
 
             OnValidate();
@@ -68,19 +66,23 @@ namespace RPG.Dialogue
             if (nodesByUUID != null) { nodesByUUID.Clear(); }
             else { nodesByUUID = new Dictionary<string, Node>(); }
 
-            foreach (Node node in Nodes)
+            foreach (var node in Nodes.Where(node => node != null))
             {
-                nodesByUUID[node.UUID] = node;
+                nodesByUUID[node.name] = node;
             }
         }
 
-        public void CreateNode(Node newNode)
+        public void CreateNode(Node parent)
         {
-            Node node = new Node()
+            Node node = CreateInstance<Node>();
+            node.name = Guid.NewGuid().ToString();
+            Undo.RegisterCreatedObjectUndo(node, "Created Dialogue Node");
+
+            if (parent != null)
             {
-                UUID = Guid.NewGuid().ToString(),
-            };
-            newNode.NodeChildren.Add(node.UUID);
+                parent.NodeChildren.Add(node.name);
+            }
+
             Nodes.Add(node);
             OnValidate();
         }
@@ -92,8 +94,10 @@ namespace RPG.Dialogue
 
             foreach (Node listNode in Nodes)
             {
-                listNode.NodeChildren.Remove(node.UUID);
+                listNode.NodeChildren.Remove(node.name);
             }
+
+            Undo.DestroyObjectImmediate(node);
         }
     }
 }
