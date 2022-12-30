@@ -13,6 +13,32 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   <Nodes>k__BackingField:
-  - <UUID>k__BackingField: 
-    <Text>k__BackingField: 
+  - <UUID>k__BackingField: e7b76602-95d3-440c-9884-69f64f2db16b
+    <Text>k__BackingField: Hello
+    <NodeChildren>k__BackingField:
+    - a2a84a86-ff26-4f50-84e7-5d46e97abbe3
+    - 7643a2d1-1a35-482b-8c58-4242c850f132
+    RectPosition:
+      serializedVersion: 2
+      x: 43.999985
+      y: 124
+      width: 200
+      height: 100
+  - <UUID>k__BackingField: a2a84a86-ff26-4f50-84e7-5d46e97abbe3
+    <Text>k__BackingField: Hello There
     <NodeChildren>k__BackingField: []
+    RectPosition:
+      serializedVersion: 2
+      x: 481
+      y: 48
+      width: 200
+      height: 100
+  - <UUID>k__BackingField: 7643a2d1-1a35-482b-8c58-4242c850f132
+    <Text>k__BackingField: Fuck Off
+    <NodeChildren>k__BackingField: []
+    RectPosition:
+      serializedVersion: 2
+      x: 483
+      y: 253.99997
+      width: 200
+      height: 100

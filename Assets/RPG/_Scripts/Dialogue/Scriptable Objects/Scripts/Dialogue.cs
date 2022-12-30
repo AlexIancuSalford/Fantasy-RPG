@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,14 +10,18 @@ namespace RPG.Dialogue
         [field : SerializeField] public List<Node> Nodes { get; private set; } = new List<Node>();
 
         // Add a field to store the dictionary
-        private Dictionary<string, Node> nodesByUUID = null;
+        private Dictionary<string, Node> nodesByUUID = new Dictionary<string, Node>();
 
 #if UNITY_EDITOR
         private void Awake()
         {
             if (Nodes.Count == 0)
             {
-                Nodes.Add(new Node());
+                Node rootNode = new Node()
+                {
+                    UUID = System.Guid.NewGuid().ToString()
+                };
+                Nodes.Add(rootNode);
             }
 
             OnValidate();
@@ -36,6 +41,11 @@ namespace RPG.Dialogue
             {
                 // If not, build the dictionary
                 BuildDictionary();
+            }
+
+            if (parentNode.NodeChildren == null)
+            {
+                yield break;
             }
 
             // Use the dictionary to look up the nodes by their UUID
@@ -60,6 +70,28 @@ namespace RPG.Dialogue
             foreach (Node node in Nodes)
             {
                 nodesByUUID[node.UUID] = node;
+            }
+        }
+
+        public void CreateNode(Node newNode)
+        {
+            Node node = new Node()
+            {
+                UUID = Guid.NewGuid().ToString(),
+            };
+            newNode.NodeChildren.Add(node.UUID);
+            Nodes.Add(node);
+            OnValidate();
+        }
+
+        public void DeleteNode(Node node)
+        {
+            Nodes.Remove(node);
+            OnValidate();
+
+            foreach (Node listNode in Nodes)
+            {
+                listNode.NodeChildren.Remove(node.UUID);
             }
         }
     }
