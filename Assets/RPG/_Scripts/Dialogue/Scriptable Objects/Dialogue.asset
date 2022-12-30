@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8267168228265962095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: e6a4576c-a441-4de8-8177-b1d94150f595
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 00b2b76c-7829-47ab-a6ff-726f65227bf5
+  - ceb4f3c2-e0df-47d0-9001-c41d40820d53
+  <Text>k__BackingField: 
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 894
+    y: 217.99998
+    width: 200
+    height: 100
 --- !u!114 &-6261991382375215729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,11 +35,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
   m_Name: 32a59acb-c30f-49e8-844e-85ef96840db5
   m_EditorClassIdentifier: 
-  <NodeChildren>k__BackingField: []
+  <NodeChildren>k__BackingField:
+  - c7e1c4c1-2c4a-42ed-b738-8da6aecb4727
   <Text>k__BackingField: Hello to you too
+  <CurrentSpeaker>k__BackingField: 1
   rectPosition:
     serializedVersion: 2
     x: 394
+    y: 217.99998
+    width: 200
+    height: 100
+--- !u!114 &-1530077292582886147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 00b2b76c-7829-47ab-a6ff-726f65227bf5
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField: []
+  <Text>k__BackingField: 
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 1144
     y: 217.99998
     width: 200
     height: 100
@@ -36,7 +82,37 @@ MonoBehaviour:
   - {fileID: 2491152515434616935}
   - {fileID: -6261991382375215729}
   - {fileID: 4454449971990141032}
+  - {fileID: 2333731223453852474}
+  - {fileID: -8267168228265962095}
+  - {fileID: -1530077292582886147}
+  - {fileID: 7310354823991757609}
+  - {fileID: 4621053527177518265}
+  - {fileID: 8580142771531947990}
+  - {fileID: 6809004825489970199}
   <DefaultCanvasSize>k__BackingField: {x: 4000, y: 4000}
+  <NewNodeOffset>k__BackingField: {x: 250, y: 0}
+--- !u!114 &2333731223453852474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: c7e1c4c1-2c4a-42ed-b738-8da6aecb4727
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - e6a4576c-a441-4de8-8177-b1d94150f595
+  <Text>k__BackingField: 
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 644
+    y: 217.99998
+    width: 200
+    height: 100
 --- !u!114 &2491152515434616935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,6 +129,7 @@ MonoBehaviour:
   - 32a59acb-c30f-49e8-844e-85ef96840db5
   - c5cfe7b5-6cb9-44e2-8861-63a53b766eed
   <Text>k__BackingField: Hello
+  <CurrentSpeaker>k__BackingField: 0
   rectPosition:
     serializedVersion: 2
     x: 67
@@ -73,10 +150,98 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <NodeChildren>k__BackingField:
   - 003b819a-ab7d-4eca-87a5-9d0929dfe824
+  - 7ebdb2f0-8956-4176-b298-b289bc32ee9f
   <Text>k__BackingField: Fuck Off
+  <CurrentSpeaker>k__BackingField: 1
   rectPosition:
     serializedVersion: 2
     x: 389
     y: 36
+    width: 200
+    height: 100
+--- !u!114 &4621053527177518265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 7ebdb2f0-8956-4176-b298-b289bc32ee9f
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - bbcc091a-37e9-4ad4-a9a1-5b3ef8eacdff
+  - e135c735-5d84-45a4-a51e-b737fac53385
+  <Text>k__BackingField: 
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 639
+    y: 36
+    width: 200
+    height: 100
+--- !u!114 &6809004825489970199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: e135c735-5d84-45a4-a51e-b737fac53385
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField: []
+  <Text>k__BackingField: 
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 899
+    y: 5
+    width: 200
+    height: 100
+--- !u!114 &7310354823991757609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: ceb4f3c2-e0df-47d0-9001-c41d40820d53
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField: []
+  <Text>k__BackingField: 
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 1144
+    y: 97
+    width: 200
+    height: 100
+--- !u!114 &8580142771531947990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: bbcc091a-37e9-4ad4-a9a1-5b3ef8eacdff
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField: []
+  <Text>k__BackingField: 
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 898
+    y: 114
     width: 200
     height: 100

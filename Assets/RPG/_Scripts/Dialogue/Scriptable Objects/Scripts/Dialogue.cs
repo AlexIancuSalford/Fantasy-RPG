@@ -13,6 +13,7 @@ namespace RPG.Dialogue
     {
         [field : SerializeField] public List<Node> Nodes { get; private set; } = new List<Node>();
         [field : SerializeField] public Vector2 DefaultCanvasSize { get; private set; } = new Vector2(4000, 4000);
+        [field: SerializeField] public Vector2 NewNodeOffset { get; private set; } = new Vector2(250, 0);
 
         // Add a field to store the dictionary
         private Dictionary<string, Node> nodesByUUID = new Dictionary<string, Node>();
@@ -72,7 +73,15 @@ namespace RPG.Dialogue
 
             if (parent != null)
             {
-                parent.GetNodeChildren().Add(node.name);
+                parent.AddNodeChild(node.name);
+                Node.Speaker newSpeaker = parent.CurrentSpeaker switch
+                {
+                    Node.Speaker.Player => Node.Speaker.Other,
+                    Node.Speaker.Other => Node.Speaker.Player,
+                    _ => Node.Speaker.Other
+                };
+                node.SetSpeaker(newSpeaker);
+                node.SetRectPosition(parent.GetRect().position + NewNodeOffset);
             }
 
 #if UNITY_EDITOR
