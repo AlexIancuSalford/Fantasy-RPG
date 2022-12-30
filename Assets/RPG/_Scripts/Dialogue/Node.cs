@@ -7,7 +7,8 @@ namespace RPG.Dialogue
     public class Node : ScriptableObject
     {
         [field : SerializeField] private List<string> NodeChildren { get; set; } = new List<string>();
-        [field: SerializeField] public string Text { get; private set; } = string.Empty;
+        [field : SerializeField] public string Text { get; private set; } = string.Empty;
+        [field : SerializeField] public Speaker CurrentSpeaker { get; set; } = Speaker.Other;
 
         [SerializeField] private Rect rectPosition = new Rect(0, 0, 200, 100);
 
@@ -63,10 +64,25 @@ namespace RPG.Dialogue
 #endif
         }
 
+        public void SetSpeaker(Speaker newSpeaker)
+        {
+#if UNITY_EDITOR
+            Undo.RecordObject(this, "Change Dialogue Speaker");
+            CurrentSpeaker = newSpeaker;
+            EditorUtility.SetDirty(this);
+#endif
+        }
+
         public enum ActionType
         {
             Add,
             Delete,
+        }
+
+        public enum Speaker
+        {
+            Player,
+            Other,
         }
     }
 }

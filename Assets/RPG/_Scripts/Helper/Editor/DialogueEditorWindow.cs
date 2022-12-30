@@ -36,6 +36,11 @@ namespace RPG.Helper
         [field : NonSerialized] private GUIStyle NodeStyle { get; set; } = new GUIStyle();
 
         /// <summary>
+        /// The style for the nodes where the player is speaking
+        /// </summary>
+        [field: NonSerialized] private GUIStyle PlayerNodeStyle { get; set; } = new GUIStyle();
+
+        /// <summary>
         /// The title of the window
         /// </summary>
         [field : NonSerialized] private static string WindowTitle { get; set; } = "Dialogue Editor";
@@ -210,8 +215,14 @@ namespace RPG.Helper
         /// <param name="node">The node to draw.</param>
         private void OnGUINode(Node node)
         {
+            GUIStyle style = node.CurrentSpeaker switch
+            {
+                Node.Speaker.Player => PlayerNodeStyle,
+                _ => NodeStyle
+            };
+
             // Begins drawing a node based on the node style defined
-            GUILayout.BeginArea(node.GetRect(), NodeStyle);
+            GUILayout.BeginArea(node.GetRect(), style);
 
             // Change the nodes' text to be the text in the text field
             node.SetText(EditorGUILayout.TextField(node.Text));
@@ -244,7 +255,26 @@ namespace RPG.Helper
                 12
             );
             // Set node text color
-            NodeStyle.normal.textColor = Color.white;
+            PlayerNodeStyle.normal.textColor = Color.white;
+
+            // Set the node style to use the default label style
+            PlayerNodeStyle.normal.background = EditorGUIUtility.Load("node1") as Texture2D;
+            // Set node padding
+            PlayerNodeStyle.padding = new RectOffset(
+                20,
+                20,
+                20,
+                20
+            );
+            // Set node border
+            PlayerNodeStyle.border = new RectOffset(
+                12,
+                12,
+                12,
+                12
+            );
+            // Set node text color
+            PlayerNodeStyle.normal.textColor = Color.white;
         }
 
         /// <summary>
