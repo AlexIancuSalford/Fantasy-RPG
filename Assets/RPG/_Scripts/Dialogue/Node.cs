@@ -3,10 +3,8 @@ using UnityEngine;
 
 namespace RPG.Dialogue
 {
-    [System.Serializable]
-    public class Node
+    public class Node : ScriptableObject
     {
-        [field : SerializeField] public string UUID { get; set; } = string.Empty;
         [field : SerializeField] public string Text { get; set; } = string.Empty;
         [field : SerializeField] public List<string> NodeChildren { get; private set; } = new List<string>();
         
