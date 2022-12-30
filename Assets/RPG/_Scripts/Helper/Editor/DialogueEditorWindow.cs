@@ -23,6 +23,8 @@ namespace RPG.Helper
         [NonSerialized] private bool IsDraggingCanvas = false;
         [NonSerialized] private Vector2 CanvasOffset = new();
 
+        private const float backgroundSize = 50;
+
         [MenuItem("Window/Dialogue/Dialogue Editor")]
         public static void ShowEditorWindow()
         {
@@ -63,7 +65,16 @@ namespace RPG.Helper
             ProcessEvents();
 
             ScrollPosition = EditorGUILayout.BeginScrollView(ScrollPosition);
-            GUILayoutUtility.GetRect(Dialogue.DefaultCanvasSize.x, Dialogue.DefaultCanvasSize.y);
+            
+            Rect canvas = GUILayoutUtility.GetRect(Dialogue.DefaultCanvasSize.x, Dialogue.DefaultCanvasSize.y);
+            Texture2D texture = Resources.Load("background") as Texture2D;
+            Rect textureCoordinates = new Rect(
+                0, 
+                0, 
+                Dialogue.DefaultCanvasSize.x/backgroundSize, 
+                Dialogue.DefaultCanvasSize.y/backgroundSize);
+            
+            GUI.DrawTextureWithTexCoords(canvas, texture, textureCoordinates);
 
             foreach (Node node in Dialogue.Nodes)
             {
