@@ -72,7 +72,9 @@ namespace RPG.Dialogue
         {
             Node node = CreateInstance<Node>();
             node.name = Guid.NewGuid().ToString();
+#if UNITY_EDITOR
             Undo.RegisterCreatedObjectUndo(node, "Created Dialogue Node");
+#endif
 
             if (parent != null)
             {
@@ -92,8 +94,9 @@ namespace RPG.Dialogue
             {
                 listNode.NodeChildren.Remove(node.name);
             }
-
+#if UNITY_EDITOR
             Undo.DestroyObjectImmediate(node);
+#endif
         }
 
         public void OnBeforeSerialize()
@@ -103,6 +106,7 @@ namespace RPG.Dialogue
                 CreateNode(null);
             }
 
+#if UNITY_EDITOR
             if (AssetDatabase.GetAssetPath(this) != "")
             {
                 foreach (Node node in Nodes)
@@ -113,6 +117,7 @@ namespace RPG.Dialogue
                     }
                 }
             }
+#endif
         }
 
         public void OnAfterDeserialize()
