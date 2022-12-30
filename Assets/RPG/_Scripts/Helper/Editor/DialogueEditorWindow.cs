@@ -58,6 +58,7 @@ namespace RPG.Helper
             foreach (Node node in Dialogue.Nodes)
             {
                 OnGUINode(node);
+                DrawConnections(node);
             }
         }
 
@@ -99,11 +100,6 @@ namespace RPG.Helper
                 node.UUID = newUUID;
             }
 
-            foreach (Node childNode in Dialogue.GetAllNodeChildren(node))
-            {
-                EditorGUILayout.LabelField(childNode.Text);
-            }
-
             GUILayout.EndArea();
         }
 
@@ -128,6 +124,33 @@ namespace RPG.Helper
         private Node GetNodeAtPosition(Vector2 mousePosition)
         {
             return Dialogue.Nodes.LastOrDefault(node => node.RectPosition.Contains(mousePosition));
+        }
+
+        private void DrawConnections(Node node)
+        {
+            Vector3 startPos = new Vector3(node.RectPosition.xMax, node.RectPosition.center.y);
+            foreach (Node childNode in Dialogue.GetAllNodeChildren(node))
+            {
+                Vector3 endPos = new Vector3(childNode.RectPosition.xMin, childNode.RectPosition.center.y);
+                Vector3 offset = CalculateOffset(startPos, endPos);
+                Handles.DrawBezier(
+                    startPos, 
+                    endPos, 
+                    startPos + offset, 
+                    endPos - offset, 
+                    Color.white, 
+                    null, 
+                    4f);
+            }
+        }
+
+        private Vector3 CalculateOffset(Vector3 startPos, Vector3 endPos)
+        {
+            Vector3 offset = endPos - startPos;
+            offset.y = 0;
+            offset.x *= .8f;
+
+            return offset;
         }
     }
 }

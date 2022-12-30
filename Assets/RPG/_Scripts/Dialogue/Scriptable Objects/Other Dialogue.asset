@@ -15,11 +15,13 @@ MonoBehaviour:
   <Nodes>k__BackingField:
   - <UUID>k__BackingField: Node 1
     <Text>k__BackingField: Just to test
-    <NodeChildren>k__BackingField: []
+    <NodeChildren>k__BackingField:
+    - Node 2
+    - Node 3
     RectPosition:
       serializedVersion: 2
-      x: 607
-      y: 82
+      x: 155.99998
+      y: 119
       width: 200
       height: 100
   - <UUID>k__BackingField: Node 2
@@ -27,8 +29,8 @@ MonoBehaviour:
     <NodeChildren>k__BackingField: []
     RectPosition:
       serializedVersion: 2
-      x: 79
-      y: 200.00002
+      x: 544
+      y: 232.00003
       width: 200
       height: 100
   - <UUID>k__BackingField: Node 3
@@ -36,7 +38,7 @@ MonoBehaviour:
     <NodeChildren>k__BackingField: []
     RectPosition:
       serializedVersion: 2
-      x: 383
-      y: 33.00001
+      x: 541
+      y: 55.000015
       width: 200
       height: 100
