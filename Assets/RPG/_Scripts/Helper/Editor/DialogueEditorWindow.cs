@@ -11,14 +11,17 @@ namespace RPG.Helper
     public class DialogueEditorWindow : EditorWindow
     {
         private DialogueObject Dialogue { get; set; } = null;
+        private Vector2 ScrollPosition { get; set; } = new Vector2();
         [field : NonSerialized] private GUIStyle NodeStyle { get; set; } = new GUIStyle();
         [field : NonSerialized] private static string WindowTitle { get; set; } = "Dialogue Editor";
         [field : NonSerialized] private Node SelectedNode { get; set; } = null;
         [field : NonSerialized] private Vector2 Offset { get; set; } = new Vector2();
-        
+
         [NonSerialized] private Node newNode = null;
         [NonSerialized] private Node deleteNode = null;
-        [NonSerialized] private Node linkParentNode = null; 
+        [NonSerialized] private Node linkParentNode = null;
+        [NonSerialized] private bool IsDraggingCanvas = false;
+        [NonSerialized] private Vector2 CanvasOffset = new();
 
         [MenuItem("Window/Dialogue/Dialogue Editor")]
         public static void ShowEditorWindow()
@@ -59,11 +62,16 @@ namespace RPG.Helper
 
             ProcessEvents();
 
+            ScrollPosition = EditorGUILayout.BeginScrollView(ScrollPosition);
+            GUILayoutUtility.GetRect(Dialogue.DefaultCanvasSize.x, Dialogue.DefaultCanvasSize.y);
+
             foreach (Node node in Dialogue.Nodes)
             {
                 OnGUINode(node);
                 DrawConnections(node);
             }
+
+            EditorGUILayout.EndScrollView();
 
             ProcessDialogAction(ref newNode, Node.ActionType.Add);
             ProcessDialogAction(ref deleteNode, Node.ActionType.Delete);
@@ -74,19 +82,36 @@ namespace RPG.Helper
             switch (Event.current.type)
             {
                 case EventType.MouseDown when SelectedNode == null:
-                    SelectedNode = GetNodeAtPosition(Event.current.mousePosition);
-                    Offset = SelectedNode != null
-                        ? SelectedNode.RectPosition.position - Event.current.mousePosition
-                        : Vector2.zero;
+                {
+                    SelectedNode = GetNodeAtPosition(Event.current.mousePosition + ScrollPosition);
+                    if (SelectedNode != null)
+                    {
+                        Offset = SelectedNode.RectPosition.position - Event.current.mousePosition;
+                    }
+                    else
+                    {
+                        IsDraggingCanvas = true;
+                        CanvasOffset = Event.current.mousePosition + ScrollPosition;
+                    }
+
+                    break;
+                }
+                case EventType.MouseDrag when SelectedNode != null:
+                    Undo.RecordObject(Dialogue, "Move Dialogue Node");
+                    SelectedNode.RectPosition.position = Event.current.mousePosition + Offset;
+                    GUI.changed = true;
+                    break;
+                case EventType.MouseDrag when IsDraggingCanvas:
+                    ScrollPosition = CanvasOffset - Event.current.mousePosition;
+                    GUI.changed = true;
                     break;
                 case EventType.MouseUp when SelectedNode != null:
                     SelectedNode = null;
                     EditorUtility.SetDirty(Dialogue);
                     break;
-                case EventType.MouseDrag when SelectedNode != null:
-                    Undo.RecordObject(Dialogue, "Move Dialogue Node");
-                    SelectedNode.RectPosition.position = Event.current.mousePosition + Offset;
-                    GUI.changed = true;
+                case EventType.MouseUp when IsDraggingCanvas:
+                    IsDraggingCanvas = false;
+                    EditorUtility.SetDirty(Dialogue);
                     break;
             }
         }

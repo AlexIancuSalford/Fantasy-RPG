@@ -8,6 +8,7 @@ namespace RPG.Dialogue
     public class Dialogue : ScriptableObject
     {
         [field : SerializeField] public List<Node> Nodes { get; private set; } = new List<Node>();
+        [field : SerializeField] public Vector2 DefaultCanvasSize { get; private set; } = new Vector2(4000, 4000);
 
         // Add a field to store the dictionary
         private Dictionary<string, Node> nodesByUUID = new Dictionary<string, Node>();
