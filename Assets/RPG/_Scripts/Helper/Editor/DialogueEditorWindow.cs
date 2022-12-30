@@ -164,7 +164,7 @@ namespace RPG.Helper
                     // Calculate the offset between the mouse position and the position of the selected node
                     if (SelectedNode != null)
                     {
-                        Offset = SelectedNode.RectPosition.position - Event.current.mousePosition;
+                        Offset = SelectedNode.GetRect().position - Event.current.mousePosition;
                         Selection.activeObject = SelectedNode;
                     }
                     else
@@ -179,10 +179,8 @@ namespace RPG.Helper
                 }
                 // When the user is dragging a node
                 case EventType.MouseDrag when SelectedNode != null:
-                    // Record an undo operation for moving the node
-                    Undo.RecordObject(Dialogue, "Move Dialogue Node");
                     // Update the position of the selected node
-                    SelectedNode.RectPosition.position = Event.current.mousePosition + Offset;
+                    SelectedNode.SetRectPosition(Event.current.mousePosition + Offset);
                     GUI.changed = true;
                     break;
                 // When the user is dragging on the canvas
@@ -213,22 +211,10 @@ namespace RPG.Helper
         private void OnGUINode(Node node)
         {
             // Begins drawing a node based on the node style defined
-            GUILayout.BeginArea(node.RectPosition, NodeStyle);
+            GUILayout.BeginArea(node.GetRect(), NodeStyle);
 
-            EditorGUI.BeginChangeCheck();
-
-            // Record the user input in the nodes' text field
-            string newText = EditorGUILayout.TextField(node.Text);
-
-            // Check if the node has changed
-            if (EditorGUI.EndChangeCheck())
-            {
-                // Record undo operation
-                Undo.RecordObject(Dialogue, "Update Dialog");
-                // Change the nodes' text to be the text in the text field
-                node.Text = newText;
-                EditorUtility.SetDirty(Dialogue);
-            }
+            // Change the nodes' text to be the text in the text field
+            node.SetText(EditorGUILayout.TextField(node.Text));
 
             // Draw the buttons on the node
             DrawButtons(node);
@@ -268,7 +254,7 @@ namespace RPG.Helper
         /// <returns>The node at the position, or null if there is no node at the position.</returns>
         private Node GetNodeAtPosition(Vector2 mousePosition)
         {
-            return Dialogue.Nodes.LastOrDefault(node => node.RectPosition.Contains(mousePosition));
+            return Dialogue.Nodes.LastOrDefault(node => node.GetRect().Contains(mousePosition));
         }
 
         /// <summary>
@@ -278,13 +264,13 @@ namespace RPG.Helper
         private void DrawConnections(Node node)
         {
             // Calculate the position of the parent node in the scroll view
-            Vector3 startPos = new Vector3(node.RectPosition.xMax, node.RectPosition.center.y);
+            Vector3 startPos = new Vector3(node.GetRect().xMax, node.GetRect().center.y);
             
             // Draw a line to each child node
             foreach (Node childNode in Dialogue.GetAllNodeChildren(node))
             {
                 // Calculate the position of the child node in the scroll view
-                Vector3 endPos = new Vector3(childNode.RectPosition.xMin, childNode.RectPosition.center.y);
+                Vector3 endPos = new Vector3(childNode.GetRect().xMin, childNode.GetRect().center.y);
                 // Calculate the offset from the mouses' position to the center of the node
                 // This is done so, when the node is dragged, it is dragged from the click position
                 Vector3 offset = CalculateOffset(startPos, endPos);
@@ -326,9 +312,6 @@ namespace RPG.Helper
             // If the user is not adding or deleting a node, return
             if (node == null) { return; }
 
-            // Record an undo operation, so the add or delete operation can be undone by CTRL-Z
-            Undo.RecordObject(Dialogue, "Add/Delete Dialog Node");
-
             // Add or delete the node
             switch (actionType)
             {
@@ -341,8 +324,7 @@ namespace RPG.Helper
                 default:
                     throw new ArgumentOutOfRangeException(nameof(actionType), actionType, null);
             }
-
-            EditorUtility.SetDirty(Dialogue);
+            
             // Set the node to null, since it is passed in as reference
             node = null;
         }
@@ -394,18 +376,16 @@ namespace RPG.Helper
                     linkParentNode = null;
                 }
             }
-            else if (linkParentNode.NodeChildren.Contains(node.name))
+            else if (linkParentNode.GetNodeChildren().Contains(node.name))
             {
                 if (!GUILayout.Button("Unlink")) { return; }
-                Undo.RecordObject(Dialogue, "Remove Dialogue Link");
-                linkParentNode.NodeChildren.Remove(node.name);
+                linkParentNode.RemoveNodeChild(node.name);
                 linkParentNode = null;
             }
             else
             {
                 if (!GUILayout.Button("Child")) { return; }
-                Undo.RecordObject(Dialogue, "Add Dialogue Link");
-                linkParentNode.NodeChildren.Add(node.name);
+                linkParentNode.AddNodeChild(node.name);
                 linkParentNode = null;
             }
         }

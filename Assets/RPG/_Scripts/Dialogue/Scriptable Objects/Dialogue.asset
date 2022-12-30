@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
   m_Name: 32a59acb-c30f-49e8-844e-85ef96840db5
   m_EditorClassIdentifier: 
-  <Text>k__BackingField: Hello to you too
   <NodeChildren>k__BackingField: []
-  RectPosition:
+  <Text>k__BackingField: Hello to you too
+  rectPosition:
     serializedVersion: 2
-    x: 436
-    y: 26
+    x: 394
+    y: 217.99998
     width: 200
     height: 100
 --- !u!114 &11400000
@@ -49,14 +49,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
   m_Name: ac03ddb0-db2c-49de-b9ae-6c2af474129a
   m_EditorClassIdentifier: 
-  <Text>k__BackingField: Hello
   <NodeChildren>k__BackingField:
   - 32a59acb-c30f-49e8-844e-85ef96840db5
   - c5cfe7b5-6cb9-44e2-8861-63a53b766eed
-  RectPosition:
+  <Text>k__BackingField: Hello
+  rectPosition:
     serializedVersion: 2
-    x: 109
-    y: 119
+    x: 67
+    y: 134
     width: 200
     height: 100
 --- !u!114 &4454449971990141032
@@ -71,11 +71,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
   m_Name: c5cfe7b5-6cb9-44e2-8861-63a53b766eed
   m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 003b819a-ab7d-4eca-87a5-9d0929dfe824
   <Text>k__BackingField: Fuck Off
-  <NodeChildren>k__BackingField: []
-  RectPosition:
+  rectPosition:
     serializedVersion: 2
-    x: 436
-    y: 202.99998
+    x: 389
+    y: 36
     width: 200
     height: 100
