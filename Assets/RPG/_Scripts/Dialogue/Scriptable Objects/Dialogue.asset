@@ -17,11 +17,12 @@ MonoBehaviour:
     <Text>k__BackingField: Hello
     <NodeChildren>k__BackingField:
     - a2a84a86-ff26-4f50-84e7-5d46e97abbe3
+    - 100cd578-bcaa-48c1-a378-1236a615dee8
     - 7643a2d1-1a35-482b-8c58-4242c850f132
     RectPosition:
       serializedVersion: 2
-      x: 43.999985
-      y: 124
+      x: 21.999985
+      y: 123
       width: 200
       height: 100
   - <UUID>k__BackingField: a2a84a86-ff26-4f50-84e7-5d46e97abbe3
@@ -29,16 +30,26 @@ MonoBehaviour:
     <NodeChildren>k__BackingField: []
     RectPosition:
       serializedVersion: 2
-      x: 481
-      y: 48
+      x: 353
+      y: 27
       width: 200
       height: 100
   - <UUID>k__BackingField: 7643a2d1-1a35-482b-8c58-4242c850f132
     <Text>k__BackingField: Fuck Off
+    <NodeChildren>k__BackingField:
+    - 100cd578-bcaa-48c1-a378-1236a615dee8
+    RectPosition:
+      serializedVersion: 2
+      x: 351
+      y: 204.99997
+      width: 200
+      height: 100
+  - <UUID>k__BackingField: 100cd578-bcaa-48c1-a378-1236a615dee8
+    <Text>k__BackingField: 
     <NodeChildren>k__BackingField: []
     RectPosition:
       serializedVersion: 2
-      x: 483
-      y: 253.99997
+      x: 660
+      y: 122
       width: 200
       height: 100
