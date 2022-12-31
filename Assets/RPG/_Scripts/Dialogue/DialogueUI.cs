@@ -12,6 +12,7 @@ namespace RPG.UI
         [field : SerializeField] private TextMeshProUGUI AIText { get; set; } = null;
         [field : SerializeField] private TextMeshProUGUI SpeakerName { get; set; } = null;
         [field : SerializeField] private Button NextButton { get; set; } = null;
+        [field: SerializeField] private Button QuitButton { get; set; } = null;
         [field: SerializeField] private Transform ChoiceRoot { get; set; } = null;
         [field: SerializeField] private GameObject ChoicePrefab { get; set; } = null;
         [field: SerializeField] private GameObject AIResponce { get; set; } = null;
@@ -24,7 +25,9 @@ namespace RPG.UI
         // Start is called before the first frame update
         void Start()
         {
-            NextButton.onClick.AddListener(Next);
+            Conversation.onConversationUpdated += UpdateUI;
+            NextButton.onClick.AddListener(() => { Conversation.Next(); });
+            QuitButton.onClick.AddListener(() => { Conversation.QuitDialogue(); });
             UpdateUI();
         }
 
@@ -34,15 +37,11 @@ namespace RPG.UI
 
         }
 
-        private void Next()
-        {
-            Conversation.Next();
-            UpdateUI();
-        }
-
         private void UpdateUI()
         {
-            
+            gameObject.SetActive(Conversation.IsActive());
+            if (!Conversation.IsActive()) { return; }
+
             AIResponce.SetActive(!Conversation.IsChoosing);
             ChoiceRoot.gameObject.SetActive(Conversation.IsChoosing);
 
@@ -60,7 +59,6 @@ namespace RPG.UI
                     instance.GetComponentInChildren<Button>().onClick.AddListener(() =>
                     {
                         Conversation.SelectChoice(choice);
-                        UpdateUI();
                     });
                 }
             }

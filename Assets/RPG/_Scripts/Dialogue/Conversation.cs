@@ -1,25 +1,27 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace RPG.Dialogue
 {
     public class Conversation : MonoBehaviour
     {
-        [field : SerializeField] private Dialogue CurrentDialogue { get; set; } = null;
+        [field : SerializeField] private Dialogue TestDialogue { get; set; } = null;
 
+        private Dialogue CurrentDialogue { get; set; } = null;
         private Node CurrentDialogueNode { get; set; } = null;
         public bool IsChoosing { get; private set; } = false;
 
-        private void Awake()
-        {
-            CurrentDialogueNode = CurrentDialogue.Nodes[0];
-        }
+        public event Action onConversationUpdated;
 
         // Start is called before the first frame update
-        void Start()
+        IEnumerator Start()
         {
-
+            yield return new WaitForSeconds(2);
+            StartDialogue(TestDialogue);
         }
 
         // Update is called once per frame
@@ -38,11 +40,14 @@ namespace RPG.Dialogue
             if (CurrentDialogue.GetPlayerNodeChildren(CurrentDialogueNode).Any())
             {
                 IsChoosing = true;
+                onConversationUpdated?.Invoke();
                 return;
             }
 
             Node[] children = CurrentDialogue.GetAINodeChildren(CurrentDialogueNode).ToArray();
             CurrentDialogueNode = children[Random.Range(0, children.Length)];
+
+            onConversationUpdated?.Invoke();
         }
 
         public bool NodeHasNext()
@@ -60,6 +65,26 @@ namespace RPG.Dialogue
             CurrentDialogueNode = node;
             IsChoosing = false;
             Next();
+        }
+
+        public void StartDialogue(Dialogue newDialogue)
+        {
+            CurrentDialogue = newDialogue;
+            CurrentDialogueNode = CurrentDialogue.Nodes[0];
+            onConversationUpdated?.Invoke();
+        }
+
+        public bool IsActive()
+        {
+            return CurrentDialogue != null;
+        }
+
+        public void QuitDialogue()
+        {
+            CurrentDialogue = null;
+            CurrentDialogueNode = null;
+            IsChoosing = false;
+            onConversationUpdated?.Invoke();
         }
     }
 }
