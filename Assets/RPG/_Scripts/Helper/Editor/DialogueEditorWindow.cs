@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using static RPG.Dialogue.DialogueEnums;
 using DialogueObject = RPG.Dialogue.Dialogue;
 
 namespace RPG.Helper
@@ -149,9 +150,9 @@ namespace RPG.Helper
             EditorGUILayout.EndScrollView();
 
             // Process user actions for adding a new node
-            ProcessDialogAction(ref newNode, Node.ActionType.Add);
+            ProcessDialogAction(ref newNode, ActionType.Add);
             // Process user actions for deleting a node
-            ProcessDialogAction(ref deleteNode, Node.ActionType.Delete);
+            ProcessDialogAction(ref deleteNode, ActionType.Delete);
         }
 
         /// <summary>
@@ -217,7 +218,7 @@ namespace RPG.Helper
         {
             GUIStyle style = node.CurrentSpeaker switch
             {
-                Node.Speaker.Player => PlayerNodeStyle,
+                Speaker.Player => PlayerNodeStyle,
                 _ => NodeStyle
             };
 
@@ -337,7 +338,7 @@ namespace RPG.Helper
         /// </summary>
         /// <param name="node">The node being added or deleted.</param>
         /// <param name="actionType">The type of action being performed on the node.</param>
-        private void ProcessDialogAction(ref Node node, Node.ActionType actionType)
+        private void ProcessDialogAction(ref Node node, ActionType actionType)
         {
             // If the user is not adding or deleting a node, return
             if (node == null) { return; }
@@ -345,10 +346,10 @@ namespace RPG.Helper
             // Add or delete the node
             switch (actionType)
             {
-                case Node.ActionType.Add:
+                case ActionType.Add:
                     Dialogue.CreateNode(node);
                     break;
-                case Node.ActionType.Delete:
+                case ActionType.Delete:
                     Dialogue.DeleteNode(node);
                     break;
                 default:

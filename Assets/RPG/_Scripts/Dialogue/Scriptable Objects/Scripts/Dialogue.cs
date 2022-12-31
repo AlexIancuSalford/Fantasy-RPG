@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEditor;
 #endif
 using UnityEngine;
+using static RPG.Dialogue.DialogueEnums;
 
 namespace RPG.Dialogue
 {
@@ -101,7 +102,7 @@ namespace RPG.Dialogue
         /// <param name="currentNode">The parent node whose children are to be retrieved.</param>
         public IEnumerable<Node> GetPlayerNodeChildren(Node currentNode)
         {
-            return GetAllNodeChildren(currentNode).Where(node => node.CurrentSpeaker == Node.Speaker.Player);
+            return GetAllNodeChildren(currentNode).Where(node => node.CurrentSpeaker == Speaker.Player);
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace RPG.Dialogue
         /// <param name="currentNode">The parent node whose children are to be retrieved.</param>
         public IEnumerable<Node> GetAINodeChildren(Node currentNode)
         {
-            return GetAllNodeChildren(currentNode).Where(node => node.CurrentSpeaker == Node.Speaker.Other);
+            return GetAllNodeChildren(currentNode).Where(node => node.CurrentSpeaker == Speaker.Other);
         }
 
         /// <summary>
@@ -147,11 +148,11 @@ namespace RPG.Dialogue
                 parent.AddNodeChild(node.name);
 
                 // Set the speaker of the new node to be the opposite of the parent node's speaker
-                Node.Speaker newSpeaker = parent.CurrentSpeaker switch
+                Speaker newSpeaker = parent.CurrentSpeaker switch
                 {
-                    Node.Speaker.Player => Node.Speaker.Other,
-                    Node.Speaker.Other => Node.Speaker.Player,
-                    _ => Node.Speaker.Other
+                    Speaker.Player => Speaker.Other,
+                    Speaker.Other => Speaker.Player,
+                    _ => Speaker.Other
                 };
                 node.SetSpeaker(newSpeaker);
 

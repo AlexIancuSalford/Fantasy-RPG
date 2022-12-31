@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static RPG.Dialogue.DialogueEnums;
 
 namespace RPG.Dialogue
 {
@@ -38,10 +39,6 @@ namespace RPG.Dialogue
     ///
     /// The SetSpeaker method allows the CurrentSpeaker property to be set, and contains an #if UNITY_EDITOR block that uses the Undo class to
     /// record an undo operation when the speaker is changed.
-    ///
-    /// Finally, the Node class defines two enumerations: ActionType and Speaker. The ActionType enumeration has two constants: Add and Delete.
-    /// The Speaker enumeration has two constants: Player and Other. These enumerations are used to specify the type of action being performed
-    /// and the speaker of the dialogue in the node.
     /// </summary>
     public class Node : ScriptableObject
     {
@@ -64,6 +61,9 @@ namespace RPG.Dialogue
         /// Rectangle representing the position and size of a graphical element that represents the node in the dialogue tree editor.
         /// </summary>
         [SerializeField] private Rect rectPosition = new Rect(0, 0, 200, 100);
+
+        [field : SerializeField] public DialogueAction OnEnterAction { get; private set; } = DialogueAction.None;
+        [field : SerializeField] public DialogueAction OnExitAction { get; private set; } = DialogueAction.None;
 
         /// <summary>
         /// Returns the rectPosition field.
@@ -150,24 +150,6 @@ namespace RPG.Dialogue
             CurrentSpeaker = newSpeaker;
             EditorUtility.SetDirty(this);
 #endif
-        }
-
-        /// <summary>
-        /// Enum used to specify the type of action being performed.
-        /// </summary>
-        public enum ActionType
-        {
-            Add,
-            Delete,
-        }
-
-        /// <summary>
-        /// Enum used to specify the speaker of the dialogue in the node.
-        /// </summary>
-        public enum Speaker
-        {
-            Player,
-            Other,
         }
     }
 }
