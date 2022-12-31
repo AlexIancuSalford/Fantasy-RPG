@@ -96,6 +96,24 @@ namespace RPG.Dialogue
         }
 
         /// <summary>
+        /// Returns all nodes where the speaker is the player
+        /// </summary>
+        /// <param name="currentNode">The parent node whose children are to be retrieved.</param>
+        public IEnumerable<Node> GetPlayerNodeChildren(Node currentNode)
+        {
+            return GetAllNodeChildren(currentNode).Where(node => node.CurrentSpeaker == Node.Speaker.Player);
+        }
+
+        /// <summary>
+        /// Returns all nodes where the speaker is not the player
+        /// </summary>
+        /// <param name="currentNode">The parent node whose children are to be retrieved.</param>
+        public IEnumerable<Node> GetAINodeChildren(Node currentNode)
+        {
+            return GetAllNodeChildren(currentNode).Where(node => node.CurrentSpeaker == Node.Speaker.Other);
+        }
+
+        /// <summary>
         /// Builds the dictionary of nodes by UUID.
         /// </summary>
         private void BuildDictionary()
