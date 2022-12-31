@@ -27,8 +27,6 @@ namespace RPG.Dialogue
         {
             None,
             Attack,
-            EnterAction,
-            ExitAction,
         }
     }
 }

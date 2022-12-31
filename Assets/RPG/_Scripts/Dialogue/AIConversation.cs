@@ -23,7 +23,7 @@ namespace RPG.Dialogue
 
             if (Input.GetMouseButtonDown(0))
             {
-                caller.GetComponent<Conversation>().StartDialogue(Dialogue);
+                caller.GetComponent<Conversation>().StartDialogue(this, Dialogue);
             }
 
             return true;

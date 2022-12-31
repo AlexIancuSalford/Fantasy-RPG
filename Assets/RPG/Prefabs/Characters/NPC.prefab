@@ -119,3 +119,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8badc687291bb4bb279ca8eb71d95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Dialogue>k__BackingField: {fileID: 0}
+--- !u!114 &3997020832158450405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600359539009335746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdde23e622b428646b340df55a1bc46a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Action>k__BackingField: 0
+  <OnTrigger>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
