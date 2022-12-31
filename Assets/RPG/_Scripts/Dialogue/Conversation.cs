@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ namespace RPG.Dialogue
 {
     public class Conversation : MonoBehaviour
     {
-        [field : SerializeField] private Dialogue CurrentDialogue { get; set; } 
+        [field : SerializeField] private Dialogue CurrentDialogue { get; set; } = null;
 
         private Node CurrentDialogueNode { get; set; } = null;
 
@@ -40,6 +41,12 @@ namespace RPG.Dialogue
         public bool NodeHasNext()
         {
             return CurrentDialogue.GetAllNodeChildren(CurrentDialogueNode).Any();
+        }
+
+        public IEnumerable<string> GetChoices()
+        {
+            yield return "I've lived here all my life!";
+            yield return "I came here from Newton.";
         }
     }
 }
