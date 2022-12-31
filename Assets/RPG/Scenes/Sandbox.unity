@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 12183.373, g: 12185.922, b: 13263.641, a: 1}
+  m_IndirectSpecularColor: {r: 12184.238, g: 12186.465, b: 13266.0625, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1601,6 +1601,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7557015330188482086}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &912880188 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1239046806617397969, guid: 151c8a1a3fc00ed4b921088b38199629,
+    type: 3}
+  m_PrefabInstance: {fileID: 7557015330188482086}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee145586f5dd0a49b50d315555b81cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1025118046 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 552292509303154329, guid: 791a99029fcc5014c862c22f8d4666ff,
@@ -3857,12 +3869,12 @@ PrefabInstance:
     - target: {fileID: 2923579665778158402, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17837965
+      value: 0.17837971
       objectReference: {fileID: 0}
     - target: {fileID: 2923579665778158402, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.049758956
+      value: -0.04975897
       objectReference: {fileID: 0}
     - target: {fileID: 2923579665778158403, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
@@ -4512,7 +4524,7 @@ PrefabInstance:
     - target: {fileID: 4872706954578120146, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -570.74994
+      value: -570.7498
       objectReference: {fileID: 0}
     - target: {fileID: 4875269020474832273, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
@@ -5720,6 +5732,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 291932800}
     m_Modifications:
+    - target: {fileID: 2089695497493517004, guid: 151c8a1a3fc00ed4b921088b38199629,
+        type: 3}
+      propertyPath: <ChaseRange>k__BackingField
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2976791561149743786, guid: 151c8a1a3fc00ed4b921088b38199629,
         type: 3}
       propertyPath: <Dialogue>k__BackingField
@@ -5785,6 +5802,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997020832158450405, guid: 151c8a1a3fc00ed4b921088b38199629,
+        type: 3}
+      propertyPath: <Action>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997020832158450405, guid: 151c8a1a3fc00ed4b921088b38199629,
+        type: 3}
+      propertyPath: <OnTrigger>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997020832158450405, guid: 151c8a1a3fc00ed4b921088b38199629,
+        type: 3}
+      propertyPath: <OnTrigger>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997020832158450405, guid: 151c8a1a3fc00ed4b921088b38199629,
+        type: 3}
+      propertyPath: <OnTrigger>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 912880188}
+    - target: {fileID: 3997020832158450405, guid: 151c8a1a3fc00ed4b921088b38199629,
+        type: 3}
+      propertyPath: <OnTrigger>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997020832158450405, guid: 151c8a1a3fc00ed4b921088b38199629,
+        type: 3}
+      propertyPath: <OnTrigger>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997020832158450405, guid: 151c8a1a3fc00ed4b921088b38199629,
+        type: 3}
+      propertyPath: <OnTrigger>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Behaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997020832158450405, guid: 151c8a1a3fc00ed4b921088b38199629,
+        type: 3}
+      propertyPath: <OnTrigger>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997020832158450405, guid: 151c8a1a3fc00ed4b921088b38199629,
+        type: 3}
+      propertyPath: <OnTrigger>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151c8a1a3fc00ed4b921088b38199629, type: 3}
