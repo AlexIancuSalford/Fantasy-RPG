@@ -203,6 +203,7 @@ MonoBehaviour:
   <AIText>k__BackingField: {fileID: 1579756085913487107}
   <SpeakerName>k__BackingField: {fileID: 4271788221879468743}
   <NextButton>k__BackingField: {fileID: 5439459455906393630}
+  <QuitButton>k__BackingField: {fileID: 5068801498014089032}
   <ChoiceRoot>k__BackingField: {fileID: 714935247131046832}
   <ChoicePrefab>k__BackingField: {fileID: 7492754139106161562, guid: 4abb0c9df5a80434485948b687a9821c,
     type: 3}
