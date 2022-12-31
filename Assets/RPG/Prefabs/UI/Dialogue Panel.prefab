@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7071707515178696424}
   - component: {fileID: 2985999857299326432}
   - component: {fileID: 5102515287913169306}
+  - component: {fileID: 4494196310418042398}
   m_Layer: 5
   m_Name: Dialogue Panel
   m_TagString: Untagged
@@ -122,6 +123,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &4494196310418042398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946240547184579524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca4360c775b2b441a27cf24fc329ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AIText>k__BackingField: {fileID: 1579756085913487107}
+  <SpeakerName>k__BackingField: {fileID: 4271788221879468743}
 --- !u!1 &4762286737838750174
 GameObject:
   m_ObjectHideFlags: 0
