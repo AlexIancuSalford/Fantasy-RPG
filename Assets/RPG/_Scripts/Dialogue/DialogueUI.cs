@@ -57,6 +57,11 @@ namespace RPG.UI
                 {
                     GameObject instance = Instantiate(ChoicePrefab, ChoiceRoot);
                     instance.GetComponentInChildren<TextMeshProUGUI>().text = choice.Text;
+                    instance.GetComponentInChildren<Button>().onClick.AddListener(() =>
+                    {
+                        Conversation.SelectChoice(choice);
+                        UpdateUI();
+                    });
                 }
             }
             else

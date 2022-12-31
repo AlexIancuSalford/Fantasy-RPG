@@ -54,5 +54,12 @@ namespace RPG.Dialogue
         {
             return CurrentDialogue.GetAllNodeChildren(CurrentDialogueNode);
         }
+
+        public void SelectChoice(Node node)
+        {
+            CurrentDialogueNode = node;
+            IsChoosing = false;
+            Next();
+        }
     }
 }
