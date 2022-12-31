@@ -9,20 +9,11 @@ namespace RPG.Dialogue
 {
     public class Conversation : MonoBehaviour
     {
-        [field : SerializeField] private Dialogue TestDialogue { get; set; } = null;
-
         private Dialogue CurrentDialogue { get; set; } = null;
         private Node CurrentDialogueNode { get; set; } = null;
         public bool IsChoosing { get; private set; } = false;
 
         public event Action onConversationUpdated;
-
-        // Start is called before the first frame update
-        IEnumerator Start()
-        {
-            yield return new WaitForSeconds(2);
-            StartDialogue(TestDialogue);
-        }
 
         // Update is called once per frame
         void Update()

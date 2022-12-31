@@ -12,6 +12,7 @@ namespace RPG.Helper
             UI,
             Pickup,
             FullPickup,
+            Dialogue,
         }
 
         [System.Serializable]
