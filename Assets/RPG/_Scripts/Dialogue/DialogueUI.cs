@@ -14,6 +14,7 @@ namespace RPG.UI
         [field : SerializeField] private Button NextButton { get; set; } = null;
         [field: SerializeField] private Transform ChoiceRoot { get; set; } = null;
         [field: SerializeField] private GameObject ChoicePrefab { get; set; } = null;
+        [field: SerializeField] private GameObject AIResponce { get; set; } = null;
 
         private void Awake()
         {
@@ -41,18 +42,27 @@ namespace RPG.UI
 
         private void UpdateUI()
         {
-            AIText.text = Conversation.GetNodeText();
-            NextButton.gameObject.SetActive(Conversation.NodeHasNext());
+            
+            AIResponce.SetActive(!Conversation.IsChoosing);
+            ChoiceRoot.gameObject.SetActive(Conversation.IsChoosing);
 
-            foreach (Transform item in ChoiceRoot)
+            if (Conversation.IsChoosing)
             {
-                Destroy(item.gameObject);
+                foreach (Transform item in ChoiceRoot)
+                {
+                    Destroy(item.gameObject);
+                }
+
+                foreach (Node choice in Conversation.GetChoices())
+                {
+                    GameObject instance = Instantiate(ChoicePrefab, ChoiceRoot);
+                    instance.GetComponentInChildren<TextMeshProUGUI>().text = choice.Text;
+                }
             }
-
-            foreach (string choice in Conversation.GetChoices())
+            else
             {
-                GameObject instance = Instantiate(ChoicePrefab, ChoiceRoot);
-                instance.GetComponentInChildren<TextMeshProUGUI>().text = choice;
+                AIText.text = Conversation.GetNodeText();
+                NextButton.gameObject.SetActive(Conversation.NodeHasNext());
             }
         }
     }

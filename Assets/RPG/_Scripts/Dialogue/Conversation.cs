@@ -9,6 +9,7 @@ namespace RPG.Dialogue
         [field : SerializeField] private Dialogue CurrentDialogue { get; set; } = null;
 
         private Node CurrentDialogueNode { get; set; } = null;
+        public bool IsChoosing { get; private set; } = false;
 
         private void Awake()
         {
@@ -34,7 +35,13 @@ namespace RPG.Dialogue
 
         public void Next()
         {
-            Node[] children = CurrentDialogue.GetAllNodeChildren(CurrentDialogueNode).ToArray();
+            if (CurrentDialogue.GetPlayerNodeChildren(CurrentDialogueNode).Any())
+            {
+                IsChoosing = true;
+                return;
+            }
+
+            Node[] children = CurrentDialogue.GetAINodeChildren(CurrentDialogueNode).ToArray();
             CurrentDialogueNode = children[Random.Range(0, children.Length)];
         }
 
@@ -43,10 +50,9 @@ namespace RPG.Dialogue
             return CurrentDialogue.GetAllNodeChildren(CurrentDialogueNode).Any();
         }
 
-        public IEnumerable<string> GetChoices()
+        public IEnumerable<Node> GetChoices()
         {
-            yield return "I've lived here all my life!";
-            yield return "I came here from Newton.";
+            return CurrentDialogue.GetAllNodeChildren(CurrentDialogueNode);
         }
     }
 }

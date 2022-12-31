@@ -206,6 +206,7 @@ MonoBehaviour:
   <ChoiceRoot>k__BackingField: {fileID: 714935247131046832}
   <ChoicePrefab>k__BackingField: {fileID: 7492754139106161562, guid: 4abb0c9df5a80434485948b687a9821c,
     type: 3}
+  <AIResponce>k__BackingField: {fileID: 223712757709959472}
 --- !u!1 &2650939180041331583
 GameObject:
   m_ObjectHideFlags: 0
