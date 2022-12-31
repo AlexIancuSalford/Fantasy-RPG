@@ -374,6 +374,10 @@ namespace RPG.Helper
             GUILayout.EndHorizontal();
         }
 
+        /// <summary>
+        /// Draws a button on a node with the text Add
+        /// </summary>
+        /// <param name="node">The node to which the button is attached</param>
         private void DrawAddButton(Node node)
         {
             if (GUILayout.Button("Add"))
@@ -382,6 +386,10 @@ namespace RPG.Helper
             }
         }
 
+        /// <summary>
+        /// Draws a button on a node with the text Del (meaning delete)
+        /// </summary>
+        /// <param name="node">The node to which the button is attached</param>
         private void DrawDeleteButton(Node node)
         {
             if (GUILayout.Button("Del"))
@@ -390,31 +398,53 @@ namespace RPG.Helper
             }
         }
 
+        /// <summary>
+        /// This method is responsible for drawing a button that allows the user to link or unlink nodes in a node tree.
+        /// </summary>
+        /// <param name="node">The node to which the button is attached</param>
         private void DrawLinkingButton(Node node)
         {
+            // If the linkParentNode is null, that means we are not currently linking any nodes.
+            // In this case, draw a "Link" button that allows the user to start linking a node.
             if (linkParentNode == null)
             {
                 if (GUILayout.Button("Link"))
                 {
+                    // When the "Link" button is clicked, we set the linkParentNode to the current node.
                     linkParentNode = node;
                 }
             }
+            // If the linkParentNode is not null and is equal to the current node, that means we are currently linking this node.
+            // In this case, draw a "Cancel" button that allows the user to cancel the link.
             else if (linkParentNode == node)
             {
                 if (GUILayout.Button("Cancel"))
                 {
+                    // When the "Cancel" button is clicked, we set the linkParentNode to null to cancel the link.
                     linkParentNode = null;
                 }
             }
+            // If the linkParentNode is not null and is not equal to the current node, that means we are linking a different node.
+            // In this case, check if the current node is already a child of the linkParentNode.
+            // If it is, draw a "Unlink" button that allows the user to unlink the current node from the linkParentNode.
             else if (linkParentNode.GetNodeChildren().Contains(node.name))
             {
                 if (!GUILayout.Button("Unlink")) { return; }
+
+                // When the "Unlink" button is clicked, remove the current node from the list of children of the linkParentNode
+                // and set the linkParentNode to null.
                 linkParentNode.RemoveNodeChild(node.name);
                 linkParentNode = null;
             }
+            // If the linkParentNode is not null, is not equal to the current node, and the current node is not already a child of the linkParentNode,
+            // that means it is possible to link the current node to the linkParentNode as a child.
+            // In this case, draw a "Child" button that allows the user to link the current node as a child of the linkParentNode.
             else
             {
                 if (!GUILayout.Button("Child")) { return; }
+
+                // When the "Child" button is clicked, add the current node to the list of children of the linkParentNode
+                // and set the linkParentNode to null.
                 linkParentNode.AddNodeChild(node.name);
                 linkParentNode = null;
             }
