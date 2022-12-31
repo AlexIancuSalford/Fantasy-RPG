@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using static RPG.Dialogue.DialogueEnums;
 using Random = UnityEngine.Random;
@@ -11,6 +12,7 @@ namespace RPG.Dialogue
     {
         private Dialogue CurrentDialogue { get; set; } = null;
         private Node CurrentDialogueNode { get; set; } = null;
+        private AIConversation AIConversation { get; set; } = null; 
         public bool IsChoosing { get; private set; } = false;
 
         public event Action onConversationUpdated;
@@ -61,8 +63,9 @@ namespace RPG.Dialogue
             Next();
         }
 
-        public void StartDialogue(Dialogue newDialogue)
+        public void StartDialogue(AIConversation newAiConversation, Dialogue newDialogue)
         {
+            AIConversation = newAiConversation;
             CurrentDialogue = newDialogue;
             CurrentDialogueNode = CurrentDialogue.Nodes[0];
             TriggerEnterAction();
@@ -80,22 +83,33 @@ namespace RPG.Dialogue
             TriggerExitAction();
             CurrentDialogueNode = null;
             IsChoosing = false;
+            AIConversation = null;
             onConversationUpdated?.Invoke();
         }
 
         private void TriggerEnterAction()
         {
-            if (CurrentDialogueNode != null && CurrentDialogueNode.OnEnterAction != DialogueAction.None)
+            if (CurrentDialogueNode != null)
             {
-                Debug.Log($"Enter action: {CurrentDialogueNode.OnEnterAction}");
+                TriggerAction(CurrentDialogueNode.OnEnterAction);
             }
         }
 
         private void TriggerExitAction()
         {
-            if (CurrentDialogueNode != null && CurrentDialogueNode.OnExitAction != DialogueAction.None)
+            if (CurrentDialogueNode != null)
             {
-                Debug.Log($"Enter action: {CurrentDialogueNode.OnExitAction}");
+                TriggerAction(CurrentDialogueNode.OnExitAction);
+            }
+        }
+
+        private void TriggerAction(DialogueAction action)
+        {
+            if (action == DialogueAction.None) { return; }
+
+            foreach (DialogueTrigger trigger in AIConversation.GetComponents<DialogueTrigger>())
+            {
+                trigger.Trigger(action);
             }
         }
     }

@@ -143,7 +143,7 @@ MonoBehaviour:
     width: 200
     height: 100
   <OnEnterAction>k__BackingField: 0
-  <OnExitAction>k__BackingField: 3
+  <OnExitAction>k__BackingField: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
     y: 425
     width: 200
     height: 100
-  <OnEnterAction>k__BackingField: 2
+  <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
 --- !u!114 &1831841979759347084
 MonoBehaviour:
