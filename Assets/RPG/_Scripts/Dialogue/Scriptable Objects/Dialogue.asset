@@ -22,6 +22,8 @@ MonoBehaviour:
     y: 228.00002
     width: 200
     height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
 --- !u!114 &-7465405107055309168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,10 +42,12 @@ MonoBehaviour:
   <CurrentSpeaker>k__BackingField: 1
   rectPosition:
     serializedVersion: 2
-    x: 1649
+    x: 1684
     y: 172.00002
     width: 200
     height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
 --- !u!114 &-6840465342890953373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +70,8 @@ MonoBehaviour:
     y: 168.00002
     width: 200
     height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
 --- !u!114 &-5582907790640095821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +94,8 @@ MonoBehaviour:
     y: 505
     width: 200
     height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
 --- !u!114 &-3802792024780564972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +117,8 @@ MonoBehaviour:
     y: 504
     width: 200
     height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 1
 --- !u!114 &-3756093032631319165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +142,8 @@ MonoBehaviour:
     y: 427
     width: 200
     height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 3
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +192,8 @@ MonoBehaviour:
     y: 425
     width: 200
     height: 100
+  <OnEnterAction>k__BackingField: 2
+  <OnExitAction>k__BackingField: 0
 --- !u!114 &1831841979759347084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +216,8 @@ MonoBehaviour:
     y: 353
     width: 200
     height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
 --- !u!114 &2491152515434616935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +241,8 @@ MonoBehaviour:
     y: 325.99997
     width: 200
     height: 100
+  <OnEnterAction>k__BackingField: 2
+  <OnExitAction>k__BackingField: 0
 --- !u!114 &2776007128697257883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +265,8 @@ MonoBehaviour:
     y: 273
     width: 200
     height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
 --- !u!114 &5384673542416476721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,3 +290,5 @@ MonoBehaviour:
     y: 228.00002
     width: 200
     height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 1

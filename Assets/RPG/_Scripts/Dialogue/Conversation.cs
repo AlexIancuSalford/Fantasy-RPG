@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static RPG.Dialogue.DialogueEnums;
 using Random = UnityEngine.Random;
 
 namespace RPG.Dialogue
@@ -31,13 +31,15 @@ namespace RPG.Dialogue
             if (CurrentDialogue.GetPlayerNodeChildren(CurrentDialogueNode).Any())
             {
                 IsChoosing = true;
+                TriggerExitAction();
                 onConversationUpdated?.Invoke();
                 return;
             }
 
             Node[] children = CurrentDialogue.GetAINodeChildren(CurrentDialogueNode).ToArray();
+            TriggerExitAction();
             CurrentDialogueNode = children[Random.Range(0, children.Length)];
-
+            TriggerEnterAction();
             onConversationUpdated?.Invoke();
         }
 
@@ -54,6 +56,7 @@ namespace RPG.Dialogue
         public void SelectChoice(Node node)
         {
             CurrentDialogueNode = node;
+            TriggerEnterAction();
             IsChoosing = false;
             Next();
         }
@@ -62,6 +65,7 @@ namespace RPG.Dialogue
         {
             CurrentDialogue = newDialogue;
             CurrentDialogueNode = CurrentDialogue.Nodes[0];
+            TriggerEnterAction();
             onConversationUpdated?.Invoke();
         }
 
@@ -73,9 +77,26 @@ namespace RPG.Dialogue
         public void QuitDialogue()
         {
             CurrentDialogue = null;
+            TriggerExitAction();
             CurrentDialogueNode = null;
             IsChoosing = false;
             onConversationUpdated?.Invoke();
+        }
+
+        private void TriggerEnterAction()
+        {
+            if (CurrentDialogueNode != null && CurrentDialogueNode.OnEnterAction != DialogueAction.None)
+            {
+                Debug.Log($"Enter action: {CurrentDialogueNode.OnEnterAction}");
+            }
+        }
+
+        private void TriggerExitAction()
+        {
+            if (CurrentDialogueNode != null && CurrentDialogueNode.OnExitAction != DialogueAction.None)
+            {
+                Debug.Log($"Enter action: {CurrentDialogueNode.OnExitAction}");
+            }
         }
     }
 }
