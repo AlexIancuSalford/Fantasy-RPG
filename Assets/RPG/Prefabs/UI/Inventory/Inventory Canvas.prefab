@@ -478,8 +478,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2012917585700316199}
   m_HandleRect: {fileID: 224153372062608982}
   m_Direction: 2
-  m_Value: -0.00043684823
-  m_Size: 0.4999999
+  m_Value: 0
+  m_Size: 0.94257903
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1136,7 +1136,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: -570.7176}
+  m_AnchoredPosition: {x: 0.000030517578, y: -570.74994}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4131155162176750999
@@ -3447,7 +3447,7 @@ PrefabInstance:
     - target: {fileID: 922026888403313235, guid: 4b0cad3b2b953a74f94083824866f051,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -207.1117
+      value: -181
       objectReference: {fileID: 0}
     - target: {fileID: 922026888403313235, guid: 4b0cad3b2b953a74f94083824866f051,
         type: 3}
@@ -3467,7 +3467,7 @@ PrefabInstance:
     - target: {fileID: 946240547184579524, guid: 4b0cad3b2b953a74f94083824866f051,
         type: 3}
       propertyPath: m_Name
-      value: Panel
+      value: Dialogue Panel
       objectReference: {fileID: 0}
     - target: {fileID: 4434245708433620931, guid: 4b0cad3b2b953a74f94083824866f051,
         type: 3}
