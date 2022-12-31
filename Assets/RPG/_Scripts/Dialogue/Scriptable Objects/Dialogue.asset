@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <NodeChildren>k__BackingField:
   - e029ada4-92d1-478f-b500-d3f574e6140f
-  <Text>k__BackingField: I came here from Newton
+  <Text>k__BackingField: I came here from Newton.
   <CurrentSpeaker>k__BackingField: 0
   rectPosition:
     serializedVersion: 2
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <NodeChildren>k__BackingField:
   - ef7d7d30-d2ca-4ff3-9f7f-5c8931841feb
-  <Text>k__BackingField: Mr. Bowler is a good friend of mine
+  <Text>k__BackingField: Mr. Bowler is a good friend of mine.
   <CurrentSpeaker>k__BackingField: 0
   rectPosition:
     serializedVersion: 2
@@ -124,7 +124,7 @@ MonoBehaviour:
   <NodeChildren>k__BackingField:
   - aedcd243-5e3e-4362-b86b-d405bf74c331
   - 10a46c96-9d3a-4a72-84bd-8a3ea6fa3bf0
-  <Text>k__BackingField: Oh really? The you must know Mr. Bowler.
+  <Text>k__BackingField: Oh, really? Then you must know Mr. Bowler.
   <CurrentSpeaker>k__BackingField: 1
   rectPosition:
     serializedVersion: 2
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <NodeChildren>k__BackingField:
   - e224fbcb-022c-422d-a32b-594201d9f644
-  <Text>k__BackingField: Who
+  <Text>k__BackingField: Who?
   <CurrentSpeaker>k__BackingField: 0
   rectPosition:
     serializedVersion: 2
