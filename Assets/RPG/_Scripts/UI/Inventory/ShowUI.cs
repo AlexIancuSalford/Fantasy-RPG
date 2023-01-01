@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG.UI.Inventory
 {
@@ -17,7 +18,7 @@ namespace RPG.UI.Inventory
     /// fields to be set in the Unity Inspector, rather than hardcoded in the script. This allows you to easily customize
     /// the key that toggles the inventory and the UI element that represents the inventory in the Unity Editor.
     /// </summary>
-    public class ShowInventory : MonoBehaviour
+    public class ShowUI : MonoBehaviour
     {
         /// <summary>
         /// The key that will toggle the visibility of the inventory UI element.
@@ -43,12 +44,23 @@ namespace RPG.UI.Inventory
         }
 
         /// <summary>
-        /// Check if the toggle key has been pressed. If it has, set the inventory UI element to be active.
-        /// Since the HUD will be in the way of the inventory, turn it off while the inventory is on.
+        /// Check if the toggle key has been pressed.
         /// </summary>
         void Update()
         {
             if (!Input.GetKeyDown(ToggleKey)) { return; }
+
+            Toggle();
+        }
+
+        /// <summary>
+        /// Set the inventory UI element to be active.
+        /// Since the HUD will be in the way of the inventory, turn it off while the inventory is on.
+        /// If this script is not on the inventory (it was initially meant just for the inventory, but I just re-purposed it),
+        /// leave the HUDElement null and the check will leave that element alone
+        /// </summary>
+        public void Toggle()
+        {
             UIElement.SetActive(!UIElement.activeSelf);
             if (HUDElement != null) { HUDElement.SetActive(!HUDElement.activeSelf); }
         }
