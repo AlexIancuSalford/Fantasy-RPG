@@ -1,15 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RPG.Save;
 using UnityEngine;
 
 namespace RPG.UI.Quest
 {
-    public class QuestList : MonoBehaviour
+    public class QuestList : MonoBehaviour, ISaveableEntity
     {
         public List<QuestStatus> QuestStatuses { get; private set; } = new List<QuestStatus>();
 
         public event Action QuestStatusChanged;
+
+        private void Start()
+        {
+            QuestStatusChanged?.Invoke();
+        }
 
         public void AddQuest(Quest quest)
         {
@@ -34,6 +40,30 @@ namespace RPG.UI.Quest
         public QuestStatus GetQuestStatus(Quest quest)
         {
             return QuestStatuses.FirstOrDefault(questStatus => questStatus.Quest == quest);
+        }
+
+        public object SaveState()
+        {
+            List<object> state = new List<object>();
+
+            foreach (QuestStatus questStatus in QuestStatuses)
+            {
+                state.Add(questStatus.SaveState());
+            }
+
+            return state;
+        }
+
+        public void LoadState(object obj)
+        { 
+            List<object> objects = obj as List<object>;
+
+            QuestStatuses.Clear();
+
+            foreach (object objectState in objects)
+            {
+                QuestStatuses.Add(new QuestStatus(objectState));
+            }
         }
     }
 }
