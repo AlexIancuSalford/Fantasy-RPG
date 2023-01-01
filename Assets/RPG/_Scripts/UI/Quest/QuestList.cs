@@ -24,5 +24,16 @@ namespace RPG.UI.Quest
         {
             return QuestStatuses.Any(questStatus => questStatus.Quest == quest);
         }
+
+        public void CompleteObjective(Quest quest, string objective)
+        {
+            GetQuestStatus(quest).CompleteObjective(objective);
+            QuestStatusChanged?.Invoke();
+        }
+
+        public QuestStatus GetQuestStatus(Quest quest)
+        {
+            return QuestStatuses.FirstOrDefault(questStatus => questStatus.Quest == quest);
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace RPG.UI.Quest
         {
             QuestStatus = item;
             QuestTitle.text = item.Quest.GetQuestTitle();
-            QuestProgress.text = $"{item.CompletedObjective.Count}/{item.Quest.GetObjectiveCount()}";
+            QuestProgress.text = $"{item.CompletedObjective.Count}/{item.Quest.Objectives.Count}";
         }
     }
 }

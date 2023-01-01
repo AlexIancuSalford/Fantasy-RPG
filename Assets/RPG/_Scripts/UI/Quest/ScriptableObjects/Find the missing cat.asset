@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Objectives>k__BackingField:
   - Find cat
-  - Kill cat
-  - Dispose of cat
+  - Collect cat
+  - Bring cat back to Hughes
