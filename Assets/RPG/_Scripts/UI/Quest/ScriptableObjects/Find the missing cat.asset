@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Find the missing cat
   m_EditorClassIdentifier: 
   <Objectives>k__BackingField:
-  - 
-  - 
-  - 
+  - Find cat
+  - Kill cat
+  - Dispose of cat

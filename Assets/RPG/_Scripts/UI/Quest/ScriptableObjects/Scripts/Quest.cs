@@ -5,7 +5,7 @@ namespace RPG.UI.Quest
     [CreateAssetMenu(fileName = "Quest", menuName = "Scriptable Object/Quest")]
     public class Quest : ScriptableObject
     {
-        [field : SerializeField] private string[] Objectives { get; set; } = null;
+        [field : SerializeField] public string[] Objectives { get; private set; } = null;
 
         public string GetQuestTitle()
         {

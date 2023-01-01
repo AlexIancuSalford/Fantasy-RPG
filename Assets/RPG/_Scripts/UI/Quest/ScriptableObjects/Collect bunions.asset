@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Collect bunions
   m_EditorClassIdentifier: 
   <Objectives>k__BackingField:
-  - 
-  - 
+  - Hello
+  - World
