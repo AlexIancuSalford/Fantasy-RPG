@@ -314,8 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934bdfa7982c58246a2f6cf1a117ce32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TestDialogue>k__BackingField: {fileID: 11400000, guid: d46d790e9a79034488b67e07de0a6e2b,
-    type: 2}
+  <PlayerName>k__BackingField: Insert Name Here
 --- !u!114 &6299851474530432500
 MonoBehaviour:
   m_ObjectHideFlags: 0
