@@ -478,8 +478,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2012917585700316199}
   m_HandleRect: {fileID: 224153372062608982}
   m_Direction: 2
-  m_Value: -0.0000016484839
-  m_Size: 0.94257903
+  m_Value: -0.13447486
+  m_Size: 0.49999985
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1137,7 +1137,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: -570.7498}
+  m_AnchoredPosition: {x: 0.000030517578, y: -560.792}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4131155162176750999
@@ -5265,6 +5265,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154375270817107586, guid: 97d9a9b223c699543ac62cd568497110,
+        type: 3}
+      propertyPath: <ToggleKey>k__BackingField
+      value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154375270817107586, guid: 97d9a9b223c699543ac62cd568497110,
+        type: 3}
+      propertyPath: <HUDElement>k__BackingField
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1277327870385671052, guid: 97d9a9b223c699543ac62cd568497110,
         type: 3}
