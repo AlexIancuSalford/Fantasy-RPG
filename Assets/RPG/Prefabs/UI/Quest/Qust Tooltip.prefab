@@ -747,6 +747,8 @@ MonoBehaviour:
   <ObjectiveContainer>k__BackingField: {fileID: 8011192774855872360}
   <Objective>k__BackingField: {fileID: 7943745106260844317, guid: 13387aa2972069143b721df953e4b878,
     type: 3}
+  <ObjectiveIncomplete>k__BackingField: {fileID: 6635216688742676677, guid: 00974d3d4fb2f794ba1507406b680239,
+    type: 3}
 --- !u!1001 &808855924198957422
 PrefabInstance:
   m_ObjectHideFlags: 0

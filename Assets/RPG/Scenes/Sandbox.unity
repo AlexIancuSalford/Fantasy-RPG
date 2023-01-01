@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 12183.883, g: 12186, b: 13265, a: 1}
+  m_IndirectSpecularColor: {r: 12183.471, g: 12183.918, b: 13089.891, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1652,7 +1652,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7557015330188482086}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1557224049}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eee145586f5dd0a49b50d315555b81cb, type: 3}
@@ -2223,6 +2223,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee145586f5dd0a49b50d315555b81cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1557224049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3600359539009335746, guid: 151c8a1a3fc00ed4b921088b38199629,
+    type: 3}
+  m_PrefabInstance: {fileID: 7557015330188482086}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1557224065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557224049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb05f25a9483f445a6fc3a25b2b6039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Quest>k__BackingField: {fileID: 11400000, guid: ccdcface24e417d42bedbe097ecfc5ea,
+    type: 2}
+--- !u!114 &1557224066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557224049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdde23e622b428646b340df55a1bc46a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Action>k__BackingField: 2
+  <OnTrigger>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1557224065}
+        m_TargetAssemblyTypeName: RPG.UI.Quest.QuestGiver, Assembly-CSharp
+        m_MethodName: GiveQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1583083773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4360,12 +4408,12 @@ PrefabInstance:
     - target: {fileID: 2923579665778158402, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17837965
+      value: 0.17837971
       objectReference: {fileID: 0}
     - target: {fileID: 2923579665778158402, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.049758956
+      value: -0.04975897
       objectReference: {fileID: 0}
     - target: {fileID: 2923579665778158403, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
@@ -4380,12 +4428,12 @@ PrefabInstance:
     - target: {fileID: 2923579666313380682, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.20781758
+      value: -0.2078176
       objectReference: {fileID: 0}
     - target: {fileID: 2923579666313380682, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.057533868
+      value: 0.057533875
       objectReference: {fileID: 0}
     - target: {fileID: 2961798109215027654, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
@@ -5260,7 +5308,7 @@ PrefabInstance:
     - target: {fileID: 4872706954578120146, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -570.75
+      value: -570.74994
       objectReference: {fileID: 0}
     - target: {fileID: 4875269020474832273, guid: dafd0eafc948039428833a86e582ecf3,
         type: 3}
@@ -7177,6 +7225,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <ChaseRange>k__BackingField
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976791561149743786, guid: 151c8a1a3fc00ed4b921088b38199629,
+        type: 3}
+      propertyPath: <Name>k__BackingField
+      value: Hughes
       objectReference: {fileID: 0}
     - target: {fileID: 2976791561149743786, guid: 151c8a1a3fc00ed4b921088b38199629,
         type: 3}
