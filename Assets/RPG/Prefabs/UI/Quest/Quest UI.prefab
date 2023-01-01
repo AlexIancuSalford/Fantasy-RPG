@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 1277327870385671052}
   - component: {fileID: 2821895363758205354}
   - component: {fileID: 6200581776477324582}
+  - component: {fileID: 4376640093223212884}
   m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
@@ -401,6 +402,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &4376640093223212884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3294805053534484029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294fe0e85bd5b31498000a5b2890aeef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TmpList>k__BackingField:
+  - {fileID: 11400000, guid: ccdcface24e417d42bedbe097ecfc5ea, type: 2}
+  - {fileID: 11400000, guid: 05c9964ef9095a24d8c34a5cf5f4a1f6, type: 2}
+  <QuestItemUI>k__BackingField: {fileID: 6377214678502271925, guid: 936559a7bbb4a5d44b9e4d1f44afba73,
+    type: 3}
 --- !u!1 &3990395006941152656
 GameObject:
   m_ObjectHideFlags: 0
