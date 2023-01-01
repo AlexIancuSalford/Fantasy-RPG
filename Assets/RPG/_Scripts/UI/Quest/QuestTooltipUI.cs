@@ -19,13 +19,13 @@ namespace RPG.UI.Quest
                 Destroy(obj.gameObject);
             }
 
-            foreach (string objective in item.Quest.Objectives)
+            foreach (Objective objective in item.Quest.Objectives)
             {
                 GameObject instance = Instantiate(
-                    item.CompletedObjective.Contains(objective) ? Objective : ObjectiveIncomplete
+                    item.CompletedObjective.Contains(objective.Reference) ? Objective : ObjectiveIncomplete
                     , ObjectiveContainer);
 
-                instance.GetComponentInChildren<TextMeshProUGUI>().text = objective;
+                instance.GetComponentInChildren<TextMeshProUGUI>().text = objective.Description;
             }
         }
     }
