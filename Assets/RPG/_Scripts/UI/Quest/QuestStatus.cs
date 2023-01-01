@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace RPG.UI.Quest
@@ -10,6 +11,14 @@ namespace RPG.UI.Quest
         public QuestStatus(Quest quest)
         {
             Quest = quest;
+        }
+
+        public void CompleteObjective(string objective)
+        {
+            if (Quest.HasObjective(objective))
+            {
+                CompletedObjective.Add(objective);
+            }
         }
     }
 }
