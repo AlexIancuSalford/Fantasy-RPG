@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.UI.Quest
@@ -7,25 +6,31 @@ namespace RPG.UI.Quest
     {
         [field : SerializeField] private QuestItemUI QuestItemUI { get; set; } = null;
 
+        private QuestList QuestList { get; set; } = null;
+
+        private void Awake()
+        {
+            QuestList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
+        }
+
         // Start is called before the first frame update
         void Start()
+        {
+            QuestList.QuestStatusChanged += UpdateQuestList;
+            UpdateQuestList();
+        }
+
+        private void UpdateQuestList()
         {
             foreach (Transform child in gameObject.transform)
             {
                 Destroy(child.gameObject);
             }
 
-            QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
-            foreach (QuestStatus questStatus in questList.QuestStatuses)
+            foreach (QuestStatus questStatus in QuestList.QuestStatuses)
             {
                 Instantiate<QuestItemUI>(QuestItemUI, transform).SetupQuest(questStatus);
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }

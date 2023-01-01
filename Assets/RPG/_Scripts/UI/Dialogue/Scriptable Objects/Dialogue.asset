@@ -36,9 +36,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
   m_Name: e224fbcb-022c-422d-a32b-594201d9f644
   m_EditorClassIdentifier: 
-  <NodeChildren>k__BackingField: []
-  <Text>k__BackingField: Don't worry about it. Say, do you want something to eat?
-    I'm starving.
+  <NodeChildren>k__BackingField:
+  - 1cff40ad-90b2-452c-8039-a3f192da0a4d
+  - 53fdd821-9bd0-452a-9659-07c68df9d11a
+  <Text>k__BackingField: Don't worry about it. On a sepparate note, can you help
+    me find my cat?
   <CurrentSpeaker>k__BackingField: 1
   rectPosition:
     serializedVersion: 2
@@ -168,8 +170,59 @@ MonoBehaviour:
   - {fileID: 5384673542416476721}
   - {fileID: -6840465342890953373}
   - {fileID: 2776007128697257883}
+  - {fileID: 569564091897194288}
+  - {fileID: 1955877997026749837}
+  - {fileID: 7186117622992852533}
+  - {fileID: 191171592806726257}
   <DefaultCanvasSize>k__BackingField: {x: 4000, y: 4000}
   <NewNodeOffset>k__BackingField: {x: 250, y: 0}
+--- !u!114 &191171592806726257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 5d975476-8568-4ce9-b594-b1a4a4659d4d
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField: []
+  <Text>k__BackingField: Fine! I'll do it myself.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 2193
+    y: 251
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+--- !u!114 &569564091897194288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 1cff40ad-90b2-452c-8039-a3f192da0a4d
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 5d975476-8568-4ce9-b594-b1a4a4659d4d
+  <Text>k__BackingField: No.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 1943
+    y: 251
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
 --- !u!114 &1401830599419277645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +271,30 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+--- !u!114 &1955877997026749837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 53fdd821-9bd0-452a-9659-07c68df9d11a
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - d22e33d3-3d66-4738-83ab-f4a1741eb5b0
+  <Text>k__BackingField: Sure! I'll be right back with your cat.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 1943
+    y: 94.000015
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 2
 --- !u!114 &2491152515434616935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +318,7 @@ MonoBehaviour:
     y: 325.99997
     width: 200
     height: 100
-  <OnEnterAction>k__BackingField: 2
+  <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
 --- !u!114 &2776007128697257883
 MonoBehaviour:
@@ -291,4 +368,27 @@ MonoBehaviour:
     width: 200
     height: 100
   <OnEnterAction>k__BackingField: 0
-  <OnExitAction>k__BackingField: 1
+  <OnExitAction>k__BackingField: 0
+--- !u!114 &7186117622992852533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: d22e33d3-3d66-4738-83ab-f4a1741eb5b0
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField: []
+  <Text>k__BackingField: Thanks! I'll be waiting.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 2193
+    y: 94.000015
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
