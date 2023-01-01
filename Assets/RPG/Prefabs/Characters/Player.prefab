@@ -381,3 +381,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InventorySize>k__BackingField: 16
+--- !u!114 &7943817057966711892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474944015236126010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01fb94efee02e1449bd3e24b10a0bdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <QuestStatuses>k__BackingField:
+  - <Quest>k__BackingField: {fileID: 11400000, guid: ccdcface24e417d42bedbe097ecfc5ea,
+      type: 2}
+    <CompletedObjective>k__BackingField:
+    - Find cat
+    - Kill cat
+  - <Quest>k__BackingField: {fileID: 11400000, guid: 05c9964ef9095a24d8c34a5cf5f4a1f6,
+      type: 2}
+    <CompletedObjective>k__BackingField:
+    - Hello

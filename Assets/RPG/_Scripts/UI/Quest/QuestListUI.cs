@@ -5,7 +5,6 @@ namespace RPG.UI.Quest
 {
     public class QuestListUI : MonoBehaviour
     {
-        [field : SerializeField] private List<Quest> TmpList { get; set; } = new List<Quest>();
         [field : SerializeField] private QuestItemUI QuestItemUI { get; set; } = null;
 
         // Start is called before the first frame update
@@ -16,9 +15,10 @@ namespace RPG.UI.Quest
                 Destroy(child.gameObject);
             }
 
-            foreach (Quest quest in TmpList)
+            QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
+            foreach (QuestStatus questStatus in questList.QuestStatuses)
             {
-                Instantiate<QuestItemUI>(QuestItemUI, transform).SetupQuest(quest);
+                Instantiate<QuestItemUI>(QuestItemUI, transform).SetupQuest(questStatus);
             }
         }
 
