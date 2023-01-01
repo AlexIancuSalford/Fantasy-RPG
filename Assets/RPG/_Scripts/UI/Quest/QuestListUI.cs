@@ -8,16 +8,11 @@ namespace RPG.UI.Quest
 
         private QuestList QuestList { get; set; } = null;
 
-        private void Awake()
-        {
-            QuestList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
-        }
-
         // Start is called before the first frame update
         void Start()
         {
+            QuestList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
             QuestList.QuestStatusChanged += UpdateQuestList;
-            UpdateQuestList();
         }
 
         private void UpdateQuestList()
