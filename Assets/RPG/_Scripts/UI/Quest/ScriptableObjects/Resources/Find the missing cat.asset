@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Find the missing cat
   m_EditorClassIdentifier: 
   <Objectives>k__BackingField:
-  - Find cat
-  - Collect cat
-  - Bring cat back to Hughes
+  - Reference: 1
+    Description: Find cat
+  - Reference: 2
+    Description: Bring cat back
+  - Reference: 
+    Description: 
+  <Rewards>k__BackingField:
+  - Number: 1
+    Item: {fileID: 11400000, guid: ac45d045bea48f649a2a08de14effc41, type: 2}
