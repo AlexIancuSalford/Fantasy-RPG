@@ -240,26 +240,15 @@ namespace RPG.Controller
                 // Get all the game objects that implement the IRaycastable interface
                 IRaycastable[] raycastables = raycastHit.transform.GetComponents<IRaycastable>();
 
-                // Check if the raycasting hit anything
-                if (raycastables.Length <= 0) { continue; }
-                // Call the HandleRequest method on the first object hit implementing IRaycastable
-                if (raycastables[0].HandleRaycast(this))
+                foreach (IRaycastable raycastable in raycastables)
                 {
-                    SetCursor(raycastables[0].GetCursorType());
-                    return true;
+                    // Call the HandleRequest method on the object implementing IRaycastable
+                    if (raycastable.HandleRaycast(this))
+                    {
+                        SetCursor(raycastable.GetCursorType());
+                        return true;
+                    }
                 }
-
-                // I'll leave this here since in the future I may want to handle the raycasting on all 
-                // objects hit, but as of now, just handling the first object is fine.
-                //foreach (IRaycastable raycastable in raycastables)
-                //{
-                //    // Call the HandleRequest method on the object implementing IRaycastable
-                //    if (raycastable.HandleRaycast(this))
-                //    {
-                //        SetCursor(raycastable.GetCursorType());
-                //        return true;
-                //    }
-                //}
             }
 
             // If no enemies were targeted or the player can't attack any of them, return false

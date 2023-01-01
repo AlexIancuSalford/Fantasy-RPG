@@ -34,6 +34,8 @@ namespace RPG.Combat
         /// <returns>True or False, depending on the users needs</returns>
         public bool HandleRaycast(PlayerController caller)
         {
+            if (!enabled) { return false; }
+
             // If the player can't attack the target, move along
             if (!caller.GetComponent<Fighter>().CanAttack(gameObject)) { return false; }
 
