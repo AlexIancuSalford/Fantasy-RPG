@@ -10,6 +10,8 @@ namespace RPG.Dialogue
 {
     public class Conversation : MonoBehaviour
     {
+        [field : SerializeField] private string PlayerName { get; set; } = string.Empty;
+
         private Dialogue CurrentDialogue { get; set; } = null;
         private Node CurrentDialogueNode { get; set; } = null;
         private AIConversation AIConversation { get; set; } = null; 
@@ -111,6 +113,11 @@ namespace RPG.Dialogue
             {
                 trigger.Trigger(action);
             }
+        }
+
+        public string GetGameObjectName()
+        {
+            return IsChoosing ? PlayerName : AIConversation.Name;
         }
     }
 }

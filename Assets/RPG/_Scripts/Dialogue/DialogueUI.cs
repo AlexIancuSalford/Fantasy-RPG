@@ -31,16 +31,12 @@ namespace RPG.UI
             UpdateUI();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         private void UpdateUI()
         {
             gameObject.SetActive(Conversation.IsActive());
             if (!Conversation.IsActive()) { return; }
+
+            SpeakerName.text = Conversation.GetGameObjectName();
 
             AIResponce.SetActive(!Conversation.IsChoosing);
             ChoiceRoot.gameObject.SetActive(Conversation.IsChoosing);
