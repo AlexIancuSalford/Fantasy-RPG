@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RPG.UI.Quest
 {
@@ -39,6 +40,11 @@ namespace RPG.UI.Quest
             };
 
             return state;
+        }
+
+        public bool IsQuestComplete()
+        {
+            return Quest.Objectives.All(objective => CompletedObjective.Contains(objective.Reference));
         }
     }
 }

@@ -9,6 +9,7 @@ namespace RPG.UI.Quest
         [field: SerializeField] private Transform ObjectiveContainer { get; set; } = null;
         [field: SerializeField] private GameObject Objective { get; set; } = null;
         [field: SerializeField] private GameObject ObjectiveIncomplete { get; set; } = null;
+        [field: SerializeField] private TextMeshProUGUI RewardText { get; set; } = null;
 
         public void SetupTooltip(QuestStatus item)
         {
@@ -27,6 +28,26 @@ namespace RPG.UI.Quest
 
                 instance.GetComponentInChildren<TextMeshProUGUI>().text = objective.Description;
             }
+
+            string rewardString = "";
+            foreach (Reward reward in item.Quest.Rewards)
+            {
+                if (rewardString != "")
+                {
+                    rewardString += ", ";
+                }
+
+                if (reward.Number > 1)
+                {
+                    rewardString += reward.Number + " ";
+                }
+
+                rewardString += reward.Item.DisplayName;
+            }
+
+            _ = string.IsNullOrEmpty(rewardString)
+                ? RewardText.text = "No rewards"
+                : RewardText.text = rewardString;
         }
     }
 
