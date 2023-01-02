@@ -15,10 +15,6 @@ MonoBehaviour:
   <Objectives>k__BackingField:
   - Reference: 1
     Description: Find cat
-  - Reference: 2
-    Description: Bring cat back
-  - Reference: 
-    Description: 
   <Rewards>k__BackingField:
   - Number: 1
     Item: {fileID: 11400000, guid: ac45d045bea48f649a2a08de14effc41, type: 2}

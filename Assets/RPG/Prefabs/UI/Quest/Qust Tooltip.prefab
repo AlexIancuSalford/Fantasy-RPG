@@ -749,6 +749,7 @@ MonoBehaviour:
     type: 3}
   <ObjectiveIncomplete>k__BackingField: {fileID: 6635216688742676677, guid: 00974d3d4fb2f794ba1507406b680239,
     type: 3}
+  <RewardText>k__BackingField: {fileID: 5656563768042566942}
 --- !u!1001 &808855924198957422
 PrefabInstance:
   m_ObjectHideFlags: 0

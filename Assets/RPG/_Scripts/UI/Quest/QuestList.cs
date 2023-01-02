@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RPG.Save;
+using RPG.UI.Inventory;
 using UnityEngine;
+using PlayerInventory = RPG.UI.Inventory.Inventory;
 
 namespace RPG.UI.Quest
 {
@@ -33,13 +35,31 @@ namespace RPG.UI.Quest
 
         public void CompleteObjective(Quest quest, string objective)
         {
-            GetQuestStatus(quest).CompleteObjective(objective);
+            QuestStatus questStatus = GetQuestStatus(quest);
+            questStatus.CompleteObjective(objective);
+
+            if (questStatus.IsQuestComplete())
+            {
+                GiveReward(quest);
+            }
+
             QuestStatusChanged?.Invoke();
         }
 
         public QuestStatus GetQuestStatus(Quest quest)
         {
             return QuestStatuses.FirstOrDefault(questStatus => questStatus.Quest == quest);
+        }
+
+        private void GiveReward(Quest quest)
+        {
+            foreach (Reward reward in quest.Rewards)
+            {
+                if (!GetComponent<PlayerInventory>().AddToFirstEmptySlot(reward.Item, reward.Number))
+                {
+                    GetComponent<ItemDropper>().DropItem(reward.Item, reward.Number);
+                }
+            }
         }
 
         public object SaveState()
