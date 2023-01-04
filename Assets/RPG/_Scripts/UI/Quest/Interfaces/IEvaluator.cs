@@ -6,6 +6,6 @@ namespace RPG.UI.Quest
 {
     public interface IEvaluator
     {
-        public bool? Evaluate(string predicate, string[] args);
+        public bool? Evaluate(Predicate predicate, string[] args);
     }
 }

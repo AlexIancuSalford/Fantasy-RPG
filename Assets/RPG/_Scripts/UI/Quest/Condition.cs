@@ -7,7 +7,7 @@ namespace RPG.UI.Quest
     [System.Serializable]
     public class Condition
     {
-        [field : SerializeField] public string Predicate { get; set; } = string.Empty;
+        [field : SerializeField] public Predicate Predicate { get; set; } = Predicate.None;
         [field : SerializeField] public string[] Args { get; set; } = null;
 
         public bool CheckEvaluators(IEnumerable<IEvaluator> evaluators)

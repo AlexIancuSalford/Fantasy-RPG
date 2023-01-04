@@ -1,5 +1,6 @@
 using System;
 using RPG.Save;
+using RPG.UI.Quest;
 using UnityEngine;
 
 namespace RPG.UI.Inventory
@@ -25,7 +26,7 @@ namespace RPG.UI.Inventory
     /// the state of the inventory. The SaveState method returns an object containing information about the items and their quantities in the inventory,
     /// and the LoadState method takes in an object and uses it to restore the state of the inventory.
     /// </summary>
-    public class Inventory : MonoBehaviour, ISaveableEntity
+    public class Inventory : MonoBehaviour, ISaveableEntity, IEvaluator
     {
         /// <summary>
         /// The number of slots in the inventory.
@@ -273,6 +274,15 @@ namespace RPG.UI.Inventory
             }
 
             InventoryUpdated?.Invoke();
+        }
+
+        public bool? Evaluate(Predicate predicate, string[] args)
+        {
+            return predicate switch
+            {
+                Predicate.HasItem => HasItem(InventoryItem.GetFromID(args[0])),
+                _ => null
+            };
         }
     }
 }
