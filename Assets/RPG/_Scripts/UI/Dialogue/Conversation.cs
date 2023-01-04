@@ -1,29 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RPG.UI.Quest;
 using UnityEngine;
 using static RPG.Dialogue.DialogueEnums;
 using Random = UnityEngine.Random;
 
 namespace RPG.Dialogue
 {
-    /// <summary>
-    /// This script is used for managing a conversation between two game objects (in this case a player and an NPC). The conversation is
-    /// represented as a tree of nodes, where each node represents a piece of dialogue and has a list of child nodes representing the
-    /// possible responses to that piece of dialogue.
-    /// 
-    /// The script has a number of fields, including a CurrentDialogue field that holds the current state of the conversation, a
-    /// CurrentDialogueNode field that holds the current node of the conversation, and an AIConversation field that holds a reference to
-    /// the AI game object involved in the conversation.
-    /// 
-    /// The script also has a number of methods that can be called to manipulate the conversation. For example, the Next method advances
-    /// the conversation to the next node, the StartDialogue method starts a new conversation, and the QuitDialogue method ends the current
-    /// conversation. There are also methods for getting the text of the current node, getting the possible responses to the current node,
-    /// and selecting a particular response.
-    /// 
-    /// There are also a number of private methods in the script that are used to trigger actions when a node is entered or exited, and to
-    /// trigger actions based on the value of a DialogueAction field.
-    /// </summary>
     public class Conversation : MonoBehaviour
     {
         /// <summary>
@@ -70,7 +54,7 @@ namespace RPG.Dialogue
         public void Next()
         {
             // If the current node has player responses, set IsChoosing to true and trigger the OnExitAction.
-            if (CurrentDialogue.GetPlayerNodeChildren(CurrentDialogueNode).Any())
+            if (FilterOnCondition(CurrentDialogue.GetPlayerNodeChildren(CurrentDialogueNode)).Any())
             {
                 // Since the player is choosing, set bool flag to true
                 IsChoosing = true;
@@ -82,7 +66,7 @@ namespace RPG.Dialogue
             }
 
             // Otherwise, select a random child node and advance to it.
-            Node[] children = CurrentDialogue.GetAINodeChildren(CurrentDialogueNode).ToArray();
+            Node[] children = FilterOnCondition(CurrentDialogue.GetAINodeChildren(CurrentDialogueNode)).ToArray();
             // Trigger the exit action from previous node
             TriggerExitAction();
             // Set the current dialogue node the a next one chose at random
@@ -98,7 +82,7 @@ namespace RPG.Dialogue
         /// </summary>
         public bool NodeHasNext()
         {
-            return CurrentDialogue.GetAllNodeChildren(CurrentDialogueNode).Any();
+            return FilterOnCondition(CurrentDialogue.GetAllNodeChildren(CurrentDialogueNode)).Any();
         }
 
         /// <summary>
@@ -106,7 +90,7 @@ namespace RPG.Dialogue
         /// </summary>
         public IEnumerable<Node> GetChoices()
         {
-            return CurrentDialogue.GetAllNodeChildren(CurrentDialogueNode);
+            return FilterOnCondition(CurrentDialogue.GetAllNodeChildren(CurrentDialogueNode));
         }
 
         /// <summary>
@@ -154,6 +138,18 @@ namespace RPG.Dialogue
             IsChoosing = false;
             AIConversation = null;
             onConversationUpdated?.Invoke();
+        }
+
+        private IEnumerable<Node> FilterOnCondition(IEnumerable<Node> input)
+        {
+            return input.Where(node => node.CheckCondition(GetPredicateEvaluators()));
+        }
+
+        private IEnumerable<IEvaluator> GetPredicateEvaluators()
+        {
+            // TODO: Return the components of the AI engaged in the quest as well
+
+            return GetComponents<IEvaluator>();
         }
 
         /// <summary>

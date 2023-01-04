@@ -24,6 +24,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &-7465405107055309168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,6 +53,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &-6840465342890953373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +80,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &-5582907790640095821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +107,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &-3802792024780564972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +133,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 1
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &-3756093032631319165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +161,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +192,7 @@ MonoBehaviour:
   - {fileID: 1955877997026749837}
   - {fileID: 7186117622992852533}
   - {fileID: 191171592806726257}
+  - {fileID: 472772045857650475}
   <DefaultCanvasSize>k__BackingField: {x: 4000, y: 4000}
   <NewNodeOffset>k__BackingField: {x: 250, y: 0}
 --- !u!114 &191171592806726257
@@ -199,6 +218,35 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
+--- !u!114 &472772045857650475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 91ee5580-cbfb-4f63-a3e8-5cf89d34dc31
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField: []
+  <Text>k__BackingField: Have you found my cat?
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 299
+    y: 325.99997
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &569564091897194288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +271,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &1401830599419277645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +298,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &1831841979759347084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +325,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &1955877997026749837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +352,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 2
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &2491152515434616935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +370,7 @@ MonoBehaviour:
   <NodeChildren>k__BackingField:
   - 5b8b7486-5df4-42f9-abbf-2ef70634d499
   - e3185b9e-60e8-4781-9c5a-89b732aeffa3
+  - 91ee5580-cbfb-4f63-a3e8-5cf89d34dc31
   <Text>k__BackingField: You don't look like you're from around here
   <CurrentSpeaker>k__BackingField: 1
   rectPosition:
@@ -320,6 +381,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &2776007128697257883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +408,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &5384673542416476721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +436,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []
 --- !u!114 &7186117622992852533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,3 +462,6 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 
+    <Args>k__BackingField: []

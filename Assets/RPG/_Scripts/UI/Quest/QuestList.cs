@@ -8,7 +8,7 @@ using PlayerInventory = RPG.UI.Inventory.Inventory;
 
 namespace RPG.UI.Quest
 {
-    public class QuestList : MonoBehaviour, ISaveableEntity
+    public class QuestList : MonoBehaviour, ISaveableEntity, IEvaluator
     {
         public List<QuestStatus> QuestStatuses { get; private set; } = new List<QuestStatus>();
 
@@ -84,6 +84,13 @@ namespace RPG.UI.Quest
             {
                 QuestStatuses.Add(new QuestStatus(objectState));
             }
+        }
+
+        public bool? Evaluate(string predicate, string[] args)
+        {
+            if (predicate != "HasQuest") { return null; }
+
+            return HasQuest(Quest.GetQuestByName(args[0]));
         }
     }
 }
