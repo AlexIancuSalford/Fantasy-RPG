@@ -86,11 +86,14 @@ namespace RPG.UI.Quest
             }
         }
 
-        public bool? Evaluate(string predicate, string[] args)
+        public bool? Evaluate(Predicate predicate, string[] args)
         {
-            if (predicate != "HasQuest") { return null; }
-
-            return HasQuest(Quest.GetQuestByName(args[0]));
+            return predicate switch
+            {
+                Predicate.HasQuest => HasQuest(Quest.GetQuestByName(args[0])),
+                Predicate.QuestComplete => GetQuestStatus(Quest.GetQuestByName(args[0])).IsQuestComplete(),
+                _ => null
+            };
         }
     }
 }
