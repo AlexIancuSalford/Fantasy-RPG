@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2562c5c83304a4ca63c0a9333f69e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SceneToLoad>k__BackingField: Sandbox
 --- !u!1001 &2539860449330977523
 PrefabInstance:
   m_ObjectHideFlags: 0

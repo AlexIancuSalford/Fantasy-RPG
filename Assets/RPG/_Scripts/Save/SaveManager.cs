@@ -139,5 +139,15 @@ namespace RPG.Save
         {
             File.Delete(CSerializer.GetPathFromFile(fileName));
         }
+
+        /// <summary>
+        /// This method checks if a save file exists already
+        /// </summary>
+        /// <param name="fileName">The save file name</param>
+        /// <returns>True if the save file exists, false otherwise</returns>
+        public bool IsSaveFile(string fileName)
+        {
+            return File.Exists(CSerializer.GetPathFromFile(fileName));
+        }
     }
 }
