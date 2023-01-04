@@ -47,9 +47,9 @@ namespace RPG.Scene
         {
             // Fade out the screen immediately when the game starts
             FadeEffect.FadeOutImmediately();
-            // Fade the screen back in
             // Load the last saved scene using the SaveManager component
             yield return GetComponent<SaveManager>().LoadLastScene(_defaultSaveFile);
+            // Fade the screen back in
             yield return FadeEffect.FadeIn(_fadeInTime);
             // Load the saved game data again due to unidentified bug
             Load();
