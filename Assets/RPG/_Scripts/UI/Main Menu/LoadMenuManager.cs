@@ -12,12 +12,13 @@ namespace RPG.UI.Menu
 
         private void OnEnable()
         {
+            SaveWrapper saveWrapper = FindObjectOfType<SaveWrapper>();
+            if (saveWrapper == null) { return; }
+
             foreach (Transform child in Root)
             {
                 Destroy(child.gameObject);
             }
-
-            SaveWrapper saveWrapper = FindObjectOfType<SaveWrapper>();
 
             foreach (string save in saveWrapper.SaveList())
             {
