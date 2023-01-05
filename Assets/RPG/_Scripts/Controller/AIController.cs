@@ -2,7 +2,9 @@ using RPG.Attributes;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
+using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace RPG.Controller
 {
@@ -67,15 +69,15 @@ namespace RPG.Controller
     public class AIController : MonoBehaviour
     {
         // The range at which the NPC will start chasing the player.
-        [field : SerializeField] public float ChaseRange { get; set; } = 4.0f;
+        [field: SerializeField] public float ChaseRange { get; set; } = 4.0f;
         // The amount of time that the NPC will be in a suspicious state after the player has left their chase range.
-        [field : SerializeField] public float SuspicionTime { get; set; } = 4.0f;
+        [field: SerializeField] public float SuspicionTime { get; set; } = 4.0f;
         // The amount of time that the NPC will be in an aggravated state after the player has attacked.
-        [field : SerializeField] public float AggroTime { get; set; } = 4.0f;
+        [field: SerializeField] public float AggroTime { get; set; } = 4.0f;
         // The range at which the NPC will trigger the aggro of nearby NPCs (Like shouting for help, for example)
         [field: SerializeField] public float AggroShoutDistance { get; set; } = 5.0f;
         // The patrol route that the NPC will follow when not attacking or suspicious of the player.
-        [field : SerializeField] public PatrolController PatrolRoute { get; set; }
+        [field: SerializeField] public PatrolController PatrolRoute { get; set; }
         // The amount of time that the NPC will stay at each waypoint in their patrol route.
         [field: SerializeField] public float WaypointStopTime { get; set; } = 4f;
 
@@ -103,13 +105,15 @@ namespace RPG.Controller
             Health = GetComponent<Health>();
             Mover = GetComponent<Mover>();
             ActionManager = GetComponent<ActionManager>();
+
+            // Set the initial location of the NPC.
+            _guardLocation = gameObject.transform.position;
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            // Set the initial location of the NPC.
-            _guardLocation = gameObject.transform.position;
+
         }
 
         // Update is called once per frame
@@ -289,6 +293,19 @@ namespace RPG.Controller
                 // Call the Aggro method on the AIController hit by spherecast
                 controller.Aggro();
             }
+        }
+
+        /// <summary>
+        /// This method resets the position and state of the enemy with and AIController
+        /// </summary>
+        public void Reset()
+        {
+            GetComponent<NavMeshAgent>().Warp(_guardLocation);
+            _timeSincePlayerSpotted = Mathf.Infinity;
+            _timeAtWaypoint = Mathf.Infinity;
+            _waypointMarginOfError = 1f;
+            _currentWaypointIndex = 0;
+            _aggroTime = Mathf.Infinity;
         }
     }
 }
