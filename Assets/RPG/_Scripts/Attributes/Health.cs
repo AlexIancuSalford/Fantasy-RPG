@@ -78,9 +78,9 @@ namespace RPG.Attributes
         [ReadOnly, SerializeField] private float CurrentHealth = -1f;
         [field : SerializeField] private UnityEvent<float> TakeDamageEvent { get; set; } = null;
         [field : SerializeField] private UnityEvent<float> SetHealthBarEvent { get; set; } = null;
-        [field : SerializeField] private UnityEvent OnDie { get; set; } = null;
+        [field : SerializeField] public UnityEvent OnDie { get; set; } = null;
 
-        public bool IsDead { get; private set; } = false;
+        private bool wasDead = false;
 
         private ActionManager ActionManager { get; set; }
         private Animator Animator { get; set; }
@@ -122,13 +122,12 @@ namespace RPG.Attributes
             SetHealthBarEvent.Invoke(ToPercentage()/100);
 
             // If the object is not dead, return without doing anything else.
-            if (CurrentHealth == 0)
+            if (IsDead())
             {
                 OnDie.Invoke();
-                // Otherwise, trigger the death animation and award experience to the instigator.
-                TriggerDeathAnimation(false);
                 AwardExperience(instigator);
             }
+            TriggerDeathAnimation(false);
         }
 
         /// <summary>
@@ -137,9 +136,6 @@ namespace RPG.Attributes
         /// <param name="isLoading">Whether the object is being loaded from the save data or not.</param>
         private void TriggerDeathAnimation(bool isLoading)
         {
-            // If the object is already dead, return without doing anything.
-            if (IsDead) { return; }
-
             // If the object is being loaded, retrieve references to the Animator and ActionManager components.
             if (isLoading)
             {
@@ -147,10 +143,23 @@ namespace RPG.Attributes
                 ActionManager = GetComponent<ActionManager>();
             }
 
-            // Set IsDead to true, trigger the "death" animation, and cancel the current action.
-            IsDead = true;
-            Animator.SetTrigger("death");
-            ActionManager.CancelAction();
+            // Check if the player was dead last frame
+            switch (wasDead)
+            {
+                // If the player was not dead last frame, but it now, trigger the death animation and cancel current actions
+                case false when IsDead():
+                    Animator.SetTrigger("death");
+                    ActionManager.CancelAction();
+                    break;
+                // If the player was dead last frame, but now is alive (due to respawn), restart the animator,
+                // the rest of stuff will be sorted the frame
+                case true when !IsDead():
+                    Animator.Rebind();
+                    break;
+            }
+
+            // At the end of the frame check if the player is dead to be processed next frame
+            wasDead = IsDead();
         }
 
         /// <summary>
@@ -196,11 +205,7 @@ namespace RPG.Attributes
             // Set the current health to the value of the obj argument.
             CurrentHealth = (float)obj;
 
-            // If the object is dead, trigger the death animation.
-            if (CurrentHealth <= 0)
-            {
-                TriggerDeathAnimation(true);
-            }
+            TriggerDeathAnimation(true);
         }
 
         /// <summary>
@@ -224,9 +229,29 @@ namespace RPG.Attributes
         /// <summary>
         /// This method sets the current health to the value corresponding to its level
         /// </summary>
-        private void RegenHealth()
+        public void RegenHealth()
         {
             CurrentHealth = GetMaxHealth();
+            TriggerDeathAnimation(false);
+        }
+
+        /// <summary>
+        /// This method sets the current health to a percentage of the players' max health
+        /// </summary>
+        /// <param name="value">The value to be restored in percentage</param>
+        public void RegenHealth(float value)
+        {
+            CurrentHealth = GetMaxHealth() * value / 100;
+            TriggerDeathAnimation(false);
+        }
+
+        /// <summary>
+        /// This method checks is the current player HP is less or equal to 0
+        /// </summary>
+        /// <returns>True if the health is 0 or less, false otherwise</returns>
+        public bool IsDead()
+        {
+            return CurrentHealth <= 0;
         }
     }
 }

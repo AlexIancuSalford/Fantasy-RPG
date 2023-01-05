@@ -26,7 +26,7 @@ namespace RPG.Scene
     /// </summary>
     public class EffectManager : MonoBehaviour
     {
-        [field: SerializeField] private GameObject persistentObject { get; set; }
+        [field : SerializeField] private GameObject PersistentObject { get; set; }
 
         private static bool hasSpawned = false;
 
@@ -48,7 +48,7 @@ namespace RPG.Scene
         private void SpawnObjects()
         {
             // Instantiate the persistent object
-            GameObject persistentObj = Instantiate(persistentObject);
+            GameObject persistentObj = Instantiate(PersistentObject);
             // Make the object persistent across scene changes
             DontDestroyOnLoad(persistentObj);
         }

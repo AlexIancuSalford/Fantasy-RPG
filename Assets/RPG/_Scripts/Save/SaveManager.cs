@@ -2,46 +2,42 @@ using RPG.Helper;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RPG.Save
 {
+    /// <summary>
+    /// This Unity script provides functionality for saving and loading a game's state. It allows you to save the
+    /// current state of the game to a file, and to load a previously saved state from a file.
+    /// 
+    /// The SaveManager class is a MonoBehaviour, which means it can be attached to a GameObject in a Unity scene
+    /// and will receive updates from the game engine. It has three public methods: Save, Load, and LoadLastScene.
+    /// 
+    /// The Save method writes the current state of the game to a file with the given file name. It does this by
+    /// creating a dictionary of key-value pairs representing the game state, and then passing it to the WriteToFile
+    /// method of the CSerializer class. The CSerializer class is responsible for converting the dictionary to a
+    /// string and writing it to a file.
+    /// 
+    /// The Load method reads the game state from a file with the given file name and returns the game state as a
+    /// dictionary of key-value pairs. It does this by calling the ReadFromFile method of the CSerializer class,
+    /// which reads the file and converts the string back into a dictionary.
+    /// 
+    /// The LoadLastScene method loads the last scene the player was in and applies the game state from a file with
+    /// the given file name. It does this by reading the game state from the file, and then checking if the dictionary
+    /// contains the build index of the last scene the player was in. If it does, it loads the scene with that build
+    /// index. It then calls the LoadState method, passing it the dictionary, which deserializes the game state and
+    /// applies it to the game objects.
+    /// 
+    /// The SaveState and LoadState methods are responsible for serializing and deserializing the game state, respectively.
+    /// They do this by iterating over all the SaveableEntity components in the game and calling the SaveState and LoadState
+    /// methods on them, respectively. The SaveableEntity class is a component that can be attached to a GameObject to make
+    /// it serializable. It has a UUID field, which is a unique identifier for the component, and SaveState and LoadState
+    /// methods, which are responsible for serializing and deserializing the component's state.
+    /// </summary>
     public class SaveManager : MonoBehaviour
     {
-        // <summary>
-        /// 
-        /// The SaveManager script is a Unity component that allows the game to be
-        /// saved and loaded. It has four main methods: Save, Load, LoadState, and
-        /// SaveState. It also has a coroutine method called LoadLastScene.
-        ///  
-        /// The Save method takes a file name as an argument and writes the current
-        /// game state to a file with that name using the CSerializer.WriteToFile
-        /// method. The game state is obtained by calling the SaveState method, which
-        /// iterates over all the SaveableEntity components in the game and adds their
-        /// serialized data to a dictionary using the component's UUID as the key.
-        /// The dictionary is then passed to the CSerializer.WriteToFile method to be
-        /// written to the file.
-        ///  
-        /// The Load method takes a file name as an argument and reads the game state
-        /// from the file using the CSerializer.ReadFromFile method. It then passes the
-        /// state to the LoadState method to be deserialized and applied to the game
-        /// objects. The LoadState method iterates over all the SaveableEntity
-        /// components in the game and checks if the state dictionary contains data
-        /// for that component. If it does, it calls the LoadState method on the
-        /// component, passing in the data from the dictionary as an argument.
-        ///  
-        /// The LoadLastScene coroutine method takes a file name as an argument and
-        /// reads the game state from the file using the CSerializer.ReadFromFile
-        /// method. It then checks if the dictionary contains a "lastSceneBuildIndex"
-        /// key, which represents the build index of the last scene the player was in.
-        /// If the build index is different from the current scene's build index, the
-        /// coroutine loads the last scene using the SceneManager.LoadSceneAsync method.
-        /// Once the scene is finished loading, it calls the LoadState method to apply
-        /// the game state to the game objects.
-        /// 
-        /// </summary>
-        /// <param name="fileName">The file name to save the game state to.</param>
         public void Save(string fileName)
         {
             // Read the current game state from the file
@@ -138,6 +134,34 @@ namespace RPG.Save
         public void Delete(string fileName)
         {
             File.Delete(CSerializer.GetPathFromFile(fileName));
+        }
+
+        /// <summary>
+        /// This method checks if a save file exists already
+        /// </summary>
+        /// <param name="fileName">The save file name</param>
+        /// <returns>True if the save file exists, false otherwise</returns>
+        public bool IsSaveFile(string fileName)
+        {
+            return File.Exists(CSerializer.GetPathFromFile(fileName));
+        }
+
+        /// <summary>
+        /// This method gets a list of files with the extension .save from the Unity Application.persistentDataPath folder
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<string> SaveList()
+        {
+            // Iterate through all the files in the Application.persistentDataPath directory
+            foreach (string path in Directory.EnumerateFiles(Application.persistentDataPath))
+            {
+                // Check if the file extension is .save
+                if (Path.GetExtension(path).Equals(".save"))
+                {
+                    //If it is, yield return the file name without the .save extension
+                    yield return Path.GetFileNameWithoutExtension(path);
+                }
+            }
         }
     }
 }

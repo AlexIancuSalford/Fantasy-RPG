@@ -89,7 +89,7 @@ namespace RPG.Movement
         void Update()
         {
             // Disable the NavMeshAgent if the game object is dead
-            Agent.enabled = !Health.IsDead;
+            Agent.enabled = !Health.IsDead();
 
             // Set the "forwardSpeed" parameter of the Animator based on the forward velocity of the NavMeshAgent
             Animator.SetFloat("forwardSpeed", transform.InverseTransformDirection(Agent.velocity).z);

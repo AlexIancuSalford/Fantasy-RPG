@@ -61,7 +61,7 @@ namespace RPG.Dialogue
         public bool HandleRaycast(PlayerController caller)
         {
             // Return false if the object (NPC) is dead
-            if (health.IsDead) { return false; }
+            if (health.IsDead()) { return false; }
 
             if (Dialogue == null)
             {

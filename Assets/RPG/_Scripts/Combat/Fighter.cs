@@ -76,7 +76,7 @@ namespace RPG.Combat
 
             // If there is no target or the target is dead, do nothing
             if (Target == null) { return; }
-            if (Target.IsDead) { return; }
+            if (Target.IsDead()) { return; }
 
             // If the target is within range, move towards it
             if (IsTargetInRange(Target.transform))
@@ -206,7 +206,7 @@ namespace RPG.Combat
             Health targetHealth = target.GetComponent<Health>();
 
             // Otherwise, return whether the target is alive and not null
-            return targetHealth != null && !targetHealth.IsDead;
+            return targetHealth != null && !targetHealth.IsDead();
         }
 
         /// <summary>
