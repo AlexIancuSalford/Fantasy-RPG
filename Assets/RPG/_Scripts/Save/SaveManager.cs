@@ -2,11 +2,40 @@ using RPG.Helper;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RPG.Save
 {
+    /// <summary>
+    /// This Unity script provides functionality for saving and loading a game's state. It allows you to save the
+    /// current state of the game to a file, and to load a previously saved state from a file.
+    /// 
+    /// The SaveManager class is a MonoBehaviour, which means it can be attached to a GameObject in a Unity scene
+    /// and will receive updates from the game engine. It has three public methods: Save, Load, and LoadLastScene.
+    /// 
+    /// The Save method writes the current state of the game to a file with the given file name. It does this by
+    /// creating a dictionary of key-value pairs representing the game state, and then passing it to the WriteToFile
+    /// method of the CSerializer class. The CSerializer class is responsible for converting the dictionary to a
+    /// string and writing it to a file.
+    /// 
+    /// The Load method reads the game state from a file with the given file name and returns the game state as a
+    /// dictionary of key-value pairs. It does this by calling the ReadFromFile method of the CSerializer class,
+    /// which reads the file and converts the string back into a dictionary.
+    /// 
+    /// The LoadLastScene method loads the last scene the player was in and applies the game state from a file with
+    /// the given file name. It does this by reading the game state from the file, and then checking if the dictionary
+    /// contains the build index of the last scene the player was in. If it does, it loads the scene with that build
+    /// index. It then calls the LoadState method, passing it the dictionary, which deserializes the game state and
+    /// applies it to the game objects.
+    /// 
+    /// The SaveState and LoadState methods are responsible for serializing and deserializing the game state, respectively.
+    /// They do this by iterating over all the SaveableEntity components in the game and calling the SaveState and LoadState
+    /// methods on them, respectively. The SaveableEntity class is a component that can be attached to a GameObject to make
+    /// it serializable. It has a UUID field, which is a unique identifier for the component, and SaveState and LoadState
+    /// methods, which are responsible for serializing and deserializing the component's state.
+    /// </summary>
     public class SaveManager : MonoBehaviour
     {
         public void Save(string fileName)
@@ -117,17 +146,22 @@ namespace RPG.Save
             return File.Exists(CSerializer.GetPathFromFile(fileName));
         }
 
+        /// <summary>
+        /// This method gets a list of files with the extension .save from the Unity Application.persistentDataPath folder
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<string> SaveList()
         {
+            // Iterate through all the files in the Application.persistentDataPath directory
             foreach (string path in Directory.EnumerateFiles(Application.persistentDataPath))
             {
+                // Check if the file extension is .save
                 if (Path.GetExtension(path).Equals(".save"))
                 {
+                    //If it is, yield return the file name without the .save extension
                     yield return Path.GetFileNameWithoutExtension(path);
                 }
             }
-
-            Directory.EnumerateFiles(Application.persistentDataPath);
         }
     }
 }
