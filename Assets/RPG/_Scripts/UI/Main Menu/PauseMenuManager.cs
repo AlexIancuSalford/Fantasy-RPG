@@ -1,4 +1,5 @@
 using RPG.Controller;
+using RPG.Scene;
 using UnityEngine;
 
 namespace RPG.UI.Menu
@@ -34,6 +35,23 @@ namespace RPG.UI.Menu
         void Update()
         {
 
+        }
+
+        public void Save()
+        {
+            GetSaveWrapper().Save();
+        }
+
+        public void SaveAndQuit()
+        {
+            SaveWrapper saveWrapper = GetSaveWrapper();
+            saveWrapper.Save();
+            saveWrapper.LoadMenu();
+        }
+
+        private SaveWrapper GetSaveWrapper()
+        {
+            return FindObjectOfType<SaveWrapper>();
         }
     }
 }

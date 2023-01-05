@@ -78,7 +78,7 @@ namespace RPG.Attributes
         [ReadOnly, SerializeField] private float CurrentHealth = -1f;
         [field : SerializeField] private UnityEvent<float> TakeDamageEvent { get; set; } = null;
         [field : SerializeField] private UnityEvent<float> SetHealthBarEvent { get; set; } = null;
-        [field : SerializeField] private UnityEvent OnDie { get; set; } = null;
+        [field : SerializeField] public UnityEvent OnDie { get; set; } = null;
 
         public bool IsDead { get; private set; } = false;
 
@@ -224,9 +224,18 @@ namespace RPG.Attributes
         /// <summary>
         /// This method sets the current health to the value corresponding to its level
         /// </summary>
-        private void RegenHealth()
+        public void RegenHealth()
         {
             CurrentHealth = GetMaxHealth();
+        }
+
+        /// <summary>
+        /// This method sets the current health to a percentage of the players' max health
+        /// </summary>
+        /// <param name="value">The value to be restored in percentage</param>
+        public void RegenHealth(float value)
+        {
+            CurrentHealth = GetMaxHealth() * value / 100;
         }
     }
 }

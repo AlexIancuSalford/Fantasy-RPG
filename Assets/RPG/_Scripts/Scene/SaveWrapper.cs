@@ -8,15 +8,35 @@ namespace RPG.Scene
 {
     public class SaveWrapper : MonoBehaviour
     {
-        private float _fadeInTime = 2f;
+        private const float FadeInTime = 2f;
+        private const float FadeOutTime = 1f;
 
         [field : SerializeField] public int SceneToLoadIndex { get; private set; }
+        [field : SerializeField] public int MainMenuIndex { get; private set; } = 0;
 
         private FadeEffect FadeEffect { get; set; }
 
         private void Awake()
         {
             FadeEffect = FindObjectOfType<FadeEffect>();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                Save();
+            }
+
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                Load();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                Delete();
+            }
         }
 
         public void ContinueGame()
@@ -37,6 +57,11 @@ namespace RPG.Scene
             StartCoroutine(LoadLastScene());
         }
 
+        public void LoadMenu()
+        {
+            StartCoroutine(LoadMainMenu());
+        }
+
         private IEnumerator LoadLastScene()
         {
             // Fade out the screen immediately when the game starts
@@ -44,7 +69,7 @@ namespace RPG.Scene
             // Load the last saved scene using the SaveManager component
             yield return GetComponent<SaveManager>().LoadLastScene(GetCurrentSaveFile());
             // Fade the screen back in
-            yield return FadeEffect.FadeIn(_fadeInTime);
+            yield return FadeEffect.FadeIn(FadeInTime);
             // Load the saved game data again due to unidentified bug
             Load();
         }
@@ -58,25 +83,17 @@ namespace RPG.Scene
             // Load the last saved scene using the SaveManager component
             yield return SceneManager.LoadSceneAsync(SceneToLoadIndex);
             // Fade the screen back in
-            yield return FadeEffect.FadeIn(_fadeInTime);
+            yield return FadeEffect.FadeIn(FadeInTime);
         }
 
-        private void Update()
+        private IEnumerator LoadMainMenu()
         {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                Save();
-            }
-
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                Load();
-            }
-
-            if (Input.GetKeyDown(KeyCode.F1))
-            {
-                Delete();
-            }
+            // Fade out the screen when the loading starts
+            yield return FadeEffect.FadeOut(1);
+            // Load the last saved scene using the SaveManager component
+            yield return SceneManager.LoadSceneAsync(MainMenuIndex);
+            // Fade the screen back in
+            yield return FadeEffect.FadeIn(FadeInTime);
         }
 
         /// <summary>
