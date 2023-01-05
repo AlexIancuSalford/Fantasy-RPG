@@ -9,39 +9,6 @@ namespace RPG.Save
 {
     public class SaveManager : MonoBehaviour
     {
-        // <summary>
-        /// 
-        /// The SaveManager script is a Unity component that allows the game to be
-        /// saved and loaded. It has four main methods: Save, Load, LoadState, and
-        /// SaveState. It also has a coroutine method called LoadLastScene.
-        ///  
-        /// The Save method takes a file name as an argument and writes the current
-        /// game state to a file with that name using the CSerializer.WriteToFile
-        /// method. The game state is obtained by calling the SaveState method, which
-        /// iterates over all the SaveableEntity components in the game and adds their
-        /// serialized data to a dictionary using the component's UUID as the key.
-        /// The dictionary is then passed to the CSerializer.WriteToFile method to be
-        /// written to the file.
-        ///  
-        /// The Load method takes a file name as an argument and reads the game state
-        /// from the file using the CSerializer.ReadFromFile method. It then passes the
-        /// state to the LoadState method to be deserialized and applied to the game
-        /// objects. The LoadState method iterates over all the SaveableEntity
-        /// components in the game and checks if the state dictionary contains data
-        /// for that component. If it does, it calls the LoadState method on the
-        /// component, passing in the data from the dictionary as an argument.
-        ///  
-        /// The LoadLastScene coroutine method takes a file name as an argument and
-        /// reads the game state from the file using the CSerializer.ReadFromFile
-        /// method. It then checks if the dictionary contains a "lastSceneBuildIndex"
-        /// key, which represents the build index of the last scene the player was in.
-        /// If the build index is different from the current scene's build index, the
-        /// coroutine loads the last scene using the SceneManager.LoadSceneAsync method.
-        /// Once the scene is finished loading, it calls the LoadState method to apply
-        /// the game state to the game objects.
-        /// 
-        /// </summary>
-        /// <param name="fileName">The file name to save the game state to.</param>
         public void Save(string fileName)
         {
             // Read the current game state from the file
@@ -148,6 +115,19 @@ namespace RPG.Save
         public bool IsSaveFile(string fileName)
         {
             return File.Exists(CSerializer.GetPathFromFile(fileName));
+        }
+
+        public IEnumerable<string> SaveList()
+        {
+            foreach (string path in Directory.EnumerateFiles(Application.persistentDataPath))
+            {
+                if (Path.GetExtension(path).Equals(".save"))
+                {
+                    yield return Path.GetFileNameWithoutExtension(path);
+                }
+            }
+
+            Directory.EnumerateFiles(Application.persistentDataPath);
         }
     }
 }

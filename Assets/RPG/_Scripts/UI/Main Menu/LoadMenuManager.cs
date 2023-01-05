@@ -1,4 +1,7 @@
+using RPG.Scene;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG.UI.Menu
 {
@@ -14,10 +17,17 @@ namespace RPG.UI.Menu
                 Destroy(child.gameObject);
             }
 
-            Instantiate(ButtonPrefab, Root);
-            Instantiate(ButtonPrefab, Root);
-            Instantiate(ButtonPrefab, Root);
-            Instantiate(ButtonPrefab, Root);
+            SaveWrapper saveWrapper = FindObjectOfType<SaveWrapper>();
+
+            foreach (string save in saveWrapper.SaveList())
+            {
+                GameObject instance = Instantiate(ButtonPrefab, Root);
+                instance.GetComponentInChildren<TextMeshProUGUI>().text = save;
+                instance.GetComponentInChildren<Button>().onClick.AddListener(() =>
+                {
+                    saveWrapper.LoadGame(save);
+                });
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 using RPG.Save;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,6 +29,12 @@ namespace RPG.Scene
         {
             SetCurrentSaveFile(fileName);
             StartCoroutine(LoadNewScene());
+        }
+
+        public void LoadGame(string fileName)
+        {
+            SetCurrentSaveFile(fileName);
+            StartCoroutine(LoadLastScene());
         }
 
         private IEnumerator LoadLastScene()
@@ -94,6 +101,11 @@ namespace RPG.Scene
         public void Delete()
         {
             GetComponent<SaveManager>().Delete(GetCurrentSaveFile());
+        }
+
+        public IEnumerable<string> SaveList()
+        {
+            return GetComponent<SaveManager>().SaveList();
         }
 
         private void SetCurrentSaveFile(string fileName)
