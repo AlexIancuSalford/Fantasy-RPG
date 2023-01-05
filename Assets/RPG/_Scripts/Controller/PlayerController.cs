@@ -114,7 +114,7 @@ namespace RPG.Controller
                     SetCursor(CursorType.UI);
                     break;
                 // If the player is dead, return without doing anything
-                case bool x when Health.IsDead:
+                case bool x when Health.IsDead():
                     SetCursor(CursorType.None);
                     return;
                 case bool x when CanInteractWithObject():

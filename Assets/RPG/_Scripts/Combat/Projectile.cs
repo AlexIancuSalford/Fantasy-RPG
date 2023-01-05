@@ -63,7 +63,7 @@ namespace RPG.Combat
             if (_target == null) { return; }
 
             // If the projectile is homing and the target is not dead, aim at the target
-            if (IsHoming && !_target.IsDead) { transform.LookAt(AimLocation()); }
+            if (IsHoming && !_target.IsDead()) { transform.LookAt(AimLocation()); }
 
             // Move the projectile forward
             transform.Translate(Vector3.forward * Time.deltaTime * Speed);
@@ -104,7 +104,7 @@ namespace RPG.Combat
             // Return if the other object does not have a Health component
             if (other.gameObject.GetComponent<Health>() == null) { return; }
             // Return if the target is already dead
-            if (_target.IsDead) { return; }
+            if (_target.IsDead()) { return; }
 
             // Invoke the event that will trigger a sound on hit
             OnHit.Invoke();

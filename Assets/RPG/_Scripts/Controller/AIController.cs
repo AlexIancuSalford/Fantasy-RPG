@@ -119,7 +119,7 @@ namespace RPG.Controller
             switch (true)
             {
                 // If the NPC is dead, do nothing.
-                case bool x when Health.IsDead:
+                case bool x when Health.IsDead():
                     return;
                 // If the player is within range and the NPC is able to attack them, start attacking.
                 case bool x when IsPlayerInRange() && Fighter.CanAttack(_player):
