@@ -10,22 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd1fc754755e54c4f8ce75cb1adb730d, type: 3}
-  m_Name: Enemy Drops
+  m_Name: Key Drop
   m_EditorClassIdentifier: 
   <ItemDropList>k__BackingField:
-  - Item: {fileID: 11400000, guid: ac45d045bea48f649a2a08de14effc41, type: 2}
+  - Item: {fileID: 11400000, guid: 2ed809235f418ee45a0a66acc4b29aef, type: 2}
     RelativeChance:
-    - 10
-    NumberMax: 0100000001000000
-    NumberMin: 0100000001000000
-  - Item: {fileID: 11400000, guid: c53fe37982f89e543887464475d4c430, type: 2}
-    RelativeChance:
-    - 90
-    NumberMax: 0100000001000000
-    NumberMin: 0100000001000000
+    - 100
+    NumberMax: 01000000
+    NumberMin: 01000000
   <DropChance>k__BackingField:
-  - 20
-  - 50
-  - 75
-  <DropsMin>k__BackingField: 0100000002000000
-  <DropMax>k__BackingField: 0300000006000000
+  - 100
+  - 100
+  <DropsMin>k__BackingField: 01000000
+  <DropMax>k__BackingField: 01000000
