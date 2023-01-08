@@ -1,0 +1,891 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8940435121186633187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: d1de2eb1-1c8e-4091-af6e-749485795da1
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - b8cfbefa-5f64-4516-9f7c-c1bd218e35ce
+  <Text>k__BackingField: Yes. Here it is.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 832
+    y: 565.99994
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 2
+    <Args>k__BackingField:
+    - 0bda3de7-517d-4d0f-b7ab-ec18288ff633
+--- !u!114 &-8736238083605117194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: e3185b9e-60e8-4781-9c5a-89b732aeffa3
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - e029ada4-92d1-478f-b500-d3f574e6140f
+  <Text>k__BackingField: I came here from the capital.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 307
+    y: 228.00002
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &-7465405107055309168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: e224fbcb-022c-422d-a32b-594201d9f644
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 02424d34-7f05-4e7c-999b-6779a55e37f7
+  <Text>k__BackingField: Then it must be serious.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 1684
+    y: 172.00002
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &-7420762165631684270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: a8fd3e31-b64d-4f99-93db-8d57d7ec043e
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 31648136-2831-452e-b551-c840dab4bdff
+  <Text>k__BackingField: It's me. Have you forgotten already?
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 306
+    y: 565.99994
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 1
+    <Args>k__BackingField:
+    - Find hat
+--- !u!114 &-6840465342890953373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: c10e1566-69c9-473a-9a49-54cb742a6a5a
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - e224fbcb-022c-422d-a32b-594201d9f644
+  <Text>k__BackingField: Yes. I have been sent by the High Priest.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 830
+    y: 168.00002
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &-3802792024780564972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: ef7d7d30-d2ca-4ff3-9f7f-5c8931841feb
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField: []
+  <Text>k__BackingField: You have to be arrented then for tresspassing!
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 1686
+    y: 502
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 1
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &-3756093032631319165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: a7b12b44-4132-44e9-8b35-73de8baf6738
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - aedcd243-5e3e-4362-b86b-d405bf74c331
+  - ef0dfd3a-f530-40ff-955d-12b8453503a8
+  <Text>k__BackingField: What is you business around here then?
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 1126
+    y: 427
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &-3404615994787268020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 6a1c3cdf-b014-47cc-8a6e-772781389620
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 08ce6b34-aa76-4c98-b862-989c8d413392
+  <Text>k__BackingField: Before letting you pass, can you helps us out?
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 3001
+    y: 244
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &-2568327718497307554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 2b70d31d-676f-42c1-a40c-a11fac93da4d
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 5833323e-9046-4ecd-a503-6e44c30e57f3
+  <Text>k__BackingField: He claims he's seen it but I can't leave my post.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 4251
+    y: 244
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &-2038301230763477725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: ef0dfd3a-f530-40ff-955d-12b8453503a8
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - ef7d7d30-d2ca-4ff3-9f7f-5c8931841feb
+  <Text>k__BackingField: None of your concern!
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 1380
+    y: 502
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &-1871904326469340223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 31648136-2831-452e-b551-c840dab4bdff
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - d1de2eb1-1c8e-4091-af6e-749485795da1
+  - 87bc1133-ff36-4048-9989-b5ed0095b618
+  <Text>k__BackingField: Ah, it's you. Have you found my hat?
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 556
+    y: 565.99994
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &-101082679212324430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: c67efb76-86e5-4751-b317-5ddf4524f482
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 6a1c3cdf-b014-47cc-8a6e-772781389620
+  <Text>k__BackingField: I know the way.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 2430
+    y: 244
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &-16250351921979878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 978c4655-f192-426d-baa7-27d89e63cfcd
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - e9ddf6ed-0edf-4526-8a29-05138f8d026d
+  - c67efb76-86e5-4751-b317-5ddf4524f482
+  <Text>k__BackingField: We'll let you pass through the gate.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 2184
+    y: 172.00002
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a85989f1d9d85f49ac99c7d2724ebac, type: 3}
+  m_Name: Hughes (Village Guard)
+  m_EditorClassIdentifier: 
+  <Nodes>k__BackingField:
+  - {fileID: 2491152515434616935}
+  - {fileID: -8736238083605117194}
+  - {fileID: -3756093032631319165}
+  - {fileID: 1831841979759347084}
+  - {fileID: -3802792024780564972}
+  - {fileID: -7465405107055309168}
+  - {fileID: 5384673542416476721}
+  - {fileID: -6840465342890953373}
+  - {fileID: 2776007128697257883}
+  - {fileID: 472772045857650475}
+  - {fileID: -2038301230763477725}
+  - {fileID: 6504820656375121274}
+  - {fileID: -16250351921979878}
+  - {fileID: 7609142517270646976}
+  - {fileID: 7069479054010978560}
+  - {fileID: -101082679212324430}
+  - {fileID: -3404615994787268020}
+  - {fileID: 2122908668854721101}
+  - {fileID: 2532032759526472866}
+  - {fileID: 5001164356620180409}
+  - {fileID: 8072864795488087913}
+  - {fileID: -2568327718497307554}
+  - {fileID: 470943246122985817}
+  - {fileID: 2531294600550404129}
+  - {fileID: -7420762165631684270}
+  - {fileID: -1871904326469340223}
+  - {fileID: -8940435121186633187}
+  - {fileID: 128638244994887808}
+  - {fileID: 4580900534087439077}
+  - {fileID: 3411414913256910285}
+  - {fileID: 9181719667900267126}
+  <DefaultCanvasSize>k__BackingField: {x: 5000, y: 4000}
+  <NewNodeOffset>k__BackingField: {x: 250, y: 0}
+--- !u!114 &128638244994887808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 87bc1133-ff36-4048-9989-b5ed0095b618
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 19cbc061-2342-491c-90b3-c438e8dfc9d9
+  <Text>k__BackingField: No. I'll keep looking.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 831
+    y: 703.99994
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &470943246122985817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 5833323e-9046-4ecd-a503-6e44c30e57f3
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 1163a7e7-20b2-430f-ac1d-a8733e8a90de
+  <Text>k__BackingField: Fine! I'll go get your hat.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 4501
+    y: 244
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &472772045857650475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 91ee5580-cbfb-4f63-a3e8-5cf89d34dc31
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - a7b12b44-4132-44e9-8b35-73de8baf6738
+  <Text>k__BackingField: I am from far away.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 306
+    y: 428.99994
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &1831841979759347084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: aedcd243-5e3e-4362-b86b-d405bf74c331
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - e224fbcb-022c-422d-a32b-594201d9f644
+  <Text>k__BackingField: I have been sent by the High Priest.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 1381
+    y: 350
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &2122908668854721101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 08ce6b34-aa76-4c98-b862-989c8d413392
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 069a082a-2f64-4d4c-8d5e-61974b4ad1ce
+  <Text>k__BackingField: What do you need?
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 3251
+    y: 244
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &2491152515434616935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: ac03ddb0-db2c-49de-b9ae-6c2af474129a
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - e3185b9e-60e8-4781-9c5a-89b732aeffa3
+  - 91ee5580-cbfb-4f63-a3e8-5cf89d34dc31
+  - a8fd3e31-b64d-4f99-93db-8d57d7ec043e
+  <Text>k__BackingField: You don't look like you're from around here
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 49
+    y: 325.99997
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 3
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &2531294600550404129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 1163a7e7-20b2-430f-ac1d-a8733e8a90de
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField: []
+  <Text>k__BackingField: Thanks! I will give you the key to the gate when you return.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 4751
+    y: 244
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 2
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &2532032759526472866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 069a082a-2f64-4d4c-8d5e-61974b4ad1ce
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 5b42b2d5-61aa-4b81-9154-5b184721b6f0
+  <Text>k__BackingField: Can you find my hat.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 3501
+    y: 244
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &2776007128697257883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 7dd66b12-2ed6-48bc-a862-2bf168946a0a
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - a7b12b44-4132-44e9-8b35-73de8baf6738
+  <Text>k__BackingField: Did I say the capital? I came from Springville.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 828
+    y: 273
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &3411414913256910285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: d9f86f01-779f-41ea-adf6-b155e3479548
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField: []
+  <Text>k__BackingField: Be careful tho. Past the gate to Newton there are a lot
+    of bandits.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 1382
+    y: 609.99994
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &4580900534087439077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: b8cfbefa-5f64-4516-9f7c-c1bd218e35ce
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - d9f86f01-779f-41ea-adf6-b155e3479548
+  <Text>k__BackingField: Tanks. You can grab the key from the guard near the gate.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 1080
+    y: 565.99994
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &5001164356620180409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 5b42b2d5-61aa-4b81-9154-5b184721b6f0
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - dc42884a-33eb-4bff-9a65-748dbf954311
+  <Text>k__BackingField: Where would I look for it?
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 3751
+    y: 244
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &5384673542416476721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: e029ada4-92d1-478f-b500-d3f574e6140f
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - c10e1566-69c9-473a-9a49-54cb742a6a5a
+  - 7dd66b12-2ed6-48bc-a862-2bf168946a0a
+  <Text>k__BackingField: The capital, eh? I heard there's trouble brewing down there.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 553
+    y: 228.00002
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &6504820656375121274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 02424d34-7f05-4e7c-999b-6779a55e37f7
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 978c4655-f192-426d-baa7-27d89e63cfcd
+  <Text>k__BackingField: I have to reach the Newton village as soon as possible.
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 1934
+    y: 172.00002
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &7069479054010978560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: c35ceed9-d497-4167-90f1-c46f0f413f07
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 6a1c3cdf-b014-47cc-8a6e-772781389620
+  <Text>k__BackingField: Past the gate, follow the road and you will see the gate
+    to Newton.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 2686
+    y: 84.000015
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &7609142517270646976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: e9ddf6ed-0edf-4526-8a29-05138f8d026d
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - c35ceed9-d497-4167-90f1-c46f0f413f07
+  <Text>k__BackingField: What is the way to the Newton Village?
+  <CurrentSpeaker>k__BackingField: 0
+  rectPosition:
+    serializedVersion: 2
+    x: 2436
+    y: 84.000015
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &8072864795488087913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: dc42884a-33eb-4bff-9a65-748dbf954311
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField:
+  - 2b70d31d-676f-42c1-a40c-a11fac93da4d
+  <Text>k__BackingField: Ask the next guard along the road.
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 4001
+    y: 244
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
+--- !u!114 &9181719667900267126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29961b4f98e87ac468386d0d90043121, type: 3}
+  m_Name: 19cbc061-2342-491c-90b3-c438e8dfc9d9
+  m_EditorClassIdentifier: 
+  <NodeChildren>k__BackingField: []
+  <Text>k__BackingField: Thank you!
+  <CurrentSpeaker>k__BackingField: 1
+  rectPosition:
+    serializedVersion: 2
+    x: 1081
+    y: 703.99994
+    width: 200
+    height: 100
+  <OnEnterAction>k__BackingField: 0
+  <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []

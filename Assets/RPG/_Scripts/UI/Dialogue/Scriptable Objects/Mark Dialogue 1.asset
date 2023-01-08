@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <NodeChildren>k__BackingField:
   - 497b98db-8198-459e-9c2b-011dfe770f8a
-  <Text>k__BackingField: Ah, yes. His cat is on the other side of the village.
+  <Text>k__BackingField: Ah, yes. His hat is in the village, near the well.
   <CurrentSpeaker>k__BackingField: 1
   rectPosition:
     serializedVersion: 2
@@ -24,6 +24,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
 --- !u!114 &-2341433262598587116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,6 +51,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
 --- !u!114 &-802726096810234885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +78,9 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +91,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a85989f1d9d85f49ac99c7d2724ebac, type: 3}
-  m_Name: Mark Dialogue
+  m_Name: Mark Dialogue 1
   m_EditorClassIdentifier: 
   <Nodes>k__BackingField:
   - {fileID: -2341433262598587116}
@@ -106,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <NodeChildren>k__BackingField:
   - 9a3ec23c-534b-4690-af95-12f265c91f0a
-  <Text>k__BackingField: I am looking for Hughes' cat. Have you seen it?
+  <Text>k__BackingField: I am looking for Hughes' hat. Have you seen it?
   <CurrentSpeaker>k__BackingField: 0
   rectPosition:
     serializedVersion: 2
@@ -116,6 +125,10 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 0
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 1
+    <Args>k__BackingField:
+    - Find hat
 --- !u!114 &5967135997048534157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,3 +152,6 @@ MonoBehaviour:
     height: 100
   <OnEnterAction>k__BackingField: 0
   <OnExitAction>k__BackingField: 3
+  <Condition>k__BackingField:
+    <Predicate>k__BackingField: 0
+    <Args>k__BackingField: []

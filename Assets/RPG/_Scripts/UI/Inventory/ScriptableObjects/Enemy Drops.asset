@@ -18,8 +18,13 @@ MonoBehaviour:
     - 10
     NumberMax: 0100000001000000
     NumberMin: 0100000001000000
+  - Item: {fileID: 11400000, guid: c53fe37982f89e543887464475d4c430, type: 2}
+    RelativeChance:
+    - 90
+    NumberMax: 0100000001000000
+    NumberMin: 0100000001000000
   <DropChance>k__BackingField:
-  - 50
   - 90
+  - 50
   <DropsMin>k__BackingField: 0100000002000000
   <DropMax>k__BackingField: 0300000006000000

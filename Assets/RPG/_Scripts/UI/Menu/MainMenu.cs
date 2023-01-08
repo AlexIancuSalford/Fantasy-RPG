@@ -6,7 +6,7 @@ using UnityEngine;
 namespace RPG.UI.Menu
 {
     /// <summary>
-    /// This script appears to be a script for a main menu in a Unity game. It has a serialized field for a TMP_InputField
+    /// This script is a script for a main menu in a Unity game. It has a serialized field for a TMP_InputField
     /// object called NewGameNameField, which is a Unity UI element for displaying and editing text. It also has two methods:
     /// ContinueGame and StartNewGame.
     /// 

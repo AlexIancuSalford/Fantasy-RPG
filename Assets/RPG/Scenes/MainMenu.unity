@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15085721, g: 0.14782774, b: 0.14767218, a: 1}
+  m_IndirectSpecularColor: {r: 0.15072882, g: 0.14761907, b: 0.14727592, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2819,6 +2819,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2135394044429806518, guid: 1eb9964a798727a4eacce44c7d5be60f,
+        type: 3}
+      propertyPath: m_text
+      value: Eternal Crusade
+      objectReference: {fileID: 0}
+    - target: {fileID: 2135394044429806518, guid: 1eb9964a798727a4eacce44c7d5be60f,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2135394044429806518, guid: 1eb9964a798727a4eacce44c7d5be60f,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2135394044429806518, guid: 1eb9964a798727a4eacce44c7d5be60f,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2949132852598750509, guid: 1eb9964a798727a4eacce44c7d5be60f,
         type: 3}

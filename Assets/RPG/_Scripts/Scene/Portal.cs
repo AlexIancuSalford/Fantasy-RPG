@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using RPG.Controller;
 using UnityEngine;
 using UnityEngine.AI;
@@ -146,19 +147,10 @@ namespace RPG.Scene
         private Portal GetOtherPortal()
         {
             // Find all Portal objects in the scene
-            foreach (Portal portal in FindObjectsOfType<Portal>())
-            {
-                // Skip the current Portal object
-                if (portal == this) { continue; }
-                // Skip Portal objects with a different DestinationPortal field
-                if (portal.DestinationPortal != DestinationPortal) { continue; }
-
-                // Return the matching Portal object
-                return portal;
-            }
-
             // Return null if no matching Portal object is found
-            return null;
+            return FindObjectsOfType<Portal>()
+                .Where(portal => portal != this)
+                .FirstOrDefault(portal => portal.DestinationPortal == DestinationPortal);
         }
     }
 }

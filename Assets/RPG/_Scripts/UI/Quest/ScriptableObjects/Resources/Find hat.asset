@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c4ec91b482570d47b59bf5629cbb34a, type: 3}
-  m_Name: Find the missing cat
+  m_Name: Find hat
   m_EditorClassIdentifier: 
   <Objectives>k__BackingField:
   - Reference: 1
-    Description: Find cat
+    Description: Ask the other guard about the missing hat
+  - Reference: 2
+    Description: Bring the hat back and grab the key
   <Rewards>k__BackingField:
   - Number: 1
-    Item: {fileID: 11400000, guid: ac45d045bea48f649a2a08de14effc41, type: 2}
+    Item: {fileID: 11400000, guid: 2ed809235f418ee45a0a66acc4b29aef, type: 2}

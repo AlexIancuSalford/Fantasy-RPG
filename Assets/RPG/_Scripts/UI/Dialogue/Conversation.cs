@@ -8,6 +8,21 @@ using Random = UnityEngine.Random;
 
 namespace RPG.Dialogue
 {
+    /// <summary>
+    /// The Conversation class is a MonoBehaviour that allows the conversation to be attached to a game object in a
+    /// Unity scene. It has several fields and properties for storing information about the conversation, such as
+    /// the player's name, the current dialogue and node being displayed, and the AI character's conversation object.
+    /// 
+    /// The Conversation class also has several methods for interacting with and advancing the conversation. For example,
+    /// the Next method advances the conversation to the next node, either by presenting the player with a choice if the
+    /// current node has children nodes with player responses, or by selecting a random child node for the AI to speak.
+    /// The GetChoices method returns a list of choices for the player to select from, and the SelectChoice method advances
+    /// the conversation to the next node after the player makes a selection. The NodeHasNext method returns whether the
+    /// current node has any children, and the GetNodeText method returns the text of the current node.
+    /// 
+    /// The Conversation class also has an event called onConversationUpdated that is triggered whenever the conversation
+    /// is updated, such as when a new node is displayed or when the player makes a selection.
+    /// </summary>
     public class Conversation : MonoBehaviour
     {
         /// <summary>
