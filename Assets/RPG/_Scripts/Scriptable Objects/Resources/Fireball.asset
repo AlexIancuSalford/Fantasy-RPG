@@ -26,7 +26,7 @@ MonoBehaviour:
   <WeaponPrefab>k__BackingField: {fileID: 3959267826479463840, guid: 202deb5fd55499a4a98e3bfa898eca7e,
     type: 3}
   <AttackCooldown>k__BackingField: 1
-  <Range>k__BackingField: 20
+  <Range>k__BackingField: 6
   <Damage>k__BackingField: 10
   <PercentageBonusDamage>k__BackingField: 10
   <IsRightHanded>k__BackingField: 0

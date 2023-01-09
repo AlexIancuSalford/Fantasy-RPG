@@ -15,12 +15,14 @@ MonoBehaviour:
   <ItemDropList>k__BackingField:
   - Item: {fileID: 11400000, guid: ac45d045bea48f649a2a08de14effc41, type: 2}
     RelativeChance:
-    - 10
+    - 80
+    - 90
     NumberMax: 0100000001000000
     NumberMin: 0100000001000000
   - Item: {fileID: 11400000, guid: c53fe37982f89e543887464475d4c430, type: 2}
     RelativeChance:
-    - 90
+    - 20
+    - 10
     NumberMax: 0100000001000000
     NumberMin: 0100000001000000
   <DropChance>k__BackingField:

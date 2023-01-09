@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1fc754755e54c4f8ce75cb1adb730d, type: 3}
+  m_Name: Scene 2 Item Drops
+  m_EditorClassIdentifier: 
+  <ItemDropList>k__BackingField:
+  - Item: {fileID: 11400000, guid: c53fe37982f89e543887464475d4c430, type: 2}
+    RelativeChance:
+    - 80
+    - 60
+    - 30
+    NumberMax: 01000000
+    NumberMin: 01000000
+  - Item: {fileID: 11400000, guid: 91d4eb01853d89145b629e8b64aca52e, type: 2}
+    RelativeChance:
+    - 10
+    - 20
+    - 60
+    NumberMax: 01000000
+    NumberMin: 01000000
+  - Item: {fileID: 11400000, guid: 7de4732ffbff00c4fae544c6454c1393, type: 2}
+    RelativeChance:
+    - 10
+    - 20
+    - 30
+    NumberMax: 01000000
+    NumberMin: 01000000
+  <DropChance>k__BackingField:
+  - 80
+  - 80
+  - 80
+  <DropsMin>k__BackingField: 01000000
+  <DropMax>k__BackingField: 02000000
