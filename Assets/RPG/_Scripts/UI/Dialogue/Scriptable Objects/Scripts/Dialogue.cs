@@ -76,7 +76,6 @@ namespace RPG.Dialogue
             // Check if the dictionary has been initialized
             if (nodesByUUID.Count == 0)
             {
-                Debug.LogError("I am here");
                 // If not, build the dictionary
                 BuildDictionary();
             }
