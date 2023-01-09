@@ -74,8 +74,9 @@ namespace RPG.Dialogue
         public IEnumerable<Node> GetAllNodeChildren(Node parentNode)
         {
             // Check if the dictionary has been initialized
-            if (nodesByUUID == null)
+            if (nodesByUUID.Count == 0)
             {
+                Debug.LogError("I am here");
                 // If not, build the dictionary
                 BuildDictionary();
             }
@@ -120,10 +121,9 @@ namespace RPG.Dialogue
         private void BuildDictionary()
         {
             // Clear the dictionary
-            if (nodesByUUID != null) { nodesByUUID.Clear(); }
-            else { nodesByUUID = new Dictionary<string, Node>(); }
+            if (nodesByUUID.Count > 0) { nodesByUUID.Clear(); }
 
-            foreach (var node in Nodes.Where(node => node != null))
+            foreach (Node node in Nodes.Where(node => node != null))
             {
                 nodesByUUID[node.name] = node;
             }
